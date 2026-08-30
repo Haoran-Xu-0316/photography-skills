@@ -1,0 +1,16 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Local session and generated root artifacts
+/:memory:.ses
+/standard-pdf-template.pdf
+
+# Local environments and editor state
+.venv/
+venv/
+.idea/
+.vscode/
+
