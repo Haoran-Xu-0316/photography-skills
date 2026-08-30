@@ -21,7 +21,7 @@ metadata:
 
 - 重新选择画面范围或改善构图：`photo-composition-crop`。
 - 判断单张照片能否满足网页、印刷或归档规格：`photo-output-preflight`。
-- 制作报告、PPT、正文文档或信息图：`standard-format`及相应文档Skill。
+- 制作报告、PPT、正文文档或信息图：转交相应的文档排版或数据可视化Skill。
 - 调色、修复、加减光或生成内容：对应照片处理Skill。
 
 ## 开始前必须确认

@@ -1,4 +1,0 @@
-interface:
-  display_name: "标准输出格式"
-  short_description: "统一HTML、Excel、Word、PPT与PDF的专业交付格式"
-  default_prompt: "使用$standard-format按对应格式规范整理这份交付物，并完成结构与视觉验收。"
