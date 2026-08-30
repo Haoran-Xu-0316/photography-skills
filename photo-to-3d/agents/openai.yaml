@@ -1,0 +1,4 @@
+interface:
+  display_name: "照片转3D"
+  short_description: "将单张照片转换为深度图、交互视差与纹理浅浮雕模型并输出验证报告"
+  default_prompt: "使用$photo-to-3d把这张照片转换为深度图、交互视差网页和可导入3D软件的浅浮雕模型。"
