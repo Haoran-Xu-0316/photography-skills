@@ -1,0 +1,63 @@
+{
+  "natural-clean": {
+    "description": "自然、准确、低痕迹，适合日常、人像和产品基础成片",
+    "contrast": 0.04,
+    "saturation": 1.02,
+    "temperature": 0.0,
+    "tint": 0.0,
+    "shadow_color": [0.0, 0.0, 0.0],
+    "highlight_color": [0.0, 0.0, 0.0],
+    "black_lift": 0.0,
+    "green_saturation": 0.98,
+    "blue_saturation": 1.0
+  },
+  "warm-documentary": {
+    "description": "温暖但不泛黄，肤色稳定，阴影略冷以保持层次",
+    "contrast": 0.06,
+    "saturation": 0.98,
+    "temperature": 0.35,
+    "tint": 0.02,
+    "shadow_color": [-0.004, 0.002, 0.012],
+    "highlight_color": [0.018, 0.007, -0.006],
+    "black_lift": 0.004,
+    "green_saturation": 0.90,
+    "blue_saturation": 0.92
+  },
+  "cool-urban": {
+    "description": "中性偏冷、结构清晰，保留暖色主体作为视觉强调",
+    "contrast": 0.09,
+    "saturation": 0.94,
+    "temperature": -0.30,
+    "tint": 0.03,
+    "shadow_color": [-0.006, 0.006, 0.020],
+    "highlight_color": [0.008, 0.002, -0.004],
+    "black_lift": 0.0,
+    "green_saturation": 0.88,
+    "blue_saturation": 1.04
+  },
+  "muted-editorial": {
+    "description": "降低非主体颜色密度，以柔和反差和留白感突出内容",
+    "contrast": 0.02,
+    "saturation": 0.82,
+    "temperature": 0.08,
+    "tint": 0.01,
+    "shadow_color": [0.002, 0.004, 0.008],
+    "highlight_color": [0.010, 0.006, 0.0],
+    "black_lift": 0.010,
+    "green_saturation": 0.78,
+    "blue_saturation": 0.84
+  },
+  "soft-film": {
+    "description": "柔和高光、轻微抬黑和克制色彩分离，不模拟具体胶片品牌",
+    "contrast": -0.02,
+    "saturation": 0.92,
+    "temperature": 0.14,
+    "tint": -0.01,
+    "shadow_color": [-0.004, 0.008, 0.012],
+    "highlight_color": [0.014, 0.006, -0.004],
+    "black_lift": 0.016,
+    "green_saturation": 0.84,
+    "blue_saturation": 0.90
+  }
+}
+
