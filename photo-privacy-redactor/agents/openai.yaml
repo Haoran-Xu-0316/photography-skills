@@ -1,0 +1,4 @@
+interface:
+  display_name: "照片画面隐私遮挡"
+  short_description: "实心遮挡已确认敏感区域并输出候选预览与漏检复核清单供人工确认"
+  default_prompt: "使用$photo-privacy-redactor标记并实心遮挡这张照片中已经确认的画面隐私区域，输出无损PNG副本和漏检复核清单。"
