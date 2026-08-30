@@ -1,0 +1,4 @@
+interface:
+  display_name: "照片缺陷修复"
+  short_description: "诊断并修复噪点、暗角、横向色差与坏点等采集缺陷并生成修复预览"
+  default_prompt: "使用$photo-repair先诊断这张照片的技术缺陷并生成修复预览，确认力度后再输出非覆盖修复副本。"

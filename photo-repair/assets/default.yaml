@@ -1,0 +1,93 @@
+# 所有参数均可通过程序化接口的overrides点路径字典覆盖
+
+raw:
+  use_camera_wb: true          # 用相机白平衡，false则用自动白平衡
+  auto_exposure: true          # RAW线性解码后按分位数归一化亮度
+  exposure_percentile: 99.5    # 调低画面变亮，调高变暗
+
+output:
+  format: auto                 # auto/jpg/tiff/png，auto表示RAW出16位TIFF，JPEG出JPEG
+  jpeg_quality: 95
+  copy_exif: true
+
+hotpixel:
+  enabled: true
+  k: 8.0                       # 判定阈值，单位为局部噪声标准差的倍数，调小抓得多
+  max_fix_ratio: 0.0008        # 单通道最多修复的像素比例，防止误伤星点等细小高光
+
+ca:
+  enabled: true
+  strength: 1.0                # 校正比例，1.0为完全校正
+  min_shift_px: 0.4            # 边角位移低于此值不处理，肉眼不可见
+
+vignette:
+  enabled: true
+  strength: 1.0                # 1.0为完全拉平，0.85左右通常更自然
+  max_gain: 3.5                # 增益上限，防止极端暗角把边角噪声放大到不可用
+  min_confidence: 0.35         # 置信度低于此值判定为构图明暗不均而非暗角
+  use_lens_profile: true       # 优先使用build_lens_profile建立的平场校准模型
+  auto_strength: true          # 置信度不足时按置信度自动衰减，而非直接放弃
+
+denoise:
+  enabled: true
+  luma_method: nlm             # nlm/bilateral/bm3d，bm3d质量最好但需额外安装且慢
+  luma_strength: 0.9           # 亮度降噪，超过1.2开始出现塑料感
+  chroma_strength: 3.0         # 色度降噪，可以给到4以上，几乎不损细节
+  detail_recovery: 0.35        # 按边缘强度回补被误伤的纹理，0到1
+  chroma_downscale: 2          # 色度降采样倍数，提速用，画质影响可忽略
+  iso_prior_weight: 0.6        # 实测噪声与ISO先验的兜底权重
+  sigma_floor: 0.0022          # 噪声低于此值直接跳过降噪
+  patch_size: 5
+  patch_distance: 6
+
+sharpen:
+  enabled: true
+  amount: 0.35                 # 0为关闭，0.6以上易出白边
+  radius: 1.0
+  threshold: 0.008             # 弱于此强度的边缘不锐化，避免放大残留噪声
+
+diagnose:
+  vignette_bins: 40
+
+presets:
+
+  high_iso:                    # 室内、夜间手持等高感场景
+    denoise:
+      luma_strength: 1.1
+      chroma_strength: 4.0
+      detail_recovery: 0.25
+    sharpen:
+      amount: 0.45
+
+  landscape:                   # 低感风光，重细节，暗角保留一部分更耐看
+    denoise:
+      luma_strength: 0.5
+      chroma_strength: 2.0
+      detail_recovery: 0.55
+    vignette:
+      strength: 0.8
+    sharpen:
+      amount: 0.4
+
+  astro:                       # 星空，绝对不能误删星点，暗角必须补足
+    hotpixel:
+      k: 14.0
+      max_fix_ratio: 0.0002
+    denoise:
+      luma_strength: 0.8
+      chroma_strength: 5.0
+      detail_recovery: 0.15
+    vignette:
+      strength: 1.0
+      max_gain: 5.0
+    sharpen:
+      amount: 0.0
+
+  wildlife:                    # 打鸟，高感加长焦，保羽毛细节
+    denoise:
+      luma_strength: 0.85
+      chroma_strength: 3.5
+      detail_recovery: 0.5
+    sharpen:
+      amount: 0.5
+      radius: 0.8
