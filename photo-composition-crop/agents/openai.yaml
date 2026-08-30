@@ -1,0 +1,4 @@
+interface:
+  display_name: "照片构图裁切"
+  short_description: "分析视觉重心并输出多画幅裁切草案、预览与可复现坐标供人工复核"
+  default_prompt: "使用$photo-composition-crop为这张照片生成1:1、4:5和16:9三套裁切草案，展示构图叠加图并提示人物边界需要视觉复核。"
