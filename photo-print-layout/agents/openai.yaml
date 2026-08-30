@@ -1,0 +1,4 @@
+interface:
+  display_name: "照片印刷拼版"
+  short_description: "把定稿照片排入毫米级印刷页面并输出PDF、高分辨率页面图与放置清单"
+  default_prompt: "使用$photo-print-layout按明确的适配策略，把这些定稿照片排入毫米级印刷页面并输出PDF与放置清单。"
