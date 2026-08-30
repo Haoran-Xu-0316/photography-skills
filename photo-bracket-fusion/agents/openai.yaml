@@ -1,0 +1,4 @@
+interface:
+  display_name: "照片包围曝光融合"
+  short_description: "配准并融合真实包围曝光，检测运动与鬼影风险并输出可复现报告"
+  default_prompt: "使用$photo-bracket-fusion验证并融合这组真实包围曝光照片，同时输出可复现的运动与鬼影风险报告。"
