@@ -21,7 +21,6 @@ OWN_SKILLS = {
     "photo-repair",
     "photo-series-editor",
     "photo-to-3d",
-    "standard-format",
 }
 VENDOR_TOKENS = (
     "codex",
