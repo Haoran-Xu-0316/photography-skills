@@ -1,0 +1,7 @@
+interface:
+  display_name: "照片焦点堆栈"
+  short_description: "合成多焦平面照片并输出焦点来源地图、运动与呼吸风险报告"
+  default_prompt: "使用$photo-focus-stacker合成这组不同焦平面的照片，并输出焦点来源与风险报告。"
+
+policy:
+  allow_implicit_invocation: true
