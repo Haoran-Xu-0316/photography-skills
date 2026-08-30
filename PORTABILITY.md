@@ -4,6 +4,8 @@
 
 本目录的14个自有摄影Skill以Agent Skills开放目录格式为共同核心。每个Skill都以`SKILL.md`为入口，按需携带`scripts`、`references`、`assets`和`requirements.txt`。
 
+每个Skill还提供面向GitHub读者的`README.md`和`examples/basic_usage.py`。这些文件解释能力边界并演示真实程序接口，但不替代`SKILL.md`中的运行契约。
+
 每个`SKILL.md`都在标准`metadata`映射中提供字符串型`runtime`说明，用于声明Python、离线资源和视觉验收能力。运行时可以读取该字段，也可以忽略它并按正文的“运行契约”执行。
 
 这里的“通用”是能力通用，不是声称任何纯文本模型都能直接处理本地图片。运行时至少需要读取Skill目录和用户文件；需要实际处理图片时，还要能够执行Python；需要完成视觉验收时，还要能够查看原图和输出预览。
