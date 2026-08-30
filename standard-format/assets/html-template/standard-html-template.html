@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>报告标题</title>
+<script src="../echarts.min.js"></script>
+<style>
+/* 配色方案：默认朱墨。切换方案时只替换本块的HEX；下方JS会从CSS变量读取THEME，其余代码不动。
+   备选方案取值见 references/theme-style.md 的配色方案表：靛青、松墨、赭石、素墨。 */
+:root{
+  --SERIES_MAIN:#C8102E; --SERIES_MAIN_DEEP:#9E0B24; --SERIES_ACCENT:#D99A2B; --SERIES_BENCH:#2A6FB0; --SERIES_RISK:#6B2E8A;
+  --INK:#1E1B18; --PAPER:#FBF8F3; --PANEL:#FFFFFF; --GRID_LINE:#EBE3D6; --GRID_LINE_STRONG:#D8C9B2;
+  --TEXT_SECONDARY:#5A5148; --MUTED:#8C8073; --SERIES_DEFENSE:#1F8A5B; --SERIES_NEUTRAL:#B4A897;
+  --SERIES_BENCH_DEEP:#174A7C; --SERIES_ACCENT_DEEP:#B07818; --NOTE_BG:#FAF4EA; --ROW_HOVER:#FCF8F1;
+  --INPUT_FILL:#FFF2CC; --CALC_FILL:#DDEBF7; --WARNING_FILL:#FCE4D6; --MISSING_GREY:#A6A6A6;
+  --FORMULA_BG:#FAF7F1; --HEATMAP_NEG:#E9F2FA; --HEATMAP_POS:#F7DCE1; --RULE_BLACK:#000000;
+  --UP_TONE:#C8102E; --DOWN_TONE:#1F8A5B; --FOCUS:#C8102E;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:hidden}
+a:focus-visible,button:focus-visible,[tabindex="0"]:focus-visible{outline:3px solid var(--FOCUS);outline-offset:3px}
+.skip-link{position:fixed;left:12px;top:10px;z-index:80;transform:translateY(-180%);padding:7px 12px;background:var(--PANEL);border:1px solid var(--SERIES_MAIN);border-radius:5px;color:var(--SERIES_MAIN);font-weight:700;text-decoration:none}
+.skip-link:focus{transform:translateY(0)}
+body{margin:0 0 0 224px;background:var(--PAPER);color:var(--INK);overflow-x:hidden;font-family:"PingFang SC","Microsoft YaHei","Source Han Sans SC","Arial",sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased}
+.num,table{font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+.wrap{max-width:1220px;margin:0 auto;padding:0 28px;min-width:0}
+.serif{font-family:"Source Han Serif SC","Songti SC","STSong","SimSun",serif}
+.topnav{position:fixed;left:0;top:0;bottom:0;width:224px;z-index:50;background:var(--PANEL);border-right:1px solid var(--GRID_LINE)}
+.nav-in{display:flex;flex-direction:column;gap:4px;height:100%;padding:22px 16px;overflow-y:auto;white-space:nowrap}
+.nav-title{font-weight:700;font-size:15px;color:var(--SERIES_MAIN);margin:0 0 14px;padding:0 8px 12px;border-bottom:1px solid var(--GRID_LINE)}
+.topnav a{color:var(--TEXT_SECONDARY);text-decoration:none;font-size:14px;padding:8px 10px;border-radius:4px;border-left:4px solid transparent}
+.topnav a.sub{font-size:12.5px;color:var(--MUTED);padding:5px 10px 5px 22px}
+.topnav a:hover{background:var(--NOTE_BG);color:var(--SERIES_MAIN)}
+.topnav a.active{background:var(--SERIES_MAIN);color:var(--PANEL);border-left-color:var(--SERIES_MAIN)}
+.nav-foot{border-top:1px solid var(--GRID_LINE);margin-top:10px;padding-top:14px;color:var(--MUTED);font-size:11px;line-height:1.65}
+.hero{background:linear-gradient(120deg,var(--SERIES_MAIN_DEEP) 0%,var(--SERIES_MAIN) 55%,var(--SERIES_ACCENT) 140%);color:var(--PANEL);padding:54px 0 48px}
+.hero h1{font-size:38px;margin:0;font-weight:700}
+.hero .lead{max-width:860px;margin:14px 0 0;color:rgba(255,255,255,.94);font-size:15px;line-height:1.75}
+.hero .meta{display:flex;flex-wrap:wrap;gap:8px 22px;margin:16px 0 0;color:rgba(255,255,255,.86);font-size:12px}
+.hero .meta strong{color:var(--PANEL)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.25);margin-top:26px;border:1px solid rgba(255,255,255,.25)}
+.kpi{background:linear-gradient(180deg,rgba(158,11,36,0),rgba(0,0,0,.06));padding:18px 16px}
+.kpi .v{font-size:28px;font-weight:700}
+.kpi .d{font-size:13px;margin-top:3px;opacity:.95}
+.kpi .cmp{display:block;font-size:11.5px;margin-top:4px;opacity:.8}
+section{padding:42px 0 8px;scroll-margin-top:22px}
+.part-head{display:flex;align-items:baseline;gap:14px;border-bottom:2px solid var(--SERIES_MAIN);padding-bottom:12px;margin-bottom:24px}
+.part-no{display:inline-flex;align-items:center;justify-content:center;min-width:32px;height:32px;background:var(--SERIES_MAIN);color:var(--PANEL);border-radius:4px;font-weight:700}
+.part-head h2{font-size:26px;margin:0;font-weight:700}
+h1,h2,h3,.part-head h2{font-family:"Source Han Serif SC","Songti SC","STSong","SimSun",serif}
+.num{font-family:"Arial","PingFang SC","Microsoft YaHei",sans-serif}
+table,th,td{font-family:"PingFang SC","Microsoft YaHei","Source Han Sans SC","Arial",sans-serif}
+h3{font-size:18px;margin:28px 0 12px;font-weight:700;display:flex;align-items:center;gap:10px}
+h3::before{content:"";width:4px;height:16px;background:var(--SERIES_ACCENT);display:inline-block}
+.callout,.section-desc{background:var(--NOTE_BG);border:1px solid var(--GRID_LINE);border-left:3px solid var(--SERIES_MAIN);border-radius:6px;padding:13px 16px;margin:10px 0 16px;color:var(--TEXT_SECONDARY);font-size:13px;line-height:1.65}
+.card,.figure-card{background:var(--PANEL);border:1px solid var(--GRID_LINE);border-radius:6px;padding:18px 20px;margin:12px 0 16px;box-shadow:0 1px 0 rgba(30,27,24,.02);max-width:100%;overflow-x:auto}
+.ch{font-weight:700;font-size:13.5px;min-height:28px;padding:0 0 8px;display:flex;align-items:center;gap:8px;line-height:1.35;color:var(--INK)}
+.chart{width:100%;max-width:100%;height:360px;min-width:0}
+.chart.tall{height:420px}.chart.sm{height:300px}.chart.mini{height:260px}
+.cmp2,.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start;max-width:100%}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:start;max-width:100%}
+.opt-charts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:12px;max-width:100%}
+.eq{background:var(--FORMULA_BG);border:1px solid var(--GRID_LINE);border-radius:5px;padding:12px 14px;margin:8px 0;font-family:"Cambria Math","STIX Two Math","TimesNewRoman","Times New Roman","Source Han Serif SC","Songti SC",serif;font-size:16px;font-weight:500;line-height:1.95;overflow-x:auto;color:var(--INK)}
+.eq-note{font-size:12.5px;color:var(--TEXT_SECONDARY);line-height:1.65;margin:0 0 10px}
+.eq-note b{color:var(--INK);font-weight:700}
+.defs{background:var(--PANEL);border:1px solid var(--GRID_LINE);border-radius:6px;margin:12px 0 16px;overflow:hidden}
+.defs dl{margin:0;display:grid;grid-template-columns:120px 1fr}
+.defs dt{padding:9px 14px;font-weight:700;color:var(--INK);border-top:1px solid var(--GRID_LINE);background:var(--NOTE_BG)}
+.defs dd{padding:9px 14px;margin:0;color:var(--TEXT_SECONDARY);border-top:1px solid var(--GRID_LINE);line-height:1.6}
+.defs dt:first-of-type,.defs dd:first-of-type{border-top:none}
+.colcard{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:12px 0 16px}
+.colcard .card{margin:0}
+.colcard .card h4{margin:0 0 8px;font-size:14px;color:var(--INK);font-weight:700}
+.colcard .card ul{margin:0;padding-left:18px;font-size:12.5px;color:var(--TEXT_SECONDARY);line-height:1.7}
+.cmd{background:var(--INK);color:var(--PANEL);border-radius:6px;padding:12px 16px;margin:10px 0 16px;font-family:"SFMono-Regular","Menlo","Consolas",monospace;font-size:12.5px;line-height:1.7;overflow-x:auto}
+.cmd .c1{color:var(--SERIES_NEUTRAL)}
+.badge{display:inline-flex;align-items:center;gap:5px;padding:2px 9px;border-radius:999px;font-size:11.5px;font-weight:700}
+.badge.pass{background:var(--NOTE_BG);color:var(--SERIES_DEFENSE);box-shadow:inset 0 0 0 1px var(--SERIES_DEFENSE)}
+.badge.fail{background:var(--NOTE_BG);color:var(--SERIES_MAIN);box-shadow:inset 0 0 0 1px var(--SERIES_MAIN)}
+.badge.pending{background:var(--NOTE_BG);color:var(--MUTED);box-shadow:inset 0 0 0 1px var(--GRID_LINE_STRONG)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--TEXT_SECONDARY);margin:0 0 6px}
+.legend .pill{display:inline-flex;align-items:center;gap:6px}
+.legend .dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+table{border-collapse:collapse;width:100%;font-size:12.5px;line-height:1.48;color:var(--INK);border-top:1.5px solid var(--RULE_BLACK);border-bottom:1.5px solid var(--RULE_BLACK)}
+th,td{padding:8px 10px;white-space:nowrap;vertical-align:middle;text-align:center}
+td:first-child{text-align:left;font-weight:600;color:var(--TEXT_SECONDARY)}
+thead th{background:transparent;color:var(--INK);font-weight:700;border-bottom:1px solid var(--RULE_BLACK)}
+tr.group-row td{border-top:1px solid var(--RULE_BLACK);font-weight:700}
+.highlight-row td{font-weight:700}
+.pos{color:var(--UP_TONE)}.neg{color:var(--DOWN_TONE)}.muted{color:var(--MUTED)}
+.scroll{max-height:460px;overflow:auto;border:none;border-top:1.5px solid var(--RULE_BLACK);border-bottom:1.5px solid var(--RULE_BLACK);border-radius:0}
+.scroll table{border-top:none;border-bottom:none}
+.scroll thead th{position:sticky;top:0;z-index:1;background:var(--PANEL);border-bottom:none;box-shadow:inset 0 -1px 0 var(--RULE_BLACK)}
+.scroll tbody tr:hover{background:var(--ROW_HOVER)}
+.text-table th,.text-table td{text-align:left;white-space:normal;line-height:1.55}
+.dense-table th,.dense-table td{padding:6px 8px;font-size:12px}
+.table-note,.figcap{margin-top:8px;color:var(--MUTED);font-size:12.5px;line-height:1.55}
+.sens-card{background:var(--PANEL);border:1px solid var(--GRID_LINE);border-radius:6px;padding:16px 18px;margin:12px 0 18px}
+.sens-title{font-weight:700;color:var(--INK);margin-bottom:8px;display:flex;justify-content:space-between;gap:12px}
+.sens-mini{margin:4px 0 12px;font-size:12.5px}
+.sens-mini th,.sens-mini td{padding:6px 8px;text-align:center;white-space:normal}
+.sens-mini th:first-child,.sens-mini td:first-child{text-align:left}
+.flow-map{background:var(--PANEL);border:1px solid var(--GRID_LINE);border-radius:8px;padding:22px 24px;margin:12px 0 18px;position:relative;overflow:hidden}
+.flow-map::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,var(--SERIES_MAIN),var(--SERIES_ACCENT),var(--SERIES_BENCH))}
+.flow-board{display:grid;grid-template-columns:1fr 24px 1fr 24px 1fr;gap:0;align-items:stretch}
+.flow-node{border:1px solid var(--GRID_LINE);border-radius:7px;background:var(--PANEL);min-height:136px;padding:12px 13px;display:flex;flex-direction:column}
+.flow-node.data{background:var(--WARNING_FILL);border-color:var(--SERIES_MAIN)}.flow-node.signal{background:var(--CALC_FILL);border-color:var(--SERIES_BENCH)}.flow-node.target{background:var(--INPUT_FILL);border-color:var(--SERIES_ACCENT)}
+.flow-stage{display:inline-block;align-self:flex-start;border-radius:4px;padding:2px 8px;color:var(--PANEL);font-size:11px;font-weight:900;background:var(--SERIES_MAIN)}
+.flow-node.signal .flow-stage{background:var(--SERIES_BENCH)}.flow-node.target .flow-stage{background:var(--SERIES_ACCENT_DEEP)}
+.flow-title{font-size:15px;font-weight:900;color:var(--INK);margin:8px 0 10px;text-align:center}
+.flow-detail{font-size:12.5px;color:var(--TEXT_SECONDARY);line-height:1.6;text-align:center;display:flex;flex-direction:column;justify-content:center;flex:1}
+.flow-join{display:flex;align-items:center;justify-content:center;color:var(--SERIES_ACCENT_DEEP);font-weight:900;font-size:20px}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;margin:14px 0 18px}
+.step{position:relative;min-height:120px;padding:15px 15px 13px;border:1px solid var(--GRID_LINE);border-radius:7px;background:var(--PANEL)}
+.step b{display:block;margin-bottom:7px;color:var(--SERIES_MAIN);font-size:13.5px}
+.step p{margin:0;font-size:12.5px;color:var(--TEXT_SECONDARY);line-height:1.6}
+.step:not(:last-child)::after{content:"\2192";position:absolute;right:-17px;top:50px;width:22px;text-align:center;color:var(--SERIES_ACCENT);font-size:20px;font-weight:800;line-height:1}
+@media(max-width:900px){.steps{grid-template-columns:1fr;gap:30px}.step:not(:last-child)::after{content:"\2193";right:auto;left:50%;top:auto;bottom:-24px;transform:translateX(-50%)}}
+#toTop{position:fixed;right:22px;bottom:22px;width:42px;height:42px;border-radius:50%;border:1px solid var(--GRID_LINE);background:var(--PANEL);color:var(--SERIES_MAIN);font-size:19px;cursor:pointer;box-shadow:0 2px 12px rgba(30,27,24,.16);opacity:0;pointer-events:none;transition:opacity .2s;z-index:60}
+#toTop.show{opacity:1;pointer-events:auto}
+@media(max-width:900px){
+  body{margin-left:0}.topnav{position:sticky;top:0;width:auto;height:auto;border-right:none;border-bottom:1px solid var(--GRID_LINE)}
+  .nav-in{height:48px;flex-direction:row;align-items:center;padding:0 18px;overflow-x:auto}
+  .topnav a,.topnav a.sub{font-size:12px;padding:12px 6px;border-left:none;border-radius:0}
+  .nav-title{display:none}.hero h1{font-size:28px}.kpis{grid-template-columns:repeat(2,1fr)}.cmp2,.grid2,.grid3,.opt-charts{grid-template-columns:1fr}
+  .flow-board{grid-template-columns:1fr}.flow-join{height:22px;transform:rotate(90deg)}
+}
+@media print{.topnav,#toTop{display:none!important}body{margin-left:0;background:var(--PANEL)}.hero{background:var(--SERIES_MAIN)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.card,.callout{break-inside:avoid}}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#report">跳至正文</a>
+<nav class="topnav" aria-label="报告目录"><div class="wrap nav-in">
+  <span class="nav-title">目录</span>
+  <a href="#summary">一 核心结论</a>
+  <a href="#method">二 策略定义</a>
+  <a href="#tables">三 表格组件</a>
+  <a class="sub" href="#table-metric">3.1 指标表</a>
+  <a class="sub" href="#table-params">3.2 参数表</a>
+  <a href="#charts">四 图表组件</a>
+  <a class="sub" href="#charts-four">4.1 四图检验</a>
+  <a class="sub" href="#charts-more">4.2 其他图形</a>
+  <a href="#robustness">五 稳健性</a>
+  <a href="#qa">六 格式验收</a>
+  <div class="nav-foot">数据截止：按实际填写。<br>主口径：按实际填写。</div>
+</div></nav>
+<button id="toTop" title="回到顶部" aria-label="回到顶部">↑</button>
+<div class="hero"><div class="wrap">
+  <h1 class="serif">报告标题</h1>
+  <p class="lead">一句话说明报告对象、方法和结论范围，不超过两行。</p>
+  <div class="meta"><span>样本区间：<strong>起始日至截止日</strong></span><span>调仓频次：<strong>按实际填写</strong></span><span>主口径：<strong>按实际填写</strong></span></div>
+  <div class="kpis" aria-label="核心绩效指标">
+    <div class="kpi"><div class="d">核心指标一</div><div class="v num">核心值</div><span class="cmp">基准对照值</span></div>
+    <div class="kpi"><div class="d">核心指标二</div><div class="v num">核心值</div><span class="cmp">基准对照值</span></div>
+    <div class="kpi"><div class="d">核心指标三</div><div class="v num">核心值</div><span class="cmp">基准对照值</span></div>
+    <div class="kpi"><div class="d">核心指标四</div><div class="v num">核心值</div><span class="cmp">基准对照值</span></div>
+  </div>
+</div></div>
+<main id="report" tabindex="-1">
+<div class="wrap">
+<section id="summary">
+  <div class="part-head"><span class="part-no">一</span><h2>核心结论</h2></div>
+  <div class="callout">先写最终判断，再写最关键证据和限制条件。</div>
+  <div class="card"><div class="ch">核心指标表</div><div class="scroll" tabindex="0"><table>
+    <thead><tr><th>组合</th><th>期末净值</th><th>年化收益</th><th>年化波动</th><th>最大回撤</th><th>夏普</th><th>卡玛</th><th>换手</th></tr></thead>
+    <tbody><tr class="highlight-row"><td>策略组合</td><td>1.000</td><td class="pos">0.0%</td><td>0.0%</td><td class="neg">0.0%</td><td>0.00</td><td>0.00</td><td>0.00</td></tr><tr><td>基准组合</td><td>1.000</td><td>0.0%</td><td>0.0%</td><td class="neg">0.0%</td><td>0.00</td><td>0.00</td><td>0.00</td></tr></tbody>
+  </table></div><div class="table-note">指标表默认展示关键指标，超过12行放入滚动容器，超过30行拆表或输出Excel。</div></div>
+</section>
+<section id="method">
+  <div class="part-head"><span class="part-no">二</span><h2>策略定义</h2></div>
+  <div class="section-desc">本节说明数据、信号、权重和约束，不把参数写成散文。</div>
+  <div class="flow-map"><div class="flow-board">
+    <div class="flow-node data"><span class="flow-stage">数据</span><div class="flow-title">输入变量</div><div class="flow-detail">价格、估值、波动率、成交和约束参数。</div></div>
+    <div class="flow-join">›</div>
+    <div class="flow-node signal"><span class="flow-stage">信号</span><div class="flow-title">模型处理</div><div class="flow-detail">标准化、合成、阈值判断和调仓触发。</div></div>
+    <div class="flow-join">›</div>
+    <div class="flow-node target"><span class="flow-stage">组合</span><div class="flow-title">权重输出</div><div class="flow-detail">目标权重、交易成本、风险约束和执行记录。</div></div>
+  </div></div>
+  <div class="steps">
+    <div class="step"><b>1 数据准备</b><p>取数、清洗和口径对齐，产出可复现的原始数据集。</p></div>
+    <div class="step"><b>2 信号构建</b><p>标准化、合成和阈值判断，形成可调仓触发的信号序列。</p></div>
+    <div class="step"><b>3 组合构建</b><p>权重求解、约束校验和交易成本计入，输出目标持仓。</p></div>
+    <div class="step"><b>4 验收复现</b><p>回测、稳健性检验和格式验收，产出可交付报告。</p></div>
+  </div>
+  <div class="cmp2">
+    <div class="card"><div class="ch">基础规则</div><div class="eq">w<sub>t</sub>=f(x<sub>t</sub>)</div><div class="eq-note">w<sub>t</sub>为t时刻目标权重，x<sub>t</sub>为标准化后的输入信号。</div></div>
+    <div class="card"><div class="ch">调整规则</div><div class="eq">w<sub>t</sub>=f(x<sub>t</sub>,z<sub>t</sub>,c<sub>t</sub>)</div><div class="eq-note">z<sub>t</sub>为风险约束项，c<sub>t</sub>为交易成本项，两者共同修正基础权重。</div></div>
+  </div>
+  <div class="defs"><dl>
+    <dt>信号</dt><dd>由输入变量经标准化和合成后得到的方向性判断，取值范围和口径需在首次出现时定义。</dd>
+    <dt>调仓触发</dt><dd>信号越过阈值后执行权重调整的时点，需说明频率和滞回带宽。</dd>
+  </dl></div>
+  <div class="colcard">
+    <div class="card"><h4>数据层</h4><ul><li>价格与成交</li><li>估值与波动率</li><li>约束参数</li></ul></div>
+    <div class="card"><h4>信号层</h4><ul><li>标准化</li><li>多因子合成</li><li>阈值判断</li></ul></div>
+    <div class="card"><h4>组合层</h4><ul><li>目标权重</li><li>交易成本</li><li>风险约束</li></ul></div>
+  </div>
+</section>
+<section id="tables">
+  <div class="part-head"><span class="part-no">三</span><h2>表格组件</h2></div>
+  <h3 id="table-metric">3.1 指标汇总表</h3>
+  <div class="section-desc">指标表用于精确数值比较，默认列、精度和颜色固定。</div>
+  <div class="card"><div class="ch">指标汇总表模板</div><div class="scroll" tabindex="0"><table>
+    <thead><tr><th>策略</th><th>期末净值</th><th>年化收益</th><th>年化波动</th><th>最大回撤</th><th>夏普</th><th>卡玛</th><th>换手</th></tr></thead>
+    <tbody><tr><td>策略一</td><td>1.000</td><td class="pos">0.0%</td><td>0.0%</td><td class="neg">0.0%</td><td>0.00</td><td>0.00</td><td>0.00</td></tr><tr><td>策略二</td><td>1.000</td><td>0.0%</td><td>0.0%</td><td class="neg">0.0%</td><td>0.00</td><td>0.00</td><td>0.00</td></tr></tbody>
+  </table></div></div>
+  <h3 id="table-params">3.2 参数和长文本表</h3>
+  <div class="grid2">
+    <div class="card"><div class="ch">参数表模板</div><div class="scroll" tabindex="0"><table class="text-table dense-table">
+      <thead><tr><th style="width:90px">环节</th><th style="width:120px">参数</th><th style="width:90px">当前值</th><th>规则或公式</th><th style="width:140px">选值依据</th><th style="width:120px">敏感性入口</th></tr></thead>
+      <tbody><tr><td>执行</td><td>交易成本</td><td>待填</td><td>写清计算方式和单位。</td><td>按项目口径填写。</td><td>见5.1</td></tr><tr><td>信号</td><td>窗口长度</td><td>待填</td><td>写清滚动窗口和频率。</td><td>按稳健性结果填写。</td><td>见5.1</td></tr></tbody>
+    </table></div></div>
+    <div class="card"><div class="ch">长文本对比表模板</div><table class="text-table">
+      <thead><tr><th style="width:160px">项目</th><th>判断</th><th>证据</th><th style="width:130px">处理</th></tr></thead>
+      <tbody><tr><td>差异来源</td><td>写清口径差异，不写泛化描述。</td><td>列出数据、参数或执行证据。</td><td>保留或修正</td></tr><tr><td>风险边界</td><td>说明失效情景。</td><td>对应可观测指标。</td><td>监控</td></tr></tbody>
+    </table></div>
+  </div>
+  <h3>3.3 明细和数据字典</h3>
+  <div class="grid2">
+    <div class="card"><div class="ch">明细数据表模板</div><div class="scroll" tabindex="0"><table class="dense-table">
+      <thead><tr><th>日期</th><th>资产代码</th><th>资产名称</th><th>信号</th><th>目标权重</th><th>收益率</th><th>组合收益</th><th>累计净值</th></tr></thead>
+      <tbody><tr><td>YYYY-MM-DD</td><td>代码</td><td>名称</td><td>待填</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>1.000</td></tr></tbody>
+    </table></div></div>
+    <div class="card"><div class="ch">数据字典表模板</div><table class="text-table dense-table">
+      <thead><tr><th>字段</th><th>含义</th><th>类型</th><th>单位</th><th>来源</th><th>计算口径</th><th>缺失值处理</th></tr></thead>
+      <tbody><tr><td>nav</td><td>累计净值</td><td>数值</td><td>倍</td><td>计算过程</td><td>前期净值乘以1加收益率。</td><td>NA</td></tr></tbody>
+    </table></div>
+  </div>
+</section>
+<section id="charts">
+  <div class="part-head"><span class="part-no">四</span><h2>图表组件</h2></div>
+  <h3 id="charts-four">4.1 四图检验</h3>
+  <div class="section-desc">固定顺序为累计净值、相对净值、回撤路径和相对回撤。</div>
+  <div class="opt-charts">
+    <div class="card"><div class="ch">累计净值</div><div id="navChart" class="chart sm"></div></div>
+    <div class="card"><div class="ch">相对净值</div><div id="relChart" class="chart sm"></div></div>
+    <div class="card"><div class="ch">回撤路径</div><div id="ddChart" class="chart sm"></div></div>
+    <div class="card"><div class="ch">相对回撤</div><div id="relDdChart" class="chart sm"></div></div>
+  </div>
+  <h3 id="charts-more">4.2 贡献、矩阵和分布</h3>
+  <div class="grid2">
+    <div class="card"><div class="ch">横向贡献条形图</div><div id="attrChart" class="chart"></div></div>
+    <div class="card"><div class="ch">堆叠贡献柱状图</div><div id="stackChart" class="chart"></div></div>
+    <div class="card"><div class="ch">权重或相关性热力图</div><div id="heatChart" class="chart"></div></div>
+    <div class="card"><div class="ch">风险收益散点图</div><div id="scatterChart" class="chart"></div></div>
+  </div>
+  <div class="grid2">
+    <div class="card"><div class="ch">结构占比环图</div><div id="donutChart" class="chart sm"></div></div>
+    <div class="card"><div class="ch">年度收益柱状图</div><div id="yearBarChart" class="chart sm"></div></div>
+  </div>
+</section>
+<section id="robustness">
+  <div class="part-head"><span class="part-no">五</span><h2>稳健性</h2></div>
+  <div class="callout">稳健性结论必须来自参数扰动、滚动训练或跨阶段检验。</div>
+  <div class="sens-card"><div class="sens-title">参数敏感性摘要</div><table class="sens-mini">
+    <thead><tr><th>参数</th><th>当前值</th><th>收益最高</th><th>回撤最浅</th><th>夏普最高</th><th>结论</th></tr></thead>
+    <tbody><tr><td>参数一</td><td>当前值</td><td>待填</td><td>待填</td><td>待填</td><td>待填</td></tr></tbody>
+  </table><div class="grid2"><div id="sensReturn" class="chart sm"></div><div id="sensRisk" class="chart sm"></div></div></div>
+</section>
+<section id="qa">
+  <div class="part-head"><span class="part-no">六</span><h2>格式验收</h2></div>
+  <div class="section-desc">复现须先激活环境再运行入口脚本，命令按实际项目路径调整。</div>
+  <div class="cmd">项目入口：按实际工程说明填写，不在模板中固化本机路径、环境名称或命令参数。</div>
+  <div class="card"><div class="ch">验收清单</div><table class="text-table qa-list">
+    <thead><tr><th style="width:160px">检查项</th><th>要求</th><th style="width:100px">状态</th></tr></thead>
+    <tbody><tr><td>目录</td><td>左侧目录与正文标题一一对应。</td><td><span class="badge pass">通过</span></td></tr><tr><td>图表</td><td>离线ECharts渲染正常，图表高度、图例、坐标轴和tooltip统一。</td><td><span class="badge pass">通过</span></td></tr><tr><td>表格</td><td>表格类型、滚动容器、sticky表头和数字格式符合规范。</td><td><span class="badge fail">未通过</span></td></tr><tr><td>公式</td><td>使用数学排版，不使用代码块。</td><td><span class="badge pending">待检查</span></td></tr></tbody>
+  </table></div>
+</section>
+</div>
+</main>
+<script>
+const TOKEN_NAMES=['SERIES_MAIN','SERIES_MAIN_DEEP','SERIES_BENCH','SERIES_BENCH_DEEP','SERIES_ACCENT','SERIES_ACCENT_DEEP','SERIES_DEFENSE','SERIES_RISK','SERIES_NEUTRAL','INK','TEXT_SECONDARY','MUTED','GRID_LINE','GRID_LINE_STRONG','PAPER','PANEL','NOTE_BG','ROW_HOVER','MISSING_GREY','FORMULA_BG','HEATMAP_NEG','HEATMAP_POS','RULE_BLACK','UP_TONE','DOWN_TONE','FOCUS'];
+const CSSVAR=getComputedStyle(document.documentElement);
+const THEME=Object.fromEntries(TOKEN_NAMES.map(n=>[n,CSSVAR.getPropertyValue('--'+n).trim()]));
+const SERIES_PALETTE=[THEME.SERIES_BENCH,THEME.SERIES_MAIN,THEME.SERIES_ACCENT,THEME.SERIES_DEFENSE,THEME.SERIES_RISK,THEME.SERIES_NEUTRAL];
+const CHARTS=[];
+const ACHROMATIC=false;
+const LINE_TYPE_CYCLE=['solid','dashed','dotted',[8,3,2,3],[12,4],[2,2]];
+const SYMBOL_CYCLE=['circle','rect','triangle','diamond','roundRect','pin'];
+const BAR_PATTERN_CYCLE=[0,0.55,0.28,0.75,0.42,0.9];
+function applyAchromatic(opt){
+  const ss=opt.series;if(!Array.isArray(ss))return opt;
+  ss.forEach((s,i)=>{
+    if(s.type==='line'){
+      s.lineStyle=Object.assign({type:LINE_TYPE_CYCLE[i%LINE_TYPE_CYCLE.length],width:s.lineStyle&&s.lineStyle.width||1.9},s.lineStyle||{});
+      s.lineStyle.type=LINE_TYPE_CYCLE[i%LINE_TYPE_CYCLE.length];
+      s.symbol=s.symbol||SYMBOL_CYCLE[i%SYMBOL_CYCLE.length];
+      s.showSymbol=true;s.symbolSize=s.symbolSize||7;
+      if(Array.isArray(s.data)&&s.data.length>14)s.showAllSymbol=false;
+      if(s.areaStyle)s.areaStyle.opacity=Math.min(s.areaStyle.opacity||0.1,0.12);
+    }else if(s.type==='scatter'){
+      s.symbol=s.symbol||SYMBOL_CYCLE[i%SYMBOL_CYCLE.length];
+    }else if(s.type==='bar'){
+      const a=BAR_PATTERN_CYCLE[i%BAR_PATTERN_CYCLE.length];
+      s.itemStyle=Object.assign({borderColor:THEME.INK,borderWidth:1},s.itemStyle||{});
+      if(a>0)s.itemStyle.opacity=1-a*0.55;
+    }
+  });
+  return opt;
+}
+function normalizeChartOption(opt){
+  opt.color=opt.color||SERIES_PALETTE;
+  opt.textStyle=Object.assign({fontFamily:'Arial, "PingFang SC", "Microsoft YaHei", sans-serif',color:THEME.INK,fontSize:12},opt.textStyle||{});
+  opt.tooltip=Object.assign({trigger:'axis',confine:true,backgroundColor:'rgba(255,255,255,.96)',borderColor:THEME.GRID_LINE,borderWidth:1,textStyle:{color:THEME.INK,fontSize:12},axisPointer:{type:'line',lineStyle:{color:THEME.MUTED,width:1,type:'dashed'}}},opt.tooltip||{});
+  opt.grid=Object.assign({left:52,right:18,top:54,bottom:36,containLabel:true},opt.grid||{});
+  opt.legend=Object.assign({top:4,type:(opt.series||[]).length>3?'scroll':'plain'},opt.legend||{});
+  if(opt.dataZoom){opt.grid.bottom=Math.max(opt.grid.bottom||0,58);}
+  for(const axis of [opt.xAxis,opt.yAxis].flat().filter(Boolean)){
+    axis.axisLabel=Object.assign({color:THEME.MUTED,fontSize:11},axis.axisLabel||{});
+    axis.axisTick=axis.axisTick===undefined?{show:false}:axis.axisTick;
+    if(axis.type!=='category') axis.splitLine=axis.splitLine===undefined?{lineStyle:{color:THEME.GRID_LINE,type:'dashed'}}:axis.splitLine;
+  }
+  if(ACHROMATIC) applyAchromatic(opt);
+  return opt;
+}
+function mk(id){const el=document.getElementById(id);if(!el)return null;const c=echarts.init(el);const raw=c.setOption.bind(c);c.setOption=(opt,...args)=>raw(normalizeChartOption(opt),...args);CHARTS.push(c);return c;}
+let resizeTimer=null;addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>CHARTS.forEach(c=>c.resize()),150);});
+const dates=['T1','T2','T3','T4','T5','T6'];
+mk('navChart').setOption({xAxis:{type:'category',data:dates},yAxis:{type:'value',name:'净值'},series:[{name:'策略组合',type:'line',showSymbol:false,lineStyle:{width:2},data:[1,1.02,1.01,1.05,1.08,1.10]},{name:'基准组合',type:'line',showSymbol:false,lineStyle:{width:1.8},data:[1,1.01,.99,1.02,1.03,1.04]}]});
+mk('relChart').setOption({color:[THEME.SERIES_ACCENT],xAxis:{type:'category',data:dates},yAxis:{type:'value',name:'相对净值'},series:[{name:'策略组合相对基准',type:'line',showSymbol:false,data:[1,1.01,1.02,1.03,1.05,1.06]}]});
+mk('ddChart').setOption({xAxis:{type:'category',data:dates},yAxis:{type:'value',name:'回撤',axisLabel:{formatter:'{value}%'}},series:[{name:'策略组合回撤',type:'line',showSymbol:false,areaStyle:{opacity:.10},data:[0,-1,-3,-2,-1,0]},{name:'基准组合回撤',type:'line',showSymbol:false,areaStyle:{opacity:.08},data:[0,-2,-6,-4,-3,-2]}]});
+mk('relDdChart').setOption({color:[THEME.SERIES_DEFENSE],xAxis:{type:'category',data:dates},yAxis:{type:'value',name:'相对回撤',axisLabel:{formatter:'{value}%'}},series:[{name:'相对回撤差',type:'bar',data:[0,1,3,2,2,2]}]});
+mk('attrChart').setOption({xAxis:{type:'value',name:'贡献'},yAxis:{type:'category',data:['成本项','贡献项三','贡献项二','贡献项一']},series:[{name:'贡献',type:'bar',data:[-0.01,0.01,0.02,0.03]}]});
+mk('stackChart').setOption({xAxis:{type:'category',data:['阶段一','阶段二','阶段三']},yAxis:{type:'value',name:'贡献'},series:[{name:'权益',type:'bar',stack:'total',data:[0.02,0.01,0.03]},{name:'债券',type:'bar',stack:'total',data:[0.01,0.02,0.01]},{name:'黄金',type:'bar',stack:'total',data:[0.00,0.01,0.01]},{name:'现金',type:'bar',stack:'total',data:[0.00,0.00,0.00]}]});
+mk('heatChart').setOption({tooltip:{position:'top'},grid:{top:36,bottom:48},xAxis:{type:'category',data:['资产一','资产二','资产三','资产四']},yAxis:{type:'category',data:['资产一','资产二','资产三','资产四']},visualMap:{min:-1,max:1,orient:'horizontal',left:'center',bottom:4,inRange:{color:[THEME.HEATMAP_NEG,THEME.PANEL,THEME.HEATMAP_POS]}},series:[{name:'相关性',type:'heatmap',label:{show:true,fontSize:11},data:[[0,0,1],[0,1,.2],[0,2,-.1],[0,3,.4],[1,0,.2],[1,1,1],[1,2,.3],[1,3,.1],[2,0,-.1],[2,1,.3],[2,2,1],[2,3,.5],[3,0,.4],[3,1,.1],[3,2,.5],[3,3,1]]}]});
+mk('scatterChart').setOption({xAxis:{type:'value',name:'波动率'},yAxis:{type:'value',name:'收益率'},series:[{name:'组合',type:'scatter',symbolSize:d=>Math.max(8,d[2]),data:[[0.08,0.10,12,'组合一'],[0.10,0.12,16,'组合二'],[0.12,0.09,10,'组合三']],tooltip:{formatter:p=>p.data[3]+'<br>波动率 '+p.data[0]+'<br>收益率 '+p.data[1]}}]});
+mk('donutChart').setOption({tooltip:{trigger:'item'},legend:{top:4},series:[{name:'结构占比',type:'pie',radius:['46%','68%'],center:['50%','56%'],label:{formatter:'{b} {d}%'},data:[{name:'权益',value:40},{name:'债券',value:35},{name:'黄金',value:15},{name:'现金',value:10}]}]});
+mk('yearBarChart').setOption({xAxis:{type:'category',data:['Y1','Y2','Y3','Y4']},yAxis:{type:'value',name:'收益率',axisLabel:{formatter:'{value}%'}},series:[{name:'年度收益',type:'bar',data:[8,-3,10,6],itemStyle:{color:p=>p.value>=0?THEME.UP_TONE:THEME.DOWN_TONE},label:{show:true,position:'top',formatter:'{c}%'}}]});
+mk('sensReturn').setOption({xAxis:{type:'category',data:['低','中','高']},yAxis:{type:'value',name:'收益'},series:[{name:'年化收益',type:'line',showSymbol:true,data:[0.08,0.10,0.09],markLine:{data:[{xAxis:'中',name:'当前值'}]}}]});
+mk('sensRisk').setOption({color:[THEME.SERIES_DEFENSE],xAxis:{type:'category',data:['低','中','高']},yAxis:{type:'value',name:'回撤'},series:[{name:'最大回撤',type:'line',showSymbol:true,data:[-0.08,-0.06,-0.07],markLine:{data:[{xAxis:'中',name:'当前值'}]}}]});
+const toTop=document.getElementById('toTop');
+addEventListener('scroll',()=>toTop.classList.toggle('show',scrollY>620),{passive:true});
+toTop.onclick=()=>scrollTo({top:0,behavior:'smooth'});
+const navLinks=[...document.querySelectorAll('.topnav a')];
+const secs=navLinks.map(a=>document.querySelector(a.getAttribute('href')));
+function updateNav(){let i=0;secs.forEach((s,k)=>{if(s&&s.getBoundingClientRect().top<=120)i=k;});navLinks.forEach((a,k)=>a.classList.toggle('active',k===i));}
+addEventListener('scroll',updateNav,{passive:true});updateNav();
+</script>
+</body>
+</html>
