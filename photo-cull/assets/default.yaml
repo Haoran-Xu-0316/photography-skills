@@ -1,0 +1,84 @@
+# 所有参数可通过程序化接口的overrides点路径字典覆盖
+# 阈值单位是归一化边缘宽度，1.0对应西门子星标定的完美锐边
+# 实测参考（长边1400）：清晰0.65到0.70，轻度失焦0.76，中度0.93，重度1.31
+
+sharpness:
+  sharp_width: 0.75        # 低于此值判为锐。调低更严格，留下的片子更少
+  soft_width: 1.15         # 高于此值判为失焦
+  reject_width: 1.30       # 高于此值才允许自动判废。判废门槛必须明显高于判优
+  anisotropy: 0.35         # 方向性高于此值判为抖动。该值在最锐区域内部计算，
+                           # 已排除浅景深干扰，因此优先于锐度参与判定
+  edge_percentile: 90      # 取最强的百分之十边缘参与统计
+  tiles: 12                # 分块数，用于定位最锐区域
+
+exposure:
+  warn_highlight_pct: 3.0    # 高光溢出提示阈值
+  reject_highlight_pct: 12.0 # 高光溢出判废阈值
+  reject_shadow_pct: 45.0    # 暗部死黑判废阈值
+  flat_threshold: 0.45       # 相对反差低于此值判为误拍或遮挡。用相对值而非
+                             # 绝对值，否则欠曝会被误判，而欠曝在RAW里可恢复
+
+faces:
+  enabled: true
+  min_face_ratio: 0.04     # 人脸最小尺寸占画面短边的比例
+  focus_tolerance: 0.18    # 对焦落点与人脸中心的容许距离
+
+burst:
+  enabled: true
+  max_hash_distance: 10    # 感知哈希汉明距离上限，越小分组越严
+  max_gap_sec: 3.0         # 相邻两张的时间间隔上限
+  keep_per_group: 1        # 每组保留几张为keep，其余降为待定
+  require_time: false      # 缺少EXIF时间时是否仍要求时间条件
+
+labels:                    # 色标名称，Lightroom与Capture One通用
+  keep: green
+  best: green
+  review: yellow
+  reject: red
+
+output:
+  write_xmp: true          # 写XMP边车，原始文件不动
+  contact_sheet: true      # 生成废片印象图供复核
+  csv: true
+  json: true
+
+presets:
+
+  wildlife:                # 打鸟，高速连拍，抖动是主要废片原因
+    sharpness:
+      sharp_width: 0.70
+      reject_width: 1.40
+      anisotropy: 0.30
+    burst:
+      max_gap_sec: 1.5
+      keep_per_group: 2
+    faces:
+      enabled: false
+
+  portrait:                # 人像，浅景深，对焦落点最关键
+    sharpness:
+      sharp_width: 0.82    # 放宽，背景虚化会拉高整体读数
+      reject_width: 1.45
+    faces:
+      enabled: true
+      focus_tolerance: 0.14
+    burst:
+      keep_per_group: 2
+
+  landscape:               # 风光，三脚架为主，标准严格，很少连拍
+    sharpness:
+      sharp_width: 0.70
+      reject_width: 1.20
+    faces:
+      enabled: false
+    burst:
+      max_gap_sec: 8.0
+      keep_per_group: 1
+
+  street:                  # 街拍，手持抓拍，容忍度高，宁留勿删
+    sharpness:
+      sharp_width: 0.85
+      reject_width: 1.60
+    burst:
+      max_gap_sec: 2.0
+      keep_per_group: 2
