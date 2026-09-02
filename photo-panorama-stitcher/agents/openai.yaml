@@ -1,6 +1,0 @@
-interface:
-  display_name: "照片全景拼接"
-  short_description: "验证真实重叠并拼接无生成内容的全景照片，同时输出接缝与置信度报告"
-  default_prompt: "使用$photo-panorama-stitcher验证这些照片的真实重叠与新增视场，并拼接为可复现的全景图。"
-policy:
-  allow_implicit_invocation: true

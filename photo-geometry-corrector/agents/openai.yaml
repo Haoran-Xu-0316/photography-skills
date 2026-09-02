@@ -1,4 +1,0 @@
-interface:
-  display_name: "照片几何校正"
-  short_description: "校正水平线、四点透视和标定镜头畸变并输出变换报告，不做审美裁切"
-  default_prompt: "使用$photo-geometry-corrector校正这张照片的几何关系，先分析并视觉确认水平线，再输出非覆盖校正副本和变换报告。"

@@ -1,4 +1,0 @@
-interface:
-  display_name: "组照叙事编辑"
-  short_description: "建立摄影组照顺序、视觉节奏、开场转场和收束结构并输出编号联系表"
-  default_prompt: "使用$photo-series-editor为这些已选照片建立组照初稿并生成编号联系表；完成视觉复核后，再按确认顺序用manual策略输出已复核清单。"

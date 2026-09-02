@@ -1,4 +1,0 @@
-interface:
-  display_name: "照片光影塑形"
-  short_description: "非生成式局部加减光、主体引导与空间明暗平衡并输出蒙版和配方"
-  default_prompt: "使用$photo-light-sculptor分析这张照片的视觉中心，先展示主体蒙版和光照图，再进行自然光影塑形。"

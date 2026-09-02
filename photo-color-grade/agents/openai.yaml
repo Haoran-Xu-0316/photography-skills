@@ -1,5 +1,0 @@
-interface:
-  display_name: "照片调色"
-  short_description: "非生成式照片校色、创意调色、参考匹配与系列色彩统一"
-  default_prompt: "使用$photo-color-grade诊断这组照片，先生成代表性锚片的调色预览，再按确认方向统一整组颜色。"
-

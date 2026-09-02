@@ -4,6 +4,12 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 
+# Tests and runtime adapters stay local and are not published.
+tests/
+**/tests/
+agents/
+**/agents/
+
 # Local session and generated root artifacts
 /:memory:.ses
 /standard-pdf-template.pdf
@@ -13,4 +19,3 @@ __pycache__/
 venv/
 .idea/
 .vscode/
-

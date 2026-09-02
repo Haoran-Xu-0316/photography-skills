@@ -1,4 +1,0 @@
-interface:
-  display_name: "照片交付质检"
-  short_description: "检查照片尺寸、ICC色彩空间、元数据与渠道交付风险"
-  default_prompt: "使用$photo-output-preflight检查这些照片是否满足网页交付要求，复核ICC与透明通道，并生成不含GPS的渠道规格副本和质检清单。"

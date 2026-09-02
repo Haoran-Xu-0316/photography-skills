@@ -1,4 +1,0 @@
-interface:
-  display_name: "照片筛选"
-  short_description: "批量识别失焦、抖动、曝光异常与连拍重复并输出可复核评级"
-  default_prompt: "使用$photo-cull分析这批照片的技术质量，先输出筛选报告和废片联系表，不修改原图或直接删除照片。"
