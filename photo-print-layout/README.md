@@ -22,6 +22,12 @@ A4双栏拼版示例见[`examples/basic_usage.py`](examples/basic_usage.py)：
 result = run_example(input_paths, "print-layout")
 ```
 
+## 图片示例
+
+输入：[`sample_scene.png`](../example-assets/sample_scene.png)
+
+![印刷页面示例](examples/output/print-page.png)
+
 ## 验收重点
 
 - `contain`不裁图，`cover-*`才允许裁切
@@ -30,4 +36,3 @@ result = run_example(input_paths, "print-layout")
 - 当前输出是RGB，不包含印厂ICC和CMYK转换
 
 完整物理坐标和出血规则见[`SKILL.md`](SKILL.md)。
-
