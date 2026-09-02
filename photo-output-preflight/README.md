@@ -22,6 +22,12 @@
 result = run_example(input_paths, "web-delivery")
 ```
 
+## 图片示例
+
+输入：[`sample_scene.png`](../example-assets/sample_scene.png)
+
+![网页副本示例](examples/output/web-copy.png)
+
 ## 验收重点
 
 - 导出成功不代表视觉合格
@@ -30,4 +36,3 @@ result = run_example(input_paths, "web-delivery")
 - GPS删除只作用于副本
 
 完整渠道标准和执行规范见[`SKILL.md`](SKILL.md)。
-
