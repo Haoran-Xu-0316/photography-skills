@@ -22,6 +22,12 @@
 result = run_example(input_paths, "focus-stack-review")
 ```
 
+## 图片示例
+
+输入：[`sample_scene.png`](../example-assets/sample_scene.png)生成的不同焦平面变体
+
+![焦点堆栈结果示例](examples/output/stacked.png)
+
 ## 验收重点
 
 - 输入必须保持同一视点和基本一致构图
@@ -30,4 +36,3 @@ result = run_example(input_paths, "focus-stack-review")
 - 来源地图只能指向真实输入帧
 
 完整合成契约和风险解释见[`SKILL.md`](SKILL.md)。
-
