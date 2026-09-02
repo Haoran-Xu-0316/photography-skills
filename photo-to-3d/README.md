@@ -23,6 +23,12 @@
 result = run_example("photo.jpg", "parallax-output", "depth.png")
 ```
 
+## 图片示例
+
+输入：[`sample_scene.png`](../example-assets/sample_scene.png)，深度图为离线构造的相对深度示意
+
+![相对深度图示例](examples/output/depth-map.png)
+
 ## 验收重点
 
 - 深度图必须与照片保持逐像素对应和同一宽高比
@@ -31,4 +37,3 @@ result = run_example("photo.jpg", "parallax-output", "depth.png")
 - OBJ只是正面高度场，不能描述为完整3D扫描
 
 完整模式说明和单图限制见[`SKILL.md`](SKILL.md)。
-
