@@ -21,6 +21,12 @@
 result = run_example("source.jpg", "redaction-review")
 ```
 
+## 图片示例
+
+输入：[`sample_scene.png`](../example-assets/sample_scene.png)
+
+![隐私遮挡结果示例](examples/output/redacted.png)
+
 ## 验收重点
 
 - 模糊、马赛克和半透明块均不符合不可逆要求
@@ -29,4 +35,3 @@ result = run_example("source.jpg", "redaction-review")
 - 透明输入会先合成到不透明白底
 
 完整候选决策和状态定义见[`SKILL.md`](SKILL.md)。
-
