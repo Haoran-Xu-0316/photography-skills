@@ -10,6 +10,10 @@ tests/
 agents/
 **/agents/
 
+# High-bit intermediates are used for local gallery checks; PNG previews are published.
+**/examples/output/*.tif
+**/examples/output/*.tiff
+
 # Local session and generated root artifacts
 /:memory:.ses
 /standard-pdf-template.pdf
