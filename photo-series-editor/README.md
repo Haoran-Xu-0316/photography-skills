@@ -23,6 +23,12 @@ draft = run_example(selected_paths, "series-draft")
 reviewed = finalize_reviewed_example(ordered_paths, "series-final")
 ```
 
+## 图片示例
+
+输入：[`sample_scene.png`](../example-assets/sample_scene.png)
+
+![组照联系表示例](examples/output/contact-sheet.png)
+
 ## 验收重点
 
 - 自动排序只能是`draft-review-required`
@@ -31,4 +37,3 @@ reviewed = finalize_reviewed_example(ordered_paths, "series-final")
 - 近似照片只提示，不自动删除
 
 完整叙事规则和状态契约见[`SKILL.md`](SKILL.md)。
-
