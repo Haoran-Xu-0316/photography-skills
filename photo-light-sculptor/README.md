@@ -22,6 +22,12 @@
 result = run_example("portrait.jpg", "light-review", "subject-mask.png")
 ```
 
+## 图片示例
+
+输入：[`sample_scene.png`](../example-assets/sample_scene.png)
+
+![局部光影结果示例](examples/output/sculpted.png)
+
 ## 验收重点
 
 - 自动蒙版置信度不足时必须停止
@@ -30,4 +36,3 @@ result = run_example("portrait.jpg", "light-review", "subject-mask.png")
 - 视觉检查前结果只能标记为待复核
 
 完整执行规范和方法说明见[`SKILL.md`](SKILL.md)。
-
