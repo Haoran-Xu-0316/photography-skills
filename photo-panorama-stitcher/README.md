@@ -21,6 +21,12 @@
 result = run_example(ordered_paths, "panorama-review")
 ```
 
+## 图片示例
+
+输入：[`sample_scene.png`](../example-assets/sample_scene.png)切出的相邻重叠视角
+
+![全景拼接结果示例](examples/output/panorama.png)
+
 ## 验收重点
 
 - 相邻照片必须同时存在可靠重叠和新增视场
@@ -29,4 +35,3 @@ result = run_example(ordered_paths, "panorama-review")
 - 必须查看重影、弯曲直线和接缝亮度跳变
 
 完整拼接契约和失败阈值见[`SKILL.md`](SKILL.md)。
-
