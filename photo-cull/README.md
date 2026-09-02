@@ -24,6 +24,12 @@
 result = run_example("photos", "review/cull-report")
 ```
 
+## 图片示例
+
+输入：[`sample_scene.png`](../example-assets/sample_scene.png)
+
+![筛片联系表示例](examples/output/contact-sheet.png)
+
 ## 验收重点
 
 - 必须查看废片联系表，防止误杀
@@ -32,4 +38,3 @@ result = run_example("photos", "review/cull-report")
 - 原图不得移动、删除或覆盖
 
 完整执行规范、阈值和预设见[`SKILL.md`](SKILL.md)。
-
