@@ -22,6 +22,12 @@
 result = run_example(input_paths, "fusion-review", [0.25, 0.5, 1.0])
 ```
 
+## 图片示例
+
+输入：[`sample_scene.png`](../example-assets/sample_scene.png)及其曝光变体
+
+![曝光融合结果示例](examples/output/fused.png)
+
 ## 验收重点
 
 - 曝光跨度、尺寸、同视点关系和重复内容必须先通过检查
@@ -30,4 +36,3 @@ result = run_example(input_paths, "fusion-review", [0.25, 0.5, 1.0])
 - 结果是显示参考型曝光融合图，不是物理辐射图
 
 完整融合契约和阈值见[`SKILL.md`](SKILL.md)。
-
