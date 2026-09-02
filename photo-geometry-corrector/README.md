@@ -22,6 +22,12 @@
 result = run_example("tilted.jpg", "geometry-review", confirmed_angle_degrees=2.4)
 ```
 
+## 图片示例
+
+输入：[`sample_scene.png`](../example-assets/sample_scene.png)的本地倾斜变体
+
+![几何校正结果示例](examples/output/corrected.png)
+
 ## 验收重点
 
 - 自动水平线只能作为建议，不能静默执行
@@ -30,4 +36,3 @@ result = run_example("tilted.jpg", "geometry-review", confirmed_angle_degrees=2.
 - `status="pass"`不等于视觉验收完成
 
 完整坐标和有效边规则见[`SKILL.md`](SKILL.md)。
-
