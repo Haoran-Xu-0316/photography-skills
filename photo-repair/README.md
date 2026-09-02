@@ -23,6 +23,12 @@
 result = run_example(["frame-01.jpg"], "repair-review")
 ```
 
+## 图片示例
+
+输入：[`sample_scene.png`](../example-assets/sample_scene.png)
+
+![技术修复结果示例](examples/output/repaired.png)
+
 ## 验收重点
 
 - 必须查看中心、边缘和边角的100%裁切对照
@@ -31,4 +37,3 @@ result = run_example(["frame-01.jpg"], "repair-review")
 - 高光溢出和紫边只报告，不虚构恢复
 
 完整执行规范和参数解释见[`SKILL.md`](SKILL.md)。
-
