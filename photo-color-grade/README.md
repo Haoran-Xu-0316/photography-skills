@@ -23,6 +23,12 @@
 result = run_example("source.tif", "grade-review")
 ```
 
+## 图片示例
+
+输入：[`sample_scene.png`](../example-assets/sample_scene.png)
+
+![调色结果示例](examples/output/graded.png)
+
 ## 验收重点
 
 - 先看预览再确认最终强度
@@ -31,4 +37,3 @@ result = run_example("source.tif", "grade-review")
 - 最终状态在视觉检查前保持`review_required`
 
 完整工作流和按模式参考资料见[`SKILL.md`](SKILL.md)。
-
