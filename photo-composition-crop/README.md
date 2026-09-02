@@ -22,6 +22,12 @@
 result = run_example("source.jpg", "crop-review", focus_point=(0.55, 0.40))
 ```
 
+## 图片示例
+
+输入：[`sample_scene.png`](../example-assets/sample_scene.png)
+
+![4比5裁切结果示例](examples/output/crop-4x5.png)
+
 ## 验收重点
 
 - 必须查看叠加图和实际裁切结果
@@ -30,4 +36,3 @@ result = run_example("source.jpg", "crop-review", focus_point=(0.55, 0.40))
 - 不允许放大或生成式补边
 
 完整评分逻辑和执行边界见[`SKILL.md`](SKILL.md)。
-
