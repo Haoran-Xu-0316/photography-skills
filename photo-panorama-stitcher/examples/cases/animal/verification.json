@@ -1,0 +1,13 @@
+{
+  "skill": "photo-panorama-stitcher",
+  "topic": "animal",
+  "returncode": 0,
+  "input_sha256": {
+    "left.png": "5b5b22f6d7d845d54117a28e88b2468e6c31d57b98b40473184c12c291fd24e1",
+    "source.png": "7cd1639926e380d69ede2ad1c4164243bcdde24c3326dc4f71f9bf8071631a37",
+    "right.png": "0a3599269f549a6c1aa8c581ec127ebdb172ff0f04c5035c7715a23cb40f97d3"
+  },
+  "sources_unchanged": true,
+  "visual_status": "contact-sheet-reviewed; see README for limitations",
+  "opencv_version": "4.11.0"
+}

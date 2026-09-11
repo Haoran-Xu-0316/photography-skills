@@ -29,4 +29,3 @@ def run_example(
         projection="planar",
     )
     return {"analysis": analysis, "panorama": panorama}
-

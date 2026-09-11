@@ -1,0 +1,175 @@
+{
+  "status": "ready",
+  "confidence": 1.0,
+  "confidence_meaning": "heuristic failure grading, not a probability",
+  "blockers": [],
+  "warnings": [],
+  "inputs": [
+    {
+      "index": 0,
+      "path": "input/left.png",
+      "sha256": "57f9a8869e424ce1db3193e865ccd121ae3945969c4c8f5e4c386e81609a0019",
+      "width": 768,
+      "height": 768
+    },
+    {
+      "index": 1,
+      "path": "input/right.png",
+      "sha256": "e8f985c45b944f39e486eba3333c1734fbc957befc2460c43313e4b2de7de515",
+      "width": 768,
+      "height": 768
+    }
+  ],
+  "input_order_contract": "spatially adjacent order supplied by the caller",
+  "projection": {
+    "model": "planar",
+    "focal_length_px": null,
+    "focal_length_source": "not_applicable",
+    "camera_model_claim": "image projection choice, not camera calibration"
+  },
+  "feature_algorithm": "SIFT",
+  "pairs": [
+    {
+      "previous_feature_count": 2056,
+      "current_feature_count": 1428,
+      "ratio_test_match_count": 717,
+      "ransac_inlier_count": 712,
+      "ransac_inlier_ratio": 0.993026,
+      "estimated_overlap_share": 0.500023,
+      "estimated_view_extension_share": 0.499977,
+      "projected_area_scale": 0.999918,
+      "confidence": 1.0,
+      "blockers": [],
+      "pair": [
+        0,
+        1
+      ]
+    }
+  ],
+  "global_transforms_to_first_frame": [
+    [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    [
+      [
+        0.9999449676,
+        2.29097e-05,
+        384.0052123006
+      ],
+      [
+        -2.0603e-06,
+        1.0000083455,
+        -0.0010991413
+      ],
+      [
+        2.37e-08,
+        -6e-10,
+        1.0
+      ]
+    ]
+  ],
+  "estimated_canvas_bounds_xyxy": [
+    0,
+    -1,
+    1152,
+    769
+  ],
+  "estimated_canvas_size": [
+    1152,
+    770
+  ],
+  "claim_boundary": "uses only pixels recorded in the supplied photographs",
+  "limitations": [
+    "parallax and moving subjects may still create ghosts",
+    "automatic confidence does not prove a seamless result",
+    "unobserved canvas areas are never generated or filled"
+  ],
+  "recipe": {
+    "registration": "adjacent feature matching with RANSAC homographies",
+    "exposure_transition": "overlap median luminance, scalar RGB gain",
+    "blend": "valid-mask distance feathering",
+    "valid_crop": "largest axis-aligned rectangle fully covered by source pixels",
+    "generative_fill": false,
+    "tiff_precision_claim": "preserves blend precision; does not add captured dynamic range"
+  },
+  "canvas_transforms": [
+    [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        1.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    [
+      [
+        0.9999449676,
+        2.29097e-05,
+        384.0052123006
+      ],
+      [
+        -2.0366e-06,
+        1.0000083449,
+        0.9989008587
+      ],
+      [
+        2.37e-08,
+        -6e-10,
+        1.0
+      ]
+    ]
+  ],
+  "exposure_gains": [
+    1.0,
+    1.0
+  ],
+  "crop_box_xywh": [
+    0,
+    1,
+    1152,
+    768
+  ],
+  "final_size": [
+    1152,
+    768
+  ],
+  "outputs": {
+    "panorama_16bit_tiff": "output/panorama_16bit.tif",
+    "panorama_preview": "output/panorama_preview.jpg",
+    "valid_area_mask": "output/valid_area_mask.png",
+    "seam_transition_map": "output/seam_transition_map.png",
+    "contact_sheet": "output/stitch_contact_sheet.jpg",
+    "report": "output/panorama_report.json"
+  },
+  "output_sha256": {
+    "panorama_16bit_tiff": "e2b2badbb1447312d73d5679a6835eb34b049a25a7825421efca0a9d80852d75",
+    "panorama_preview": "f538fd972a22707845b165b0e00efeceb9c19be8e8c3d1c95f69a2a8d1fbdfd3",
+    "valid_area_mask": "0aab9058923a90b69e7ed20b934cf04b2c85385a8db251c42b4b15541e889776",
+    "seam_transition_map": "e39f2ef318ae8ad6a7eba3ab4cbac6f39c6be19d708f17eb9b9db7ded51137c2",
+    "contact_sheet": "1ba022934a28a115e61f949e1e45226e473c63a686a033aba533e0165b83fe17"
+  },
+  "source_hashes_verified_after_processing": true
+}

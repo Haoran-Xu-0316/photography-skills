@@ -1,0 +1,13 @@
+{
+  "skill": "photo-panorama-stitcher",
+  "topic": "portrait",
+  "returncode": 0,
+  "input_sha256": {
+    "left.png": "57f9a8869e424ce1db3193e865ccd121ae3945969c4c8f5e4c386e81609a0019",
+    "source.png": "cad62987f202999ccb91a6e00cdba7b92b6c61db73252d28e5663dcd65d4057f",
+    "right.png": "e8f985c45b944f39e486eba3333c1734fbc957befc2460c43313e4b2de7de515"
+  },
+  "sources_unchanged": true,
+  "visual_status": "contact-sheet-reviewed; see README for limitations",
+  "opencv_version": "4.11.0"
+}

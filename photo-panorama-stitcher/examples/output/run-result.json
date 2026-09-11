@@ -1,0 +1,278 @@
+{
+  "analysis": {
+    "status": "ready",
+    "confidence": 1.0,
+    "confidence_meaning": "heuristic failure grading, not a probability",
+    "blockers": [],
+    "warnings": [],
+    "inputs": [
+      {
+        "index": 0,
+        "path": "../input/left.png",
+        "sha256": "e1f671503d00ec06e052c58bd1b88079c10c3470cbfd26f1d8e3ea0027663605",
+        "width": 768,
+        "height": 768
+      },
+      {
+        "index": 1,
+        "path": "../input/right.png",
+        "sha256": "b1da5c2fc551de4954e1ed052bb00e5cf665311823f1193f0c00e663090c6e20",
+        "width": 768,
+        "height": 768
+      }
+    ],
+    "input_order_contract": "spatially adjacent order supplied by the caller",
+    "projection": {
+      "model": "planar",
+      "focal_length_px": null,
+      "focal_length_source": "not_applicable",
+      "camera_model_claim": "image projection choice, not camera calibration"
+    },
+    "feature_algorithm": "SIFT",
+    "pairs": [
+      {
+        "previous_feature_count": 3539,
+        "current_feature_count": 2005,
+        "ratio_test_match_count": 1233,
+        "ransac_inlier_count": 1208,
+        "ransac_inlier_ratio": 0.979724,
+        "estimated_overlap_share": 0.499948,
+        "estimated_view_extension_share": 0.500136,
+        "projected_area_scale": 1.000168,
+        "confidence": 1.0,
+        "blockers": [],
+        "pair": [
+          0,
+          1
+        ]
+      }
+    ],
+    "global_transforms_to_first_frame": [
+      [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      [
+        [
+          0.9995976253,
+          -9.8439e-05,
+          384.036029634
+        ],
+        [
+          -0.0002642467,
+          0.9997648718,
+          0.0907498917
+        ],
+        [
+          -4.185e-07,
+          -1.409e-07,
+          1.0
+        ]
+      ]
+    ],
+    "estimated_canvas_bounds_xyxy": [
+      0,
+      -1,
+      1153,
+      769
+    ],
+    "estimated_canvas_size": [
+      1153,
+      770
+    ],
+    "claim_boundary": "uses only pixels recorded in the supplied photographs",
+    "limitations": [
+      "parallax and moving subjects may still create ghosts",
+      "automatic confidence does not prove a seamless result",
+      "unobserved canvas areas are never generated or filled"
+    ]
+  },
+  "result": {
+    "status": "ready",
+    "confidence": 1.0,
+    "confidence_meaning": "heuristic failure grading, not a probability",
+    "blockers": [],
+    "warnings": [],
+    "inputs": [
+      {
+        "index": 0,
+        "path": "../input/left.png",
+        "sha256": "e1f671503d00ec06e052c58bd1b88079c10c3470cbfd26f1d8e3ea0027663605",
+        "width": 768,
+        "height": 768
+      },
+      {
+        "index": 1,
+        "path": "../input/right.png",
+        "sha256": "b1da5c2fc551de4954e1ed052bb00e5cf665311823f1193f0c00e663090c6e20",
+        "width": 768,
+        "height": 768
+      }
+    ],
+    "input_order_contract": "spatially adjacent order supplied by the caller",
+    "projection": {
+      "model": "planar",
+      "focal_length_px": null,
+      "focal_length_source": "not_applicable",
+      "camera_model_claim": "image projection choice, not camera calibration"
+    },
+    "feature_algorithm": "SIFT",
+    "pairs": [
+      {
+        "previous_feature_count": 3539,
+        "current_feature_count": 2005,
+        "ratio_test_match_count": 1233,
+        "ransac_inlier_count": 1208,
+        "ransac_inlier_ratio": 0.979724,
+        "estimated_overlap_share": 0.499948,
+        "estimated_view_extension_share": 0.500136,
+        "projected_area_scale": 1.000168,
+        "confidence": 1.0,
+        "blockers": [],
+        "pair": [
+          0,
+          1
+        ]
+      }
+    ],
+    "global_transforms_to_first_frame": [
+      [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      [
+        [
+          0.9995976253,
+          -9.8439e-05,
+          384.036029634
+        ],
+        [
+          -0.0002642467,
+          0.9997648718,
+          0.0907498917
+        ],
+        [
+          -4.185e-07,
+          -1.409e-07,
+          1.0
+        ]
+      ]
+    ],
+    "estimated_canvas_bounds_xyxy": [
+      0,
+      -1,
+      1153,
+      769
+    ],
+    "estimated_canvas_size": [
+      1153,
+      770
+    ],
+    "claim_boundary": "uses only pixels recorded in the supplied photographs",
+    "limitations": [
+      "parallax and moving subjects may still create ghosts",
+      "automatic confidence does not prove a seamless result",
+      "unobserved canvas areas are never generated or filled"
+    ],
+    "recipe": {
+      "registration": "adjacent feature matching with RANSAC homographies",
+      "exposure_transition": "overlap median luminance, scalar RGB gain",
+      "blend": "valid-mask distance feathering",
+      "valid_crop": "largest axis-aligned rectangle fully covered by source pixels",
+      "generative_fill": false,
+      "tiff_precision_claim": "preserves blend precision; does not add captured dynamic range"
+    },
+    "canvas_transforms": [
+      [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      [
+        [
+          0.9995976253,
+          -9.8439e-05,
+          384.036029634
+        ],
+        [
+          -0.0002646652,
+          0.9997647309,
+          1.0907498917
+        ],
+        [
+          -4.185e-07,
+          -1.409e-07,
+          1.0
+        ]
+      ]
+    ],
+    "exposure_gains": [
+      1.0,
+      1.0
+    ],
+    "crop_box_xywh": [
+      0,
+      1,
+      1152,
+      768
+    ],
+    "final_size": [
+      1152,
+      768
+    ],
+    "outputs": {
+      "panorama_16bit_tiff": "panorama_16bit.tif",
+      "panorama_preview": "panorama_preview.jpg",
+      "valid_area_mask": "valid_area_mask.png",
+      "seam_transition_map": "seam_transition_map.png",
+      "contact_sheet": "stitch_contact_sheet.jpg",
+      "report": "panorama_report.json"
+    },
+    "output_sha256": {
+      "panorama_16bit_tiff": "5cf5b89b5cc210912bc5de5890fc56a37487208f02ac242e146a36ea63c9ed62",
+      "panorama_preview": "a399e11b118ecf1ef16e613004fdab4829da4c18b2719367fd2a493461126666",
+      "valid_area_mask": "0aab9058923a90b69e7ed20b934cf04b2c85385a8db251c42b4b15541e889776",
+      "seam_transition_map": "e39f2ef318ae8ad6a7eba3ab4cbac6f39c6be19d708f17eb9b9db7ded51137c2",
+      "contact_sheet": "4896e1c7f2fe5b0972c7cd49aa212c4b06976d726a5ed4ef45ede79060c65751"
+    },
+    "source_hashes_verified_after_processing": true
+  }
+}
