@@ -1,0 +1,208 @@
+{
+  "paper_size_mm": [
+    210.0,
+    297.0
+  ],
+  "media_size_mm": [
+    226.0,
+    313.0
+  ],
+  "trim_origin_mm": [
+    8,
+    8
+  ],
+  "grid": [
+    2,
+    2
+  ],
+  "fit_strategy": "contain",
+  "margins_mm": [
+    15.0,
+    15.0,
+    18.0,
+    20.0
+  ],
+  "effective_margins_mm": [
+    15.0,
+    15.0,
+    18.0,
+    28.0
+  ],
+  "gap_mm": 6.0,
+  "bleed_mm": 3.0,
+  "binding_edge": "left",
+  "binding_safe_mm": 8.0,
+  "dpi": 300,
+  "minimum_ppi": 240.0,
+  "crop_marks": true,
+  "crop_mark_length_mm": 4.0,
+  "crop_mark_gap_mm": 1.0,
+  "page_count": 1,
+  "pages": [
+    {
+      "page": 1,
+      "placements": [
+        {
+          "source_path": "../input/workbench.jpg",
+          "source_sha256": "32b0ea45b6ced55f874d58f8cb3b02ac74a2f12792df4b2d7b1b78f40472f720",
+          "source_size_px": [
+            1536,
+            1024
+          ],
+          "has_icc_profile": false,
+          "page": 1,
+          "slot": 1,
+          "row": 1,
+          "column": 1,
+          "slot_mm": [
+            36.0,
+            23.0,
+            80.5,
+            129.0
+          ],
+          "destination_mm": [
+            36.0,
+            60.6667,
+            80.5,
+            53.6667
+          ],
+          "source_crop_px": [
+            0,
+            0,
+            1536,
+            1024
+          ],
+          "effective_ppi": 484.65,
+          "warnings": [
+            "source has no embedded ICC profile"
+          ]
+        },
+        {
+          "source_path": "../input/garden.jpg",
+          "source_sha256": "a41b1eacff604f02bf8fd0373575c40048024e5b2a00c387f359c3420c049df0",
+          "source_size_px": [
+            1800,
+            1350
+          ],
+          "has_icc_profile": false,
+          "page": 1,
+          "slot": 2,
+          "row": 1,
+          "column": 2,
+          "slot_mm": [
+            122.5,
+            23.0,
+            80.5,
+            129.0
+          ],
+          "destination_mm": [
+            122.5,
+            57.3125,
+            80.5,
+            60.375
+          ],
+          "source_crop_px": [
+            0,
+            0,
+            1800,
+            1350
+          ],
+          "effective_ppi": 567.95,
+          "warnings": [
+            "source has no embedded ICC profile"
+          ]
+        },
+        {
+          "source_path": "../input/workbench-detail.jpg",
+          "source_sha256": "90eff1cacc3627c889633cf12856994bc4a7dd3c544db9f1e64418ff3d063813",
+          "source_size_px": [
+            1024,
+            1024
+          ],
+          "has_icc_profile": false,
+          "page": 1,
+          "slot": 3,
+          "row": 2,
+          "column": 1,
+          "slot_mm": [
+            36.0,
+            158.0,
+            80.5,
+            129.0
+          ],
+          "destination_mm": [
+            36.0,
+            182.25,
+            80.5,
+            80.5
+          ],
+          "source_crop_px": [
+            0,
+            0,
+            1024,
+            1024
+          ],
+          "effective_ppi": 323.1,
+          "warnings": [
+            "source has no embedded ICC profile"
+          ]
+        },
+        {
+          "source_path": "../input/garden-detail.jpg",
+          "source_sha256": "e594f6aa10aea20082eab9bbddd8e405054cf16ff8a6d97e36ce4913d71e84a6",
+          "source_size_px": [
+            1350,
+            1350
+          ],
+          "has_icc_profile": false,
+          "page": 1,
+          "slot": 4,
+          "row": 2,
+          "column": 2,
+          "slot_mm": [
+            122.5,
+            158.0,
+            80.5,
+            129.0
+          ],
+          "destination_mm": [
+            122.5,
+            182.25,
+            80.5,
+            80.5
+          ],
+          "source_crop_px": [
+            0,
+            0,
+            1350,
+            1350
+          ],
+          "effective_ppi": 425.96,
+          "warnings": [
+            "source has no embedded ICC profile"
+          ]
+        }
+      ]
+    }
+  ],
+  "warnings": [
+    "workbench.jpg: source has no embedded ICC profile",
+    "garden.jpg: source has no embedded ICC profile",
+    "workbench-detail.jpg: source has no embedded ICC profile",
+    "garden-detail.jpg: source has no embedded ICC profile"
+  ],
+  "output_icc_profile": null,
+  "color_note": "The composite is untagged RGB; no printer ICC or CMYK conversion is performed.",
+  "allow_low_ppi": false,
+  "outputs": {
+    "print_pages": [
+      "photo_print_layout_page_001.png"
+    ],
+    "previews": [
+      "photo_print_layout_preview_001.png"
+    ],
+    "pdf": "photo_print_layout.pdf",
+    "manifest_json": "photo_print_layout_manifest.json",
+    "manifest_csv": "photo_print_layout_manifest.csv"
+  }
+}

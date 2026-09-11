@@ -1,0 +1,5 @@
+page,slot,row,column,source_path,source_sha256,source_width_px,source_height_px,slot_mm,destination_mm,source_crop_px,effective_ppi,has_icc_profile,warnings
+1,1,1,1,../input/workbench.jpg,32b0ea45b6ced55f874d58f8cb3b02ac74a2f12792df4b2d7b1b78f40472f720,1536,1024,"[36.0, 23.0, 80.5, 129.0]","[36.0, 60.6667, 80.5, 53.6667]","[0, 0, 1536, 1024]",484.65,False,source has no embedded ICC profile
+1,2,1,2,../input/garden.jpg,a41b1eacff604f02bf8fd0373575c40048024e5b2a00c387f359c3420c049df0,1800,1350,"[122.5, 23.0, 80.5, 129.0]","[122.5, 57.3125, 80.5, 60.375]","[0, 0, 1800, 1350]",567.95,False,source has no embedded ICC profile
+1,3,2,1,../input/workbench-detail.jpg,90eff1cacc3627c889633cf12856994bc4a7dd3c544db9f1e64418ff3d063813,1024,1024,"[36.0, 158.0, 80.5, 129.0]","[36.0, 182.25, 80.5, 80.5]","[0, 0, 1024, 1024]",323.1,False,source has no embedded ICC profile
+1,4,2,2,../input/garden-detail.jpg,e594f6aa10aea20082eab9bbddd8e405054cf16ff8a6d97e36ce4913d71e84a6,1350,1350,"[122.5, 158.0, 80.5, 129.0]","[122.5, 182.25, 80.5, 80.5]","[0, 0, 1350, 1350]",425.96,False,source has no embedded ICC profile

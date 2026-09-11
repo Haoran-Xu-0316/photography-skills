@@ -39,4 +39,3 @@ def run_example(
         **settings,
     )
     return {"plan": plan, "layout": layout}
-

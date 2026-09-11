@@ -1,0 +1,6 @@
+{
+  "topic": "portrait",
+  "input_type": "synthetic generated photograph-like image",
+  "source": "portrait.png",
+  "warning": "Simulated multiframe and manually authored masks/depth test only the supplied-input pipeline, not real camera capture or automated depth inference."
+}
