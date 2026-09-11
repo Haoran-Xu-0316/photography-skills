@@ -7,12 +7,16 @@ __pycache__/
 # Tests and runtime adapters stay local and are not published.
 tests/
 **/tests/
+photo-cull/scripts/make_test_set.py
+photo-repair/scripts/make_test_image.py
 agents/
 **/agents/
 
 # High-bit intermediates are used for local gallery checks; PNG previews are published.
 **/examples/output/*.tif
 **/examples/output/*.tiff
+**/examples/cases/*/output/*.tif
+**/examples/cases/*/output/*.tiff
 
 # Local session and generated root artifacts
 /:memory:.ses
