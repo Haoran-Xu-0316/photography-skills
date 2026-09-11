@@ -1,0 +1,44 @@
+{
+  "target": "web",
+  "status": "warning",
+  "print_size_cm": null,
+  "files": [
+    {
+      "path": "../../input/workbench-metadata.jpg",
+      "filename": "workbench-metadata.jpg",
+      "sha256": "c23b86d2ffe92b3b38f1fe49dee3c4765578859271aa50e0741e9cee6ce680b7",
+      "file_size_bytes": 597454,
+      "format": "JPEG",
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGB",
+      "bit_depth": "8-bit-per-channel-or-indexed",
+      "has_alpha": false,
+      "icc_profile": null,
+      "has_gps": true,
+      "dpi_metadata": [
+        72,
+        72
+      ],
+      "effective_ppi": null,
+      "status": "warning",
+      "issues": [
+        {
+          "code": "web-resolution-review",
+          "severity": "warning",
+          "message": "长边低于建议的1600像素。"
+        },
+        {
+          "code": "icc-missing",
+          "severity": "warning",
+          "message": "未嵌入ICC，不能确认网页色彩空间。"
+        },
+        {
+          "code": "gps-present",
+          "severity": "warning",
+          "message": "EXIF包含GPS，公开发布前需确认隐私。"
+        }
+      ]
+    }
+  ]
+}

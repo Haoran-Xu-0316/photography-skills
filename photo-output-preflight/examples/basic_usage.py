@@ -31,4 +31,3 @@ def run_example(
             remove_gps=True,
         )
     return {"report": report, "exports": exports}
-

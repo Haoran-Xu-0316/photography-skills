@@ -1,0 +1,19 @@
+{
+  "status": "pass",
+  "long_edge": 800,
+  "remove_gps": true,
+  "exports": [
+    {
+      "input": "../../input/source.png",
+      "input_sha256": "cad62987f202999ccb91a6e00cdba7b92b6c61db73252d28e5663dcd65d4057f",
+      "output": "source_web.jpg",
+      "output_sha256": "a03f6915083cd8fe09eb23e463327cf16d294c12de0d1718746335531d53a5ac",
+      "width": 800,
+      "height": 533,
+      "has_alpha": false,
+      "color_action": "missing-source-profile",
+      "gps_removed": false,
+      "original_preserved": true
+    }
+  ]
+}

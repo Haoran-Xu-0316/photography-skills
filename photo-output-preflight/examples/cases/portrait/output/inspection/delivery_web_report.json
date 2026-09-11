@@ -1,0 +1,36 @@
+{
+  "target": "web",
+  "status": "blocked",
+  "print_size_cm": null,
+  "files": [
+    {
+      "path": "../../input/source.png",
+      "filename": "source.png",
+      "sha256": "cad62987f202999ccb91a6e00cdba7b92b6c61db73252d28e5663dcd65d4057f",
+      "file_size_bytes": 1295714,
+      "format": "PNG",
+      "width": 1152,
+      "height": 768,
+      "mode": "RGB",
+      "bit_depth": "8-bit-per-channel-or-indexed",
+      "has_alpha": false,
+      "icc_profile": null,
+      "has_gps": false,
+      "dpi_metadata": null,
+      "effective_ppi": null,
+      "status": "blocked",
+      "issues": [
+        {
+          "code": "web-resolution-low",
+          "severity": "blocked",
+          "message": "长边低于1200像素。"
+        },
+        {
+          "code": "icc-missing",
+          "severity": "warning",
+          "message": "未嵌入ICC，不能确认网页色彩空间。"
+        }
+      ]
+    }
+  ]
+}
