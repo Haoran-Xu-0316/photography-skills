@@ -27,4 +27,3 @@ def run_example(
         blend_radius=7,
     )
     return {"analysis": analysis, "stack": stack}
-

@@ -1,0 +1,128 @@
+{
+  "status": "pass",
+  "blockers": [],
+  "warnings": [],
+  "reference_index": 1,
+  "inputs": [
+    {
+      "path": "../input/frame-0.png",
+      "sha256": "b4c4e8a16492414f556b553e1a55b8e1465ca42eaa7500efb9760f4833ce80a1",
+      "dimensions": [
+        1152,
+        768
+      ],
+      "focus_contribution_share": 0.32642392758969907
+    },
+    {
+      "path": "../input/frame-1.png",
+      "sha256": "8ecf741f655c650e3c3cdbf9d43b2bd5e1ab01051782f07a1676484eda4278c3",
+      "dimensions": [
+        1152,
+        768
+      ],
+      "focus_contribution_share": 0.3478461371527778
+    },
+    {
+      "path": "../input/frame-2.png",
+      "sha256": "3a38a8b43be8f3de4377d77f3dd96229161fdd48df6cc12efb46df0cd88bdf2d",
+      "dimensions": [
+        1152,
+        768
+      ],
+      "focus_contribution_share": 0.32572993525752314
+    }
+  ],
+  "alignment": {
+    "model": "rigid rotation and translation only",
+    "confidence": [
+      0.9877262260311153,
+      1.0,
+      0.9837515787980564
+    ],
+    "inverse_warp_matrices": [
+      [
+        [
+          1.0,
+          2.0426545233931392e-05,
+          -0.0011382983066141605
+        ],
+        [
+          -2.0426545233931392e-05,
+          1.0,
+          0.005775414407253265
+        ]
+      ],
+      [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ]
+      ],
+      [
+        [
+          1.0,
+          -2.9756332878605463e-05,
+          0.006354151759296656
+        ],
+        [
+          2.9756332878605463e-05,
+          1.0,
+          -0.02713402733206749
+        ]
+      ]
+    ]
+  },
+  "focus_plane": {
+    "tile_winner_source_indices": [
+      0,
+      1,
+      2
+    ],
+    "low_confidence_share_of_textured_area": 0.030145475918049378
+  },
+  "focus_breathing": {
+    "estimated_scale_delta_share": [
+      2.3586577696077526e-05,
+      0.0,
+      0.0004840274937703004
+    ],
+    "maximum_measured_scale_delta_share": 0.0004840274937703004,
+    "applied_as_alignment_scale": false
+  },
+  "exposure_span_ev_from_median_luminance": 0.022542652304064614,
+  "motion_or_breathing_risk": {
+    "level": "low",
+    "affected_share": 0.0
+  },
+  "recipe": {
+    "alignment": "OpenCV ECC Euclidean transform: rotation and translation only",
+    "focus_measure": "multi-scale local Laplacian energy",
+    "selection": "per-pixel best measured source frame",
+    "blend_radius_pixels": 7,
+    "claim_boundary": "no detail synthesized beyond recorded input frames"
+  },
+  "outputs": {
+    "focus_stacked_16bit.tif": "focus_stacked_16bit.tif",
+    "focus_stacked_preview.jpg": "focus_stacked_preview.jpg",
+    "focus_source_map.png": "focus_source_map.png",
+    "focus_confidence.png": "focus_confidence.png",
+    "motion_or_breathing_risk_mask.png": "motion_or_breathing_risk_mask.png",
+    "alignment_contact_sheet.jpg": "alignment_contact_sheet.jpg",
+    "focus_stack_report.json": "focus_stack_report.json"
+  },
+  "source_hashes_verified_after_processing": true,
+  "output_sha256": {
+    "focus_stacked_16bit.tif": "deb98285508ff0683017df86b2da61b18736834a1bdb6d8b8fd795c22d15fa29",
+    "focus_stacked_preview.jpg": "442d1237eaa958546acb552ef7134c5e0e23e7050e2475d981d661ce06b64e14",
+    "focus_source_map.png": "2bd6f11ce9d89d51e221bd01109f1e4d950669ee6c87988d27506c66ff43bf8e",
+    "focus_confidence.png": "6b9e085c67c0ac8939387718a6233f5ff91bfd617edf91827de8d8d295e7be6d",
+    "motion_or_breathing_risk_mask.png": "dbed25909652c395e0404dae08a42f032e83394d09eabe93908ba5767bdd1724",
+    "alignment_contact_sheet.jpg": "cbfa17a6b5639cecf825d88c0f5bda3ea3e482ddc4803962f679697938b4cab4"
+  }
+}

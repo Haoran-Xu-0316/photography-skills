@@ -1,0 +1,14 @@
+{
+  "skill": "photo-focus-stacker",
+  "topic": "city",
+  "returncode": 0,
+  "input_sha256": {
+    "frame-2.png": "3a38a8b43be8f3de4377d77f3dd96229161fdd48df6cc12efb46df0cd88bdf2d",
+    "frame-1.png": "8ecf741f655c650e3c3cdbf9d43b2bd5e1ab01051782f07a1676484eda4278c3",
+    "frame-0.png": "b4c4e8a16492414f556b553e1a55b8e1465ca42eaa7500efb9760f4833ce80a1",
+    "source.png": "46ee2f2a65fb061ab5adeeee0431e483f1303352fa5766d99670c93bbe9fbea9"
+  },
+  "sources_unchanged": true,
+  "visual_status": "contact-sheet-reviewed; see README for limitations",
+  "opencv_version": "4.11.0"
+}

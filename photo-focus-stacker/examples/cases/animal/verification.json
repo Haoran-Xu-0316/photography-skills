@@ -1,0 +1,14 @@
+{
+  "skill": "photo-focus-stacker",
+  "topic": "animal",
+  "returncode": 0,
+  "input_sha256": {
+    "frame-2.png": "8eb7c4f4ab74107bc9fc4462b67cd2f66bff21e562d91c4a972539f6a92d996d",
+    "frame-1.png": "eb615b63c9befafd8e7ccd48c38233c4ee1807011ee8a88d3f742239e994f44b",
+    "frame-0.png": "dd32614990cb71c233fb576ddbffd45a333544cf605ed6a7b91635d8079bb6b8",
+    "source.png": "7cd1639926e380d69ede2ad1c4164243bcdde24c3326dc4f71f9bf8071631a37"
+  },
+  "sources_unchanged": true,
+  "visual_status": "contact-sheet-reviewed; see README for limitations",
+  "opencv_version": "4.11.0"
+}
