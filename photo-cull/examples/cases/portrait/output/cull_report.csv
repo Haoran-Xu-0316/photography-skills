@@ -1,0 +1,4 @@
+﻿name,verdict,blur_type,peak_edge_width,anisotropy,highlight_clip_pct,shadow_crush_pct,face_count,burst_group,burst_rank,burst_size,rating,label,iso,shutter,aperture,focal,reasons
+blurred.png,reject,defocus,3.582,0.064,0.0,0.0,2,0,3,3,1,red,,,,,失焦，边缘宽度3.58; 2张脸未检出双眼，可能闭眼，需人工确认
+dark.png,keep,sharp,0.696,0.183,0.0,1.009,1,0,2,3,4,green,,,,,
+source.png,keep,sharp,0.625,0.177,0.0,0.055,1,0,1,3,5,green,,,,,

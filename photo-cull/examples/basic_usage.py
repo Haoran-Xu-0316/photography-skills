@@ -22,4 +22,3 @@ def run_example(
         preset="landscape",
         jobs=1,
     )
-

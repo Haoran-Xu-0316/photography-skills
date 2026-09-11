@@ -1,0 +1,5 @@
+﻿name,verdict,blur_type,peak_edge_width,anisotropy,highlight_clip_pct,shadow_crush_pct,face_count,burst_group,burst_rank,burst_size,rating,label,iso,shutter,aperture,focal,reasons
+01-sharp.jpg,keep,sharp,0.629,0.118,0.055,0.028,0,0,1,4,5,green,,,,,
+02-blurred.jpg,reject,defocus,3.681,0.087,0.0,0.0,0,0,4,4,1,red,,,,,失焦，边缘宽度3.68
+03-underexposed.jpg,review,sharp,0.68,0.177,0.0,0.868,0,0,3,4,3,yellow,,,,,连拍组内第3锐，共4张，已有更锐的一张
+04-duplicate.jpg,review,sharp,0.629,0.118,0.055,0.028,0,0,2,4,3,yellow,,,,,连拍组内第2锐，共4张，已有更锐的一张
