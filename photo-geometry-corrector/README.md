@@ -24,9 +24,9 @@ result = run_example("tilted.jpg", "geometry-review", confirmed_angle_degrees=2.
 
 ## 图片示例
 
-输入：[`sample_scene.png`](../example-assets/sample_scene.png)的本地倾斜变体
+[输入、参数、实际输出及验证边界](examples/README.md)。随附[可复现调用](examples/reproduce.py)，不是只有调用占位符。
 
-![几何校正结果示例](examples/output/corrected.png)
+![输入与实际处理结果](examples/comparison.jpg)
 
 ## 验收重点
 

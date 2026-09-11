@@ -24,4 +24,3 @@ def run_example(
         angle_degrees=confirmed_angle_degrees,
     )
     return {"analysis": analysis, "corrected": corrected}
-

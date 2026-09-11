@@ -13,4 +13,3 @@ __all__ = [
     "correct_horizon",
     "correct_perspective",
 ]
-

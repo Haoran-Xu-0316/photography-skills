@@ -1,0 +1,44 @@
+{
+  "status": "pass",
+  "acceptance_status": "visual-review-required",
+  "visual_review_required": true,
+  "transform": "horizon",
+  "input": "../input/tilted.png",
+  "input_sha256": "b20ee267ca85242b5b6509d2789e3ca7df337aabc37be2d9d0f914c56d9fa8c3",
+  "original_preserved": true,
+  "output": "tilted_horizon.png",
+  "output_width": 1115,
+  "output_height": 708,
+  "angle_degrees": 3.0,
+  "angle_source": "user",
+  "automatic_detection": {
+    "angle_degrees": 5.092115,
+    "confidence": 1.5e-05,
+    "line_count": 45,
+    "angle_mad_degrees": 9.996516
+  },
+  "affine_matrix": [
+    [
+      0.9986295347545738,
+      0.052335956242943835,
+      0.19238078407504133
+    ],
+    [
+      -0.052335956242943835,
+      0.9986295347545738,
+      60.6717694501793
+    ]
+  ],
+  "transformed_canvas": {
+    "width": 1191,
+    "height": 828
+  },
+  "valid_crop_box": {
+    "left": 38,
+    "top": 60,
+    "right": 1153,
+    "bottom": 768
+  },
+  "crop_reason": "remove-transform-invalid-border-only",
+  "invalid_pixels_in_output": 0
+}

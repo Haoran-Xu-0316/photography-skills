@@ -1,0 +1,12 @@
+{
+  "skill": "photo-geometry-corrector",
+  "topic": "animal",
+  "returncode": 0,
+  "input_sha256": {
+    "source.png": "7cd1639926e380d69ede2ad1c4164243bcdde24c3326dc4f71f9bf8071631a37",
+    "tilted.png": "fbea7478efec39a3945d6c0bcae39a40bb87414a0363a5387fd494cc9da695a8"
+  },
+  "sources_unchanged": true,
+  "visual_status": "contact-sheet-reviewed; see README for limitations",
+  "opencv_version": "4.11.0"
+}
