@@ -29,4 +29,3 @@ def run_example(
         subject_mask_path=subject_mask_path,
     )
     return {"analysis": analysis, "sculpted": sculpted}
-

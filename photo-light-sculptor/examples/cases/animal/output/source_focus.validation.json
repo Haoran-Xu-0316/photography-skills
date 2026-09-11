@@ -1,0 +1,24 @@
+{
+  "technical_status": "pass",
+  "status": "review_required",
+  "blocking": [],
+  "review_reasons": [
+    "需要查看主体蒙版、EV光照图和结果对照后完成视觉验收"
+  ],
+  "before": {
+    "mask_confidence": 1.0,
+    "subject_area_pct": 21.7816,
+    "subject_luminance": 0.47699,
+    "background_luminance": 0.436523,
+    "highlight_clip_pct": 0.0,
+    "shadow_clip_pct": 0.036847
+  },
+  "after": {
+    "mask_confidence": 1.0,
+    "subject_area_pct": 21.7816,
+    "subject_luminance": 0.492371,
+    "background_luminance": 0.419312,
+    "highlight_clip_pct": 0.000339,
+    "shadow_clip_pct": 0.036847
+  }
+}

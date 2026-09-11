@@ -1,0 +1,16 @@
+{
+  "input": "../input/source.png",
+  "input_sha256": "46ee2f2a65fb061ab5adeeee0431e483f1303352fa5766d99670c93bbe9fbea9",
+  "mode": "focus",
+  "strength": 1.0,
+  "mask_source": "user-mask",
+  "mask_confidence": 1.0,
+  "ev_min": -0.1599999964237213,
+  "ev_max": 0.10000000149011612,
+  "outputs": {
+    "image": "source_focus.png",
+    "mask": "source_focus_mask.png",
+    "light_map": "source_focus_light16.png",
+    "preview": "source_focus_preview.jpg"
+  }
+}

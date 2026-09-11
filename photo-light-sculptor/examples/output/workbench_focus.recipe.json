@@ -1,0 +1,16 @@
+{
+  "input": "../input/workbench.jpg",
+  "input_sha256": "5f512b76d0dd58054f86d3b0f9144d8223b5891ec81d0882405c367766f4b325",
+  "mode": "focus",
+  "strength": 1.0,
+  "mask_source": "user-mask",
+  "mask_confidence": 1.0,
+  "ev_min": -0.1599999964237213,
+  "ev_max": 0.10000000149011612,
+  "outputs": {
+    "image": "workbench_focus.jpg",
+    "mask": "workbench_focus_mask.png",
+    "light_map": "workbench_focus_light16.png",
+    "preview": "workbench_focus_preview.jpg"
+  }
+}

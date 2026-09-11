@@ -1,0 +1,15 @@
+{
+  "status": "review_required",
+  "outputs": {
+    "image": "workbench_focus.jpg",
+    "mask": "workbench_focus_mask.png",
+    "light_map": "workbench_focus_light16.png",
+    "preview": "workbench_focus_preview.jpg"
+  },
+  "recipe": "workbench_focus.recipe.json",
+  "validation": "workbench_focus.validation.json",
+  "blocking": [],
+  "review_reasons": [
+    "需要查看主体蒙版、EV光照图和结果对照后完成视觉验收"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "status": "review_required",
+  "outputs": {
+    "image": "output/source_focus.png",
+    "mask": "output/source_focus_mask.png",
+    "light_map": "output/source_focus_light16.png",
+    "preview": "output/source_focus_preview.jpg"
+  },
+  "recipe": "output/source_focus.recipe.json",
+  "validation": "output/source_focus.validation.json",
+  "blocking": [],
+  "review_reasons": [
+    "需要查看主体蒙版、EV光照图和结果对照后完成视觉验收"
+  ]
+}
