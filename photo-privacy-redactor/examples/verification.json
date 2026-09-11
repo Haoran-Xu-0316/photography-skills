@@ -1,0 +1,13 @@
+{
+  "execution_passed": true,
+  "sources_unchanged": true,
+  "input_sha256": {
+    "fictional-label.png": "2564d707612e3c5d0c99ec341d5a6d0302767c84003de62bb82b086cb83d1e65"
+  },
+  "scope": "controlled example only; not full capability acceptance",
+  "covered_pixels": 61600,
+  "covered_pixels_all_black": true,
+  "outside_mask_unchanged": true,
+  "face_detection_available": false,
+  "manual_review_confirmed": false
+}

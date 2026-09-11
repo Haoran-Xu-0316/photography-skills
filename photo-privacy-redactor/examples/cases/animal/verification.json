@@ -1,0 +1,11 @@
+{
+  "skill": "photo-privacy-redactor",
+  "topic": "animal",
+  "returncode": 0,
+  "input_sha256": {
+    "source.png": "7cd1639926e380d69ede2ad1c4164243bcdde24c3326dc4f71f9bf8071631a37"
+  },
+  "sources_unchanged": true,
+  "visual_status": "contact-sheet-reviewed; see README for limitations",
+  "opencv_version": "4.11.0"
+}

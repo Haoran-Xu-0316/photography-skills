@@ -1,0 +1,95 @@
+{
+  "status": "needs-manual-review",
+  "input": "../../cases/portrait/input/source.png",
+  "input_sha256": "cad62987f202999ccb91a6e00cdba7b92b6c61db73252d28e5663dcd65d4057f",
+  "original_preserved": true,
+  "redacted_output": "source_redacted.png",
+  "mask_output": "source_redaction_mask.png",
+  "preview_output": "source_redaction_preview.jpg",
+  "fill_rgb": [
+    0,
+    0,
+    0
+  ],
+  "output_encoding": "lossless-png",
+  "alpha_action": "not-present",
+  "covered_pixels": 48070,
+  "covered_fraction": 0.05433259,
+  "user_rectangles": [],
+  "user_masks": [],
+  "face_candidates": [
+    {
+      "id": "face-001",
+      "candidate_box": [
+        591,
+        98,
+        744,
+        251
+      ],
+      "suggested_redaction_box": [
+        563,
+        55,
+        772,
+        285
+      ],
+      "status": "redact",
+      "detector": "opencv-haarcascade-frontalface-default"
+    },
+    {
+      "id": "face-002",
+      "candidate_box": [
+        1003,
+        461,
+        1059,
+        517
+      ],
+      "suggested_redaction_box": [
+        993,
+        445,
+        1069,
+        529
+      ],
+      "status": "reject",
+      "detector": "opencv-haarcascade-frontalface-default"
+    },
+    {
+      "id": "face-003",
+      "candidate_box": [
+        762,
+        485,
+        905,
+        628
+      ],
+      "suggested_redaction_box": [
+        736,
+        445,
+        931,
+        659
+      ],
+      "status": "reject",
+      "detector": "opencv-haarcascade-frontalface-default"
+    }
+  ],
+  "face_detector": {
+    "available": true,
+    "name": "opencv-haarcascade-frontalface-default",
+    "opencv_version": "4.11.0",
+    "reason": null
+  },
+  "pending_candidate_ids": [],
+  "manual_review_confirmed": false,
+  "manual_missed_review_required": true,
+  "review_checklist": [
+    "在原始分辨率下检查侧脸、小脸、遮挡脸、背光脸和画面边缘。",
+    "用用户矩形或蒙版补充车牌、屏幕、票据、证件、二维码和敏感文字。",
+    "确认实心遮挡完整覆盖目标边缘，没有残留可辨识特征。",
+    "另行使用交付质检检查GPS、EXIF和其他元数据隐私。"
+  ],
+  "limitations": [
+    "自动检测只提示正面人脸候选，可能误报或漏报。",
+    "不自动检测车牌、屏幕、票据、证件、二维码或文字。",
+    "不检查或删除GPS、EXIF及其他元数据。",
+    "任何状态都不代表不存在全部隐私风险。"
+  ],
+  "metadata_action": "preserved-with-orientation-normalized-not-reviewed"
+}

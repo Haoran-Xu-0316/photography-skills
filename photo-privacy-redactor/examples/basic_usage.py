@@ -32,4 +32,3 @@ def run_example(
         manual_review_confirmed=False,
     )
     return {"candidates": candidates, "redacted": redacted}
-

@@ -22,6 +22,7 @@ GPS、拍摄地点、相机信息和其他EXIF风险由`photo-output-preflight`�
 ## 两阶段工作流
 
 1. 使用`detect_face_candidates`生成自动人脸候选。候选仅供复核，可能误报或漏报。
+   先检查`face_detector.available`及`opencv_version`。依赖不可用与检测到零张脸是两种状态；按照`requirements.txt`核对兼容构建，不擅自重装共享环境，也不把手动画框说成自动检测结果。
 2. 用户矩形和用户蒙版直接进入遮挡区域，优先级最高。
 3. 对每个人脸候选记录`redact`或`reject`决定。未决定的候选保持`pending`，不得自动遮挡。
 4. 使用`redact_photo`输出无损PNG实心遮挡副本、二值蒙版、带标记预览和复核JSON。输入带透明通道时先合成到不透明白底，避免透明像素中的隐藏内容在导出时意外显现。

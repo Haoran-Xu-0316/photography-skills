@@ -83,7 +83,8 @@ def _detect_candidates(
         return [], {
             "available": False,
             "name": "opencv-haarcascade-frontalface-default",
-            "reason": "当前OpenCV构建不提供完整级联检测接口，必须使用用户矩形、蒙版和人工全图复核。",
+            "opencv_version": getattr(cv2, "__version__", "unknown"),
+            "reason": "当前OpenCV构建缺少级联接口或数据。请检查requirements.txt中的4.x依赖；未经允许不要改动共享环境。检测恢复前使用用户矩形、蒙版和人工全图复核。",
         }
     cascade_path = Path(cascade_root) / "haarcascade_frontalface_default.xml"
     if not cascade_path.is_file():
@@ -123,6 +124,7 @@ def _detect_candidates(
     return candidates, {
         "available": True,
         "name": "opencv-haarcascade-frontalface-default",
+        "opencv_version": getattr(cv2, "__version__", "unknown"),
         "reason": None,
     }
 

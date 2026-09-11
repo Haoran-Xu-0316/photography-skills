@@ -23,9 +23,9 @@ result = run_example("source.jpg", "redaction-review")
 
 ## 图片示例
 
-输入：[`sample_scene.png`](../example-assets/sample_scene.png)
+[输入、参数、实际输出及验证边界](examples/README.md)。随附[可复现调用](examples/reproduce.py)，不是只有调用占位符。
 
-![隐私遮挡结果示例](examples/output/redacted.png)
+![输入与实际处理结果](examples/comparison.jpg)
 
 ## 验收重点
 
