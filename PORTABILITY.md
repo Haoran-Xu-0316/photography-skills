@@ -2,13 +2,13 @@
 
 ## 兼容目标
 
-本目录的14个自有摄影Skill以Agent Skills开放目录格式为共同核心。每个Skill都以`SKILL.md`为入口，按需携带`scripts`、`references`、`assets`和`requirements.txt`。
+本目录的自有摄影与生图Skill以Agent Skills开放目录格式为共同核心。每个Skill都以`SKILL.md`为入口，按需携带`scripts`、`references`、`assets`和`requirements.txt`。完整清单以根目录README为准。
 
-每个Skill还提供面向GitHub读者的`README.md`和`examples/basic_usage.py`。这些文件解释能力边界并演示真实程序接口，但不替代`SKILL.md`中的运行契约。
+每个Skill还提供面向GitHub读者的`README.md`和`examples`。有程序接口的Skill提供函数式调用示例；纯生图Skill提供自然语言提示与实际图片，不为了目录一致性添加空脚本。这些文件不替代`SKILL.md`中的运行契约。
 
-每个`SKILL.md`都在标准`metadata`映射中提供字符串型`runtime`说明，用于声明Python、离线资源和视觉验收能力。运行时可以读取该字段，也可以忽略它并按正文的“运行契约”执行。
+`SKILL.md`可以通过`metadata.runtime`或正文声明Python、离线资源和视觉验收能力。运行时应按实际能力要求执行，不依赖某一个固定标题或厂商配置文件。
 
-这里的“通用”是能力通用，不是声称任何纯文本模型都能直接处理本地图片。运行时至少需要读取Skill目录和用户文件；需要实际处理图片时，还要能够执行Python；需要完成视觉验收时，还要能够查看原图和输出预览。
+这里的“通用”是能力通用，不是声称任何纯文本模型都能直接处理本地图片。运行时至少需要读取Skill目录和用户文件；脚本处理需要执行Python，生成式微缩需要参考图生图能力；需要完成视觉验收时，还要能够查看原图和输出预览。
 
 ## 仓库结构
 
@@ -25,6 +25,9 @@
 | 照片分析与非生成式处理 | `photo-cull`、`photo-repair`、`photo-color-grade`、`photo-light-sculptor`、`photo-composition-crop`、`photo-series-editor`、`photo-output-preflight`、`photo-privacy-redactor`、`photo-geometry-corrector` | 读取本地文件、Python3.10+、对应依赖 | 实际报告与视觉证据通过复核 |
 | 多帧计算摄影 | `photo-bracket-fusion`、`photo-panorama-stitcher`、`photo-focus-stacker` | 读取多张本地图片、Python3.10+、OpenCV与对应依赖 | 配准、风险图和最终图通过复核 |
 | 单图立体化 | `photo-to-3d` | 读取本地图片、Python3.10+、对应依赖；自动估深需要本地模型权重 | 深度、视差或网格结果通过复核 |
+| 生成式微缩 | `photo-miniature-diorama` | 查看图片、参考图生图；可选海报合成需要Python3.10+和Pillow | 微缩单图通过场景身份、连接、材质和构图复核；不是3D几何验收 |
+| 地图城市生成 | `city-map-diorama` | 生图、看图及地标事实资料 | 地图与微缩城市连续衔接，文字正确；艺术地图不冒充测绘成果 |
+| 独立生图风格 | `object-exploded-plate`、`textile-storybook-scene`、`cyanotype-botanical-print`、`surreal-scale-cinema` | 生图与看图；参考输入需要参考图能力 | 分别核对组件层级、织物造型、平面负像、尺度与摄影逻辑；不以结构检查替代视觉检查 |
 | 印刷页面 | `photo-print-layout` | 读取本地图片、Python3.10+、PDF生成与渲染能力 | PDF渲染页通过物理尺寸和视觉检查 |
 
 ## 打包与安装规则
@@ -52,3 +55,9 @@
 12. `photo-panorama-stitcher`
 13. `photo-focus-stacker`
 14. `photo-print-layout`
+15. `photo-miniature-diorama`
+16. `city-map-diorama`
+17. `object-exploded-plate`
+18. `textile-storybook-scene`
+19. `cyanotype-botanical-print`
+20. `surreal-scale-cinema`
