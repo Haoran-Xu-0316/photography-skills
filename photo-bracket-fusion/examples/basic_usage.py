@@ -31,4 +31,3 @@ def run_example(
         motion_handling="reference-frame",
     )
     return {"analysis": analysis, "fusion": fusion}
-

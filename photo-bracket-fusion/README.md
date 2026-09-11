@@ -24,9 +24,9 @@ result = run_example(input_paths, "fusion-review", [0.25, 0.5, 1.0])
 
 ## 图片示例
 
-输入：[`sample_scene.png`](../example-assets/sample_scene.png)及其曝光变体
+[输入、参数、实际输出及验证边界](examples/README.md)。随附[可复现调用](examples/reproduce.py)，不是只有调用占位符。
 
-![曝光融合结果示例](examples/output/fused.png)
+![输入与实际处理结果](examples/comparison.jpg)
 
 ## 验收重点
 

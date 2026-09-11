@@ -1,0 +1,10 @@
+{
+  "execution_passed": true,
+  "sources_unchanged": true,
+  "input_sha256": {
+    "ev-minus1.png": "8a424b1c33e79e68acf8b8e094f5803c61e6ca1d1ca8935a8f2104287203f206",
+    "ev-plus1.png": "f11c2e3605c0d0f954edc76cba4fa3b5b485d4e7e31937b361d0844386eb5ebb",
+    "ev-zero.png": "34ca585a7b23c69af59aa95b4e34b0a0a43686f17574b409257a375db25e54ed"
+  },
+  "scope": "controlled example only; not full capability acceptance"
+}

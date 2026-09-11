@@ -1,0 +1,100 @@
+{
+  "status": "pass",
+  "blockers": [],
+  "warnings": [],
+  "inputs": [
+    {
+      "path": "input/frame-0.png",
+      "sha256": "96c6e1efee499b5bf654346d55d49bd21dc6dd98a93da8fa0377f3edca2b1a8c",
+      "dimensions": [
+        1152,
+        768
+      ],
+      "median_luminance_8bit": 83.0
+    },
+    {
+      "path": "input/frame-1.png",
+      "sha256": "cad62987f202999ccb91a6e00cdba7b92b6c61db73252d28e5663dcd65d4057f",
+      "dimensions": [
+        1152,
+        768
+      ],
+      "median_luminance_8bit": 116.0
+    },
+    {
+      "path": "input/frame-2.png",
+      "sha256": "d6402284dfa7a88595d171775f52483e25b2d11f1c0c02569e66d89de7d9bff5",
+      "dimensions": [
+        1152,
+        768
+      ],
+      "median_luminance_8bit": 159.0
+    }
+  ],
+  "exposure_times_seconds": [
+    0.005,
+    0.01,
+    0.02
+  ],
+  "exposure_source": "provided",
+  "exposure_span_ev": 2.0,
+  "reference_index": 1,
+  "alignment_shifts_xy": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      0
+    ]
+  ],
+  "same_view_confidence": [
+    0.9999501953748032,
+    1.0,
+    0.9995250916545763
+  ],
+  "ghost_risk": {
+    "level": "low",
+    "affected_share": 0.0
+  },
+  "recipe": {
+    "alignment": "OpenCV MTB and phase-correlation integer translation selection",
+    "fusion": "OpenCV MergeMertens display-referred exposure fusion",
+    "fusion_weights": {
+      "contrast": 1.0,
+      "saturation": 1.0,
+      "exposure": 1.0
+    },
+    "motion_detection": "per-channel monotonic quantile compensation; residual threshold 0.12",
+    "motion_handling": "reference-frame",
+    "claim_boundary": "not scene-linear HDR or a radiance map"
+  },
+  "outputs": {
+    "exposure_fused_16bit.tif": {
+      "path": "output/exposure_fused_16bit.tif",
+      "sha256": "bbcbd172350f35145e5908898f192b3ac7fffa0b2d803488da0c9c35555c6728"
+    },
+    "exposure_fused_preview.jpg": {
+      "path": "output/exposure_fused_preview.jpg",
+      "sha256": "d964a578e5588b20b3a20f5719eb154605faa29568c286bd7aafb56c52c89a33"
+    },
+    "ghost_risk_mask.png": {
+      "path": "output/ghost_risk_mask.png",
+      "sha256": "dbed25909652c395e0404dae08a42f032e83394d09eabe93908ba5767bdd1724"
+    },
+    "alignment_contact_sheet.jpg": {
+      "path": "output/alignment_contact_sheet.jpg",
+      "sha256": "c828e426d53c0c2c9ab0ff2cece79c0f235db264c4d589eb3c350964891526ae"
+    },
+    "bracket_fusion_report.json": {
+      "path": "output/bracket_fusion_report.json",
+      "sha256": "aa15e3f044c8d29da1b9f48a78f6f6076817ae15668b26150d0d574797888244"
+    }
+  },
+  "source_hashes_verified_after_processing": true
+}

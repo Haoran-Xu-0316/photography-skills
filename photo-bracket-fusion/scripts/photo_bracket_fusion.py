@@ -231,16 +231,44 @@ def _estimated_ev_span(
 def _motion_mask(
     aligned: Sequence[np.ndarray], validity: Sequence[np.ndarray]
 ) -> tuple[np.ndarray, float]:
-    normalized = np.stack([_robust_normalize(_gray(image)) for image in aligned])
-    valid = np.logical_and.reduce(validity)
-    temporal_range = normalized.max(axis=0) - normalized.min(axis=0)
-    mask = np.logical_and(temporal_range > 0.20, valid).astype(np.uint8) * 255
+    # Match global monotonic exposure responses before testing local changes.
+    # This is display-space compensation, not radiometric HDR calibration.
+    reference = aligned[len(aligned) // 2].astype(np.uint8)
+    valid = np.logical_and.reduce(validity).astype(bool)
+    residual = np.zeros(reference.shape[:2], dtype=np.float32)
+    quantiles = np.linspace(2, 98, 97)
+    valid_count = int(np.count_nonzero(valid))
+    for frame in aligned:
+        for channel in range(3):
+            source = frame[..., channel]
+            target = reference[..., channel]
+            x, y = np.array([]), np.array([])
+            if valid_count >= 96:
+                source_quantiles = np.percentile(source[valid], quantiles)
+                target_quantiles = np.percentile(target[valid], quantiles)
+                usable = (
+                    (source_quantiles > 4) & (source_quantiles < 251)
+                    & (target_quantiles > 4) & (target_quantiles < 251)
+                )
+                x, indices = np.unique(source_quantiles[usable], return_index=True)
+                y = target_quantiles[usable][indices]
+            if len(x) < 4:
+                # An unconstrained curve must not erase observed differences.
+                difference = np.abs(source.astype(np.float32) - target) / 255
+            else:
+                mapped = np.interp(source, x, np.maximum.accumulate(y))
+                difference = np.abs(mapped - target) / 255
+                low_tail = (source <= x[0]) & (target <= y[0] + 8)
+                high_tail = (source >= x[-1]) & (target >= y[-1] - 8)
+                difference[low_tail | high_tail] = 0
+            residual = np.maximum(residual, difference)
+    mask = ((residual > 0.12) & valid).astype(np.uint8) * 255
     kernel = np.ones((3, 3), dtype=np.uint8)
     mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
     mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)
     mask = cv2.dilate(mask, kernel, iterations=1)
-    valid_count = int(valid.sum())
-    motion_share = float(np.logical_and(mask > 0, valid).sum() / max(valid_count, 1))
+    mask[~valid] = 0
+    motion_share = float(np.count_nonzero(mask) / max(valid_count, 1))
     return mask, motion_share
 
 
@@ -462,7 +490,7 @@ def fuse_bracket(
                 "saturation": 1.0,
                 "exposure": 1.0,
             },
-            "motion_detection": "robust-normalized temporal range threshold 0.20",
+            "motion_detection": "per-channel monotonic quantile compensation; residual threshold 0.12",
             "motion_handling": motion_handling,
             "claim_boundary": "not scene-linear HDR or a radiance map",
         },
