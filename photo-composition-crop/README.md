@@ -24,9 +24,9 @@ result = run_example("source.jpg", "crop-review", focus_point=(0.55, 0.40))
 
 ## 图片示例
 
-输入：[`sample_scene.png`](../example-assets/sample_scene.png)
+[输入、参数、实际输出及验证边界](examples/README.md)。随附[可复现调用](examples/reproduce.py)，不是只有调用占位符。
 
-![4比5裁切结果示例](examples/output/crop-4x5.png)
+![输入与实际处理结果](examples/comparison.jpg)
 
 ## 验收重点
 

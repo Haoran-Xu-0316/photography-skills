@@ -212,12 +212,21 @@ def _candidate_boxes(
     saliency: np.ndarray,
     ratio: float,
     focus: tuple[float, float],
+    protected_box: tuple[int, int, int, int] | None = None,
 ) -> list[dict[str, Any]]:
     height, width = saliency.shape
     crop_width, crop_height = _crop_size(width, height, ratio)
     candidates: list[dict[str, Any]] = []
-    for left in _positions(width - crop_width):
-        for top in _positions(height - crop_height):
+    left_min, left_max = 0, width - crop_width
+    top_min, top_max = 0, height - crop_height
+    if protected_box is not None:
+        p_left, p_top, p_right, p_bottom = protected_box
+        left_min, left_max = max(0, p_right - crop_width), min(left_max, p_left)
+        top_min, top_max = max(0, p_bottom - crop_height), min(top_max, p_top)
+        if left_min > left_max or top_min > top_max:
+            raise ValueError("目标比例无法完整保留保护区域；请改变比例或缩小经确认的保护范围")
+    for left in [left_min + value for value in _positions(left_max - left_min)]:
+        for top in [top_min + value for value in _positions(top_max - top_min)]:
             box = (left, top, left + crop_width, top + crop_height)
             candidates.append({"box": box, **_score_box(saliency, focus, box)})
     candidates.sort(key=lambda item: item["score"], reverse=True)
@@ -311,10 +320,21 @@ def create_crop_set(
     aspect_ratios: tuple[str, ...] = ("1:1", "4:5", "3:4", "16:9"),
     focus_point: tuple[float, float] | None = None,
     safe_area_only: bool = False,
+    protected_region: tuple[float, float, float, float] | None = None,
 ) -> dict[str, Any]:
     if not aspect_ratios:
         raise ValueError("aspect_ratios不能为空")
     source, rgb, exif, icc = _load(input_path)
+    protected_box = None
+    if protected_region is not None:
+        region = np.asarray(protected_region, dtype=float)
+        if region.shape != (4,) or not np.isfinite(region).all() or np.any((region < 0) | (region > 1)):
+            raise ValueError("保护区域必须为四个0至1有限归一化坐标")
+        left, top, right, bottom = region
+        if left >= right or top >= bottom:
+            raise ValueError("保护区域必须有正面积")
+        height, width = rgb.shape[:2]
+        protected_box = (int(np.floor(left * width)), int(np.floor(top * height)), int(np.ceil(right * width)), int(np.ceil(bottom * height)))
     original_hash = _hash(source)
     saliency = _saliency(rgb)
     auto_x, auto_y, confidence = _visual_center(saliency)
@@ -337,7 +357,7 @@ def create_crop_set(
         if any(abs(ratio - existing_ratio) < 1e-9 for existing_ratio in seen_ratios):
             raise ValueError(f"aspect_ratios包含重复画幅: {ratio_text}")
         seen_ratios.append(ratio)
-        candidates = _candidate_boxes(saliency, ratio, focus)
+        candidates = _candidate_boxes(saliency, ratio, focus, protected_box)
         candidate_records = []
         for candidate in candidates:
             box = candidate["box"]
@@ -369,6 +389,7 @@ def create_crop_set(
         "focus_point": {"x": focus[0], "y": focus[1]},
         "automatic_confidence": confidence,
         "safe_area_only": safe_area_only,
+        "protected_region": list(protected_region) if protected_region is not None else None,
         "plans": plans,
         "original_preserved": _hash(source) == original_hash,
         "review_required": True,

@@ -1,0 +1,108 @@
+{
+  "status": "review_required",
+  "technical_status": "pass",
+  "overlay": "output/source_crop_overlay.jpg",
+  "manifest": "output/source_crop_plan.json",
+  "crops": [
+    "output/source_crop_1x1.png",
+    "output/source_crop_4x5.png"
+  ],
+  "plans": [
+    {
+      "ratio": "1:1",
+      "candidates": [
+        {
+          "score": 0.72905978,
+          "saliency_retained": 0.68677843,
+          "thirds_relationship": 0.71005034,
+          "boundary_safety": 0.75627579,
+          "edge_balance": 0.9124175,
+          "box": [
+            355,
+            0,
+            1123,
+            768
+          ],
+          "coordinates": {
+            "pixels": {
+              "left": 355,
+              "top": 0,
+              "right": 1123,
+              "bottom": 768
+            },
+            "normalized": {
+              "left": 0.30815972,
+              "top": 0.0,
+              "right": 0.97482639,
+              "bottom": 1.0
+            }
+          }
+        },
+        {
+          "score": 0.70469211,
+          "saliency_retained": 0.67533153,
+          "thirds_relationship": 0.65276327,
+          "boundary_safety": 0.78730923,
+          "edge_balance": 0.80140254,
+          "box": [
+            154,
+            0,
+            922,
+            768
+          ],
+          "coordinates": {
+            "pixels": {
+              "left": 154,
+              "top": 0,
+              "right": 922,
+              "bottom": 768
+            },
+            "normalized": {
+              "left": 0.13368056,
+              "top": 0.0,
+              "right": 0.80034722,
+              "bottom": 1.0
+            }
+          }
+        }
+      ],
+      "output": "output/source_crop_1x1.png"
+    },
+    {
+      "ratio": "4:5",
+      "candidates": [
+        {
+          "score": 0.66819037,
+          "saliency_retained": 0.56442946,
+          "thirds_relationship": 0.7099407,
+          "boundary_safety": 0.72819486,
+          "edge_balance": 0.91072968,
+          "box": [
+            403,
+            0,
+            1017,
+            768
+          ],
+          "coordinates": {
+            "pixels": {
+              "left": 403,
+              "top": 0,
+              "right": 1017,
+              "bottom": 768
+            },
+            "normalized": {
+              "left": 0.34982639,
+              "top": 0.0,
+              "right": 0.8828125,
+              "bottom": 1.0
+            }
+          }
+        }
+      ],
+      "output": "output/source_crop_4x5.png"
+    }
+  ],
+  "review_reasons": [
+    "需要查看构图叠加图和实际裁切结果"
+  ]
+}

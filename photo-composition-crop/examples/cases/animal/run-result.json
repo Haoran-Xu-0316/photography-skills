@@ -1,0 +1,223 @@
+{
+  "status": "review_required",
+  "technical_status": "pass",
+  "overlay": "output/source_crop_overlay.jpg",
+  "manifest": "output/source_crop_plan.json",
+  "crops": [
+    "output/source_crop_1x1.png",
+    "output/source_crop_4x5.png",
+    "output/source_crop_16x9.png"
+  ],
+  "plans": [
+    {
+      "ratio": "1:1",
+      "candidates": [
+        {
+          "score": 0.72419236,
+          "saliency_retained": 0.7312628,
+          "thirds_relationship": 0.75632519,
+          "boundary_safety": 0.65469429,
+          "edge_balance": 0.75103939,
+          "box": [
+            128,
+            0,
+            896,
+            768
+          ],
+          "coordinates": {
+            "pixels": {
+              "left": 128,
+              "top": 0,
+              "right": 896,
+              "bottom": 768
+            },
+            "normalized": {
+              "left": 0.11111111,
+              "top": 0.0,
+              "right": 0.77777778,
+              "bottom": 1.0
+            }
+          }
+        },
+        {
+          "score": 0.69455039,
+          "saliency_retained": 0.68457657,
+          "thirds_relationship": 0.73202519,
+          "boundary_safety": 0.67600954,
+          "edge_balance": 0.68282723,
+          "box": [
+            336,
+            0,
+            1104,
+            768
+          ],
+          "coordinates": {
+            "pixels": {
+              "left": 336,
+              "top": 0,
+              "right": 1104,
+              "bottom": 768
+            },
+            "normalized": {
+              "left": 0.29166667,
+              "top": 0.0,
+              "right": 0.95833333,
+              "bottom": 1.0
+            }
+          }
+        },
+        {
+          "score": 0.67103265,
+          "saliency_retained": 0.72274834,
+          "thirds_relationship": 0.59026307,
+          "boundary_safety": 0.6410335,
+          "edge_balance": 0.70023429,
+          "box": [
+            0,
+            0,
+            768,
+            768
+          ],
+          "coordinates": {
+            "pixels": {
+              "left": 0,
+              "top": 0,
+              "right": 768,
+              "bottom": 768
+            },
+            "normalized": {
+              "left": 0.0,
+              "top": 0.0,
+              "right": 0.66666667,
+              "bottom": 1.0
+            }
+          }
+        }
+      ],
+      "output": "output/source_crop_1x1.png"
+    },
+    {
+      "ratio": "4:5",
+      "candidates": [
+        {
+          "score": 0.66215527,
+          "saliency_retained": 0.5984118,
+          "thirds_relationship": 0.75694276,
+          "boundary_safety": 0.64031219,
+          "edge_balance": 0.75571829,
+          "box": [
+            224,
+            0,
+            838,
+            768
+          ],
+          "coordinates": {
+            "pixels": {
+              "left": 224,
+              "top": 0,
+              "right": 838,
+              "bottom": 768
+            },
+            "normalized": {
+              "left": 0.19444444,
+              "top": 0.0,
+              "right": 0.72743056,
+              "bottom": 1.0
+            }
+          }
+        },
+        {
+          "score": 0.64508551,
+          "saliency_retained": 0.57015568,
+          "thirds_relationship": 0.74264193,
+          "boundary_safety": 0.65413451,
+          "edge_balance": 0.72028071,
+          "box": [
+            404,
+            0,
+            1018,
+            768
+          ],
+          "coordinates": {
+            "pixels": {
+              "left": 404,
+              "top": 0,
+              "right": 1018,
+              "bottom": 768
+            },
+            "normalized": {
+              "left": 0.35069444,
+              "top": 0.0,
+              "right": 0.88368056,
+              "bottom": 1.0
+            }
+          }
+        },
+        {
+          "score": 0.5940295,
+          "saliency_retained": 0.58210558,
+          "thirds_relationship": 0.54813606,
+          "boundary_safety": 0.62553081,
+          "edge_balance": 0.69941816,
+          "box": [
+            112,
+            0,
+            726,
+            768
+          ],
+          "coordinates": {
+            "pixels": {
+              "left": 112,
+              "top": 0,
+              "right": 726,
+              "bottom": 768
+            },
+            "normalized": {
+              "left": 0.09722222,
+              "top": 0.0,
+              "right": 0.63020833,
+              "bottom": 1.0
+            }
+          }
+        }
+      ],
+      "output": "output/source_crop_4x5.png"
+    },
+    {
+      "ratio": "16:9",
+      "candidates": [
+        {
+          "score": 0.82096103,
+          "saliency_retained": 0.93570727,
+          "thirds_relationship": 0.75499265,
+          "boundary_safety": 0.66902485,
+          "edge_balance": 0.77339625,
+          "box": [
+            0,
+            120,
+            1152,
+            768
+          ],
+          "coordinates": {
+            "pixels": {
+              "left": 0,
+              "top": 120,
+              "right": 1152,
+              "bottom": 768
+            },
+            "normalized": {
+              "left": 0.0,
+              "top": 0.15625,
+              "right": 1.0,
+              "bottom": 1.0
+            }
+          }
+        }
+      ],
+      "output": "output/source_crop_16x9.png"
+    }
+  ],
+  "review_reasons": [
+    "需要查看构图叠加图和实际裁切结果"
+  ]
+}

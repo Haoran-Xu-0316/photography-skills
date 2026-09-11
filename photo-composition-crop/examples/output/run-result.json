@@ -1,0 +1,223 @@
+{
+  "status": "review_required",
+  "technical_status": "pass",
+  "overlay": "workbench_crop_overlay.jpg",
+  "manifest": "workbench_crop_plan.json",
+  "crops": [
+    "workbench_crop_1x1.jpg",
+    "workbench_crop_4x5.jpg",
+    "workbench_crop_16x9.jpg"
+  ],
+  "plans": [
+    {
+      "ratio": "1:1",
+      "candidates": [
+        {
+          "score": 0.73638777,
+          "saliency_retained": 0.73500741,
+          "thirds_relationship": 0.67427206,
+          "boundary_safety": 0.70501071,
+          "edge_balance": 0.96064284,
+          "box": [
+            224,
+            0,
+            992,
+            768
+          ],
+          "coordinates": {
+            "pixels": {
+              "left": 224,
+              "top": 0,
+              "right": 992,
+              "bottom": 768
+            },
+            "normalized": {
+              "left": 0.19444444,
+              "top": 0.0,
+              "right": 0.86111111,
+              "bottom": 1.0
+            }
+          }
+        },
+        {
+          "score": 0.68930575,
+          "saliency_retained": 0.68578553,
+          "thirds_relationship": 0.61490801,
+          "boundary_safety": 0.71894899,
+          "edge_balance": 0.83185464,
+          "box": [
+            352,
+            0,
+            1120,
+            768
+          ],
+          "coordinates": {
+            "pixels": {
+              "left": 352,
+              "top": 0,
+              "right": 1120,
+              "bottom": 768
+            },
+            "normalized": {
+              "left": 0.30555556,
+              "top": 0.0,
+              "right": 0.97222222,
+              "bottom": 1.0
+            }
+          }
+        },
+        {
+          "score": 0.67739153,
+          "saliency_retained": 0.74494892,
+          "thirds_relationship": 0.44770652,
+          "boundary_safety": 0.68554866,
+          "edge_balance": 0.93128148,
+          "box": [
+            96,
+            0,
+            864,
+            768
+          ],
+          "coordinates": {
+            "pixels": {
+              "left": 96,
+              "top": 0,
+              "right": 864,
+              "bottom": 768
+            },
+            "normalized": {
+              "left": 0.08333333,
+              "top": 0.0,
+              "right": 0.75,
+              "bottom": 1.0
+            }
+          }
+        }
+      ],
+      "output": "workbench_crop_1x1.jpg"
+    },
+    {
+      "ratio": "4:5",
+      "candidates": [
+        {
+          "score": 0.67464913,
+          "saliency_retained": 0.60077226,
+          "thirds_relationship": 0.69283097,
+          "boundary_safety": 0.69668144,
+          "edge_balance": 0.91757587,
+          "box": [
+            359,
+            0,
+            973,
+            768
+          ],
+          "coordinates": {
+            "pixels": {
+              "left": 359,
+              "top": 0,
+              "right": 973,
+              "bottom": 768
+            },
+            "normalized": {
+              "left": 0.31163194,
+              "top": 0.0,
+              "right": 0.84461806,
+              "bottom": 1.0
+            }
+          }
+        },
+        {
+          "score": 0.62567337,
+          "saliency_retained": 0.61622095,
+          "thirds_relationship": 0.4874897,
+          "boundary_safety": 0.66614795,
+          "edge_balance": 0.93271926,
+          "box": [
+            247,
+            0,
+            861,
+            768
+          ],
+          "coordinates": {
+            "pixels": {
+              "left": 247,
+              "top": 0,
+              "right": 861,
+              "bottom": 768
+            },
+            "normalized": {
+              "left": 0.21440972,
+              "top": 0.0,
+              "right": 0.74739583,
+              "bottom": 1.0
+            }
+          }
+        },
+        {
+          "score": 0.62295484,
+          "saliency_retained": 0.51946479,
+          "thirds_relationship": 0.67225971,
+          "boundary_safety": 0.69751939,
+          "edge_balance": 0.8162688,
+          "box": [
+            538,
+            0,
+            1152,
+            768
+          ],
+          "coordinates": {
+            "pixels": {
+              "left": 538,
+              "top": 0,
+              "right": 1152,
+              "bottom": 768
+            },
+            "normalized": {
+              "left": 0.46701389,
+              "top": 0.0,
+              "right": 1.0,
+              "bottom": 1.0
+            }
+          }
+        }
+      ],
+      "output": "workbench_crop_4x5.jpg"
+    },
+    {
+      "ratio": "16:9",
+      "candidates": [
+        {
+          "score": 0.85636557,
+          "saliency_retained": 0.88295943,
+          "thirds_relationship": 0.8936353,
+          "boundary_safety": 0.72842133,
+          "edge_balance": 0.89940733,
+          "box": [
+            0,
+            120,
+            1152,
+            768
+          ],
+          "coordinates": {
+            "pixels": {
+              "left": 0,
+              "top": 120,
+              "right": 1152,
+              "bottom": 768
+            },
+            "normalized": {
+              "left": 0.0,
+              "top": 0.15625,
+              "right": 1.0,
+              "bottom": 1.0
+            }
+          }
+        }
+      ],
+      "output": "workbench_crop_16x9.jpg"
+    }
+  ],
+  "review_reasons": [
+    "需要查看构图叠加图和实际裁切结果"
+  ]
+}

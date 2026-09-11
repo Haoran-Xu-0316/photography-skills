@@ -1,0 +1,81 @@
+{
+  "status": "review_required",
+  "technical_status": "pass",
+  "overlay": "output/source_crop_overlay.jpg",
+  "manifest": "output/source_crop_plan.json",
+  "crops": [
+    "output/source_crop_1x1.png",
+    "output/source_crop_16x9.png"
+  ],
+  "plans": [
+    {
+      "ratio": "1:1",
+      "candidates": [
+        {
+          "score": 0.74191075,
+          "saliency_retained": 0.70026177,
+          "thirds_relationship": 0.76635808,
+          "boundary_safety": 0.71618736,
+          "edge_balance": 0.91965964,
+          "box": [
+            363,
+            0,
+            1131,
+            768
+          ],
+          "coordinates": {
+            "pixels": {
+              "left": 363,
+              "top": 0,
+              "right": 1131,
+              "bottom": 768
+            },
+            "normalized": {
+              "left": 0.31510417,
+              "top": 0.0,
+              "right": 0.98177083,
+              "bottom": 1.0
+            }
+          }
+        }
+      ],
+      "output": "output/source_crop_1x1.png"
+    },
+    {
+      "ratio": "16:9",
+      "candidates": [
+        {
+          "score": 0.82191237,
+          "saliency_retained": 0.90833879,
+          "thirds_relationship": 0.73401113,
+          "boundary_safety": 0.72583091,
+          "edge_balance": 0.84490955,
+          "box": [
+            0,
+            95,
+            1152,
+            743
+          ],
+          "coordinates": {
+            "pixels": {
+              "left": 0,
+              "top": 95,
+              "right": 1152,
+              "bottom": 743
+            },
+            "normalized": {
+              "left": 0.0,
+              "top": 0.12369792,
+              "right": 1.0,
+              "bottom": 0.96744792
+            }
+          }
+        }
+      ],
+      "output": "output/source_crop_16x9.png"
+    }
+  ],
+  "review_reasons": [
+    "需要查看构图叠加图和实际裁切结果"
+  ]
+}

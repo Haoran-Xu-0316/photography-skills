@@ -28,4 +28,3 @@ def run_example(
         focus_point=focus_point,
     )
     return {"analysis": analysis, "crops": crops}
-
