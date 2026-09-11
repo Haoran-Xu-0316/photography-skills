@@ -1,0 +1,4 @@
+﻿position,path,filename,sha256,captured_at,orientation,luma,saturation,edge_density,sharpness
+1,../input/01-wide.jpg,01-wide.jpg,b4d7dabfec7b26b36b3b06b81cd60bf098427f4624a521413d28348ac9f114f6,,landscape,0.513725,0.232483,0.219279,2088.21875
+2,../input/02-vase.jpg,02-vase.jpg,c0e46e74c1ee14a95b0f9418d1fa1ad94900b9955ce8d19d4ffba32dd632d3bd,,portrait,0.372549,0.350755,0.114177,695.997742
+3,../input/03-cups.jpg,03-cups.jpg,4858a7664212df78189cf5331d982ced2a88fd642bb209b43bd0314d5886a3e7,,landscape,0.580392,0.123262,0.179265,1439.554565

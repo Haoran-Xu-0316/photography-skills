@@ -1,0 +1,4 @@
+﻿position,path,filename,sha256,captured_at,orientation,luma,saturation,edge_density,sharpness
+1,../input/source.png,source.png,cad62987f202999ccb91a6e00cdba7b92b6c61db73252d28e5663dcd65d4057f,,landscape,0.447059,0.146419,0.16036,1279.468872
+2,../input/animal.png,animal.png,4411154430573519094e0e88594c5448be4c88bc2fdb992df3612aa6f280546f,,landscape,0.403922,0.373214,0.305501,2342.380859
+3,../input/city.png,city.png,826f119434d21483f9542e0ffe6a2814ace130ae1b977a8b62efee1900650e7d,,landscape,0.501961,0.210325,0.235514,2559.383057

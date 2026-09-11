@@ -1,0 +1,47 @@
+{
+  "status": "draft-review-required",
+  "visual_review_confirmed": false,
+  "sequence": [
+    {
+      "position": 1,
+      "path": "input/source.png",
+      "filename": "source.png",
+      "sha256": "46ee2f2a65fb061ab5adeeee0431e483f1303352fa5766d99670c93bbe9fbea9",
+      "captured_at": null,
+      "orientation": "landscape",
+      "luma": 0.501961,
+      "saturation": 0.210365,
+      "edge_density": 0.236491,
+      "sharpness": 2582.926025
+    },
+    {
+      "position": 2,
+      "path": "input/animal.png",
+      "filename": "animal.png",
+      "sha256": "4411154430573519094e0e88594c5448be4c88bc2fdb992df3612aa6f280546f",
+      "captured_at": null,
+      "orientation": "landscape",
+      "luma": 0.403922,
+      "saturation": 0.373214,
+      "edge_density": 0.305501,
+      "sharpness": 2342.380859
+    },
+    {
+      "position": 3,
+      "path": "input/portrait.png",
+      "filename": "portrait.png",
+      "sha256": "98a89fe2be46c97fd999c3118f5236a0cb0e8c75432c38453e572b20694dddcc",
+      "captured_at": null,
+      "orientation": "landscape",
+      "luma": 0.447059,
+      "saturation": 0.146358,
+      "edge_density": 0.16036,
+      "sharpness": 1270.937988
+    }
+  ],
+  "similar_pairs": [],
+  "adjacent_similar_pairs": [],
+  "manifest": "output/series_sequence.json",
+  "csv": "output/series_sequence.csv",
+  "contact_sheet": "output/series_contact_sheet.jpg"
+}

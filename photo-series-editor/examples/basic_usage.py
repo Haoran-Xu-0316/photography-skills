@@ -35,4 +35,3 @@ def finalize_reviewed_example(
         strategy="manual",
         visual_review_confirmed=True,
     )
-

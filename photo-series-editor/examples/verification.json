@@ -1,0 +1,10 @@
+{
+  "execution_passed": true,
+  "sources_unchanged": true,
+  "input_sha256": {
+    "02-vase.jpg": "c0e46e74c1ee14a95b0f9418d1fa1ad94900b9955ce8d19d4ffba32dd632d3bd",
+    "01-wide.jpg": "b4d7dabfec7b26b36b3b06b81cd60bf098427f4624a521413d28348ac9f114f6",
+    "03-cups.jpg": "4858a7664212df78189cf5331d982ced2a88fd642bb209b43bd0314d5886a3e7"
+  },
+  "scope": "controlled example only; not full capability acceptance"
+}
