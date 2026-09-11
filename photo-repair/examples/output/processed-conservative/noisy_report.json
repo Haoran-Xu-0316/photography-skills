@@ -1,0 +1,111 @@
+{
+  "file": "noisy.png",
+  "exif": "无EXIF信息",
+  "iso": null,
+  "resolution": "1152x768",
+  "noise": {
+    "luma_sigma": 0.04062,
+    "chroma_sigma": 0.03284,
+    "samples": 384,
+    "mean_chroma": 0.0817
+  },
+  "iso_prior_sigma": null,
+  "exposure": {
+    "highlight_clip_pct": 1.729,
+    "shadow_crush_pct": 0.099,
+    "median_luma": 0.2288,
+    "dynamic_range_stops": 7.33
+  },
+  "vignette": {
+    "coef": [
+      0.0,
+      0.0
+    ],
+    "corner_ratio": 1.0,
+    "falloff_stops": -0.0,
+    "confidence": 0.0,
+    "symmetry": 0.0,
+    "asymmetry": 0.911,
+    "fit_residual": 0.3448,
+    "half_ratios": [
+      2.4807,
+      1.0869,
+      1.4537,
+      1.0986
+    ],
+    "reliable": false,
+    "note": "径向衰减不对称或不服从暗角模型，判定不可靠，已降低校正强度"
+  },
+  "chromatic_aberration": {
+    "red_scale": 0.99987,
+    "blue_scale": 1.000225,
+    "max_shift_px": 0.16,
+    "reliable": true,
+    "note": ""
+  },
+  "issues": [
+    "噪声偏高，亮度sigma=0.0406 色度sigma=0.0328，建议降噪",
+    "暗角判定: 径向衰减不对称或不服从暗角模型，判定不可靠，已降低校正强度"
+  ],
+  "result": {
+    "output": "noisy_fixed.png",
+    "exif_copy_status": "not_applicable",
+    "stages": {
+      "denoise": {
+        "applied": true,
+        "luma_sigma": 0.04062,
+        "chroma_sigma": 0.03284,
+        "chroma_h": 0.06568,
+        "luma_method": "nlm",
+        "luma_h": 0.02843,
+        "detail_recovery": 0.5
+      }
+    },
+    "noise_after": {
+      "luma_sigma": 0.00896,
+      "chroma_sigma": 0.0004,
+      "samples": 384,
+      "mean_chroma": 0.0556
+    },
+    "luma_noise_reduction_pct": 77.9,
+    "chroma_noise_reduction_pct": 98.8,
+    "params": {
+      "hotpixel": {
+        "enabled": false,
+        "k": 8.0,
+        "max_fix_ratio": 0.0008
+      },
+      "ca": {
+        "enabled": false,
+        "strength": 1.0,
+        "min_shift_px": 0.4
+      },
+      "vignette": {
+        "enabled": false,
+        "strength": 1.0,
+        "max_gain": 3.5,
+        "min_confidence": 0.35,
+        "use_lens_profile": true,
+        "auto_strength": true
+      },
+      "denoise": {
+        "enabled": true,
+        "luma_method": "nlm",
+        "luma_strength": 0.7,
+        "chroma_strength": 2.0,
+        "detail_recovery": 0.5,
+        "chroma_downscale": 2,
+        "iso_prior_weight": 0.6,
+        "sigma_floor": 0.0022,
+        "patch_size": 5,
+        "patch_distance": 6
+      },
+      "sharpen": {
+        "enabled": false,
+        "amount": 0.45,
+        "radius": 1.0,
+        "threshold": 0.008
+      }
+    }
+  }
+}

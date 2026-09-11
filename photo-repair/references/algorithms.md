@@ -116,7 +116,7 @@ RAW用rawpy以gamma=(1,1)、no_auto_bright解码为线性光，gamma由流水线
 
 复现测试由`tests/test_photo_repair.py`完成，覆盖诊断、预览、完整修复、原图只读和拒绝覆盖。
 
-真值写在`scripts/make_test_image.py`的`GROUND_TRUTH`里。
+合成真值生成器仅用于本地测试，不随Skill发布。公开图片案例的已知缺陷、完整参数与验证记录见[示例说明](../examples/README.md)。
 
 ## 性能
 

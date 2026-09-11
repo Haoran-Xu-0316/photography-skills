@@ -1,0 +1,14 @@
+{
+  "execution_passed": true,
+  "sources_unchanged": true,
+  "input_sha256": {
+    "noisy.png": "30a1054e4a24453adc4989160ba1497b39e3f4ea6a706c218c60eaf12b51686a",
+    "clean-reference.png": "34ca585a7b23c69af59aa95b4e34b0a0a43686f17574b409257a375db25e54ed"
+  },
+  "scope": "controlled example only; not full capability acceptance",
+  "psnr_db": {
+    "noisy": 25.911,
+    "strong": 30.105,
+    "conservative": 30.247
+  }
+}

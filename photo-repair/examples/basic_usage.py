@@ -33,4 +33,3 @@ def run_example(
         preset="high_iso",
     )
     return {"diagnosis": diagnosis, "preview": preview, "repaired": repaired}
-
