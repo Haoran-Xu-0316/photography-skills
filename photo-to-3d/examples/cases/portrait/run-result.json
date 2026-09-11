@@ -1,0 +1,18 @@
+{
+  "status": "pass",
+  "outputs": {
+    "depth": "output/source_depth16.png",
+    "preview": "output/source_3d_preview.jpg",
+    "html": "output/source_parallax.html",
+    "gif": "output/source_parallax.gif",
+    "obj": "output/source_relief.obj",
+    "mtl": "output/source_relief.mtl",
+    "texture": "output/source_texture.png"
+  },
+  "recipe": "output/source_3d.recipe.json",
+  "validation": "output/source_3d.validation.json",
+  "warnings": [
+    "深度边缘与照片结构相关性较低，需要人工检查"
+  ],
+  "blocking": []
+}

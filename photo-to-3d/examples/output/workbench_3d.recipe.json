@@ -1,0 +1,21 @@
+{
+  "input": "../input/workbench.jpg",
+  "input_sha256": "5f512b76d0dd58054f86d3b0f9144d8223b5891ec81d0882405c367766f4b325",
+  "mode": "parallax",
+  "depth_source": {
+    "type": "user-depth-map",
+    "file": "../input/hand-authored-depth.png",
+    "sha256": "4fa846eaa68fd705e9fffb8bd03e776a7a86edfa6d62bae875fbc246677635b2",
+    "inverted": false
+  },
+  "near_is_white": true,
+  "parallax_strength": 0.012,
+  "mesh_resolution": null,
+  "relief_strength": null,
+  "outputs": {
+    "depth": "workbench_depth16.png",
+    "preview": "workbench_3d_preview.jpg",
+    "html": "workbench_parallax.html",
+    "gif": "workbench_parallax.gif"
+  }
+}

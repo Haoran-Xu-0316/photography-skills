@@ -1,0 +1,13 @@
+{
+  "status": "pass",
+  "outputs": {
+    "depth": "workbench_depth16.png",
+    "preview": "workbench_3d_preview.jpg",
+    "html": "workbench_parallax.html",
+    "gif": "workbench_parallax.gif"
+  },
+  "recipe": "workbench_3d.recipe.json",
+  "validation": "workbench_3d.validation.json",
+  "warnings": [],
+  "blocking": []
+}

@@ -1,0 +1,13 @@
+{
+  "skill": "photo-to-3d",
+  "topic": "portrait",
+  "returncode": 0,
+  "input_sha256": {
+    "depth.png": "787b0ab7947cd1581b5bf69fe9c3fda2d12c9c482164931215b3cd69fa58e555",
+    "subject-mask.png": "75a2c6d5928eb6716212ebf74b583c04ea29b8d59f3c8dc7d534911fec88a201",
+    "source.png": "cad62987f202999ccb91a6e00cdba7b92b6c61db73252d28e5663dcd65d4057f"
+  },
+  "sources_unchanged": true,
+  "visual_status": "contact-sheet-reviewed; see README for limitations",
+  "opencv_version": "4.11.0"
+}

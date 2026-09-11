@@ -307,6 +307,7 @@ def _validate_outputs(
     depth: np.ndarray,
     quality: dict[str, Any],
     outputs: dict[str, Any],
+    mesh_info: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     blocking = list(quality.get("blocking", []))
     warnings = list(quality.get("warnings", []))
@@ -327,10 +328,31 @@ def _validate_outputs(
     obj_vertices = obj_faces = None
     if "obj" in outputs:
         obj_text = Path(outputs["obj"]).read_text(encoding="utf-8")
-        obj_vertices = sum(line.startswith("v ") for line in obj_text.splitlines())
-        obj_faces = sum(line.startswith("f ") for line in obj_text.splitlines())
-        if obj_vertices < 4096 or obj_faces < 7900:
-            blocking.append("OBJ网格规模异常")
+        lines = obj_text.splitlines()
+        vertices = [line.split()[1:] for line in lines if line.startswith("v ")]
+        coordinates = [line.split()[1:] for line in lines if line.startswith("vt ")]
+        faces = [line.split()[1:] for line in lines if line.startswith("f ")]
+        obj_vertices, obj_faces = len(vertices), len(faces)
+        if mesh_info is None:
+            blocking.append("缺少OBJ网格尺寸契约")
+        else:
+            width, height = mesh_info["mesh_width"], mesh_info["mesh_height"]
+            if obj_vertices != width * height or obj_faces != 2 * (width - 1) * (height - 1):
+                blocking.append("OBJ网格规模与采样尺寸不符")
+        try:
+            xyz = np.asarray(vertices, dtype=float)
+            uv = np.asarray(coordinates, dtype=float)
+            if xyz.shape != (obj_vertices, 3) or not np.isfinite(xyz).all():
+                blocking.append("OBJ顶点坐标无效")
+            if uv.shape != (obj_vertices, 2) or not np.isfinite(uv).all() or np.any((uv < 0) | (uv > 1)):
+                blocking.append("OBJ纹理坐标无效")
+            for face in faces:
+                pairs = [tuple(int(value) for value in token.split("/")) for token in face]
+                if len(pairs) != 3 or any(len(pair) != 2 or not (1 <= pair[0] <= obj_vertices and 1 <= pair[1] <= len(coordinates)) for pair in pairs):
+                    blocking.append("OBJ面片索引无效")
+                    break
+        except (ValueError, TypeError):
+            blocking.append("OBJ坐标或索引无法解析")
 
     return {
         "status": "pass" if not blocking else "blocked",
@@ -398,7 +420,7 @@ def convert_photo_to_3d(
         )
         outputs.update({key: mesh[key] for key in ("obj", "mtl", "texture")})
 
-    validation = _validate_outputs(photo, original_hash, depth, quality, outputs)
+    validation = _validate_outputs(photo, original_hash, depth, quality, outputs, mesh_info=mesh)
     recipe_path = directory / f"{stem}_3d.recipe.json"
     validation_path = directory / f"{stem}_3d.validation.json"
     recipe = {

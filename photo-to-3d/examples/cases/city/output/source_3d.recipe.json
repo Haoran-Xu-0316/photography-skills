@@ -1,0 +1,24 @@
+{
+  "input": "../input/source.png",
+  "input_sha256": "46ee2f2a65fb061ab5adeeee0431e483f1303352fa5766d99670c93bbe9fbea9",
+  "mode": "bundle",
+  "depth_source": {
+    "type": "user-depth-map",
+    "file": "../input/depth.png",
+    "sha256": "fdffe01de46ae88b78efdf3250942b233712747e77e7ff526a3a3e84ba0d4a16",
+    "inverted": false
+  },
+  "near_is_white": true,
+  "parallax_strength": 0.008,
+  "mesh_resolution": 64,
+  "relief_strength": 0.12,
+  "outputs": {
+    "depth": "source_depth16.png",
+    "preview": "source_3d_preview.jpg",
+    "html": "source_parallax.html",
+    "gif": "source_parallax.gif",
+    "obj": "source_relief.obj",
+    "mtl": "source_relief.mtl",
+    "texture": "source_texture.png"
+  }
+}

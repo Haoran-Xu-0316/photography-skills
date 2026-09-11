@@ -1,0 +1,25 @@
+{
+  "status": "pass",
+  "blocking": [],
+  "warnings": [
+    "深度边缘与照片结构相关性较低，需要人工检查"
+  ],
+  "depth": {
+    "minimum": 0.0,
+    "maximum": 1.0,
+    "p05_p95_range": 0.681818,
+    "edge_correlation": 0.025013,
+    "near_is_white": true
+  },
+  "gif_frames": 24,
+  "obj_vertices": 2752,
+  "obj_faces": 5292,
+  "source_dimensions": [
+    1152,
+    768
+  ],
+  "depth_dimensions": [
+    1152,
+    768
+  ]
+}

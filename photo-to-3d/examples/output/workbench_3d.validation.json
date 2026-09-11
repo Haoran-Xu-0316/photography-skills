@@ -1,0 +1,23 @@
+{
+  "status": "pass",
+  "blocking": [],
+  "warnings": [],
+  "depth": {
+    "minimum": 0.0,
+    "maximum": 1.0,
+    "p05_p95_range": 1.0,
+    "edge_correlation": 0.053302,
+    "near_is_white": true
+  },
+  "gif_frames": 24,
+  "obj_vertices": null,
+  "obj_faces": null,
+  "source_dimensions": [
+    1152,
+    768
+  ],
+  "depth_dimensions": [
+    1152,
+    768
+  ]
+}

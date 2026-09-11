@@ -27,4 +27,3 @@ def run_example(
         parallax_strength=0.02,
     )
     return {"analysis": analysis, "converted": converted}
-
