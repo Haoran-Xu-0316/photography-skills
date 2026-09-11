@@ -1,0 +1,100 @@
+{
+  "status": "pass",
+  "blocking": [],
+  "warnings": [],
+  "metrics": {
+    "highlight_clip_increase_pct_points": 0.0,
+    "shadow_clip_increase_pct_points": 0.0,
+    "median_saturation_change": 0.0,
+    "median_luminance_change": 0.011657,
+    "skin_candidate_mean_lab_delta": 1.2381
+  },
+  "source": {
+    "luminance": {
+      "p01": 0.060181,
+      "p05": 0.141541,
+      "p50": 0.398438,
+      "p95": 0.665771,
+      "p99": 0.698242,
+      "dynamic_range_stops": 3.536,
+      "scene_key": "normal"
+    },
+    "clipping": {
+      "highlight_pct": 0.0,
+      "shadow_pct": 0.012094
+    },
+    "saturation": {
+      "median": 0.333333,
+      "p90": 0.67647
+    },
+    "white_balance": {
+      "candidate_coverage_pct": 11.7416,
+      "candidate_median_saturation": 0.162162,
+      "candidate_rgb": [
+        0.611765,
+        0.556863,
+        0.517647
+      ],
+      "raw_gains": [
+        0.910256,
+        1.0,
+        1.075758
+      ],
+      "bounded_gains": [
+        0.92,
+        1.0,
+        1.075758
+      ],
+      "confidence": 0.118919,
+      "recommended": false
+    },
+    "skin_candidate_pct": 89.3949
+  },
+  "result": {
+    "luminance": {
+      "p01": 0.064575,
+      "p05": 0.146545,
+      "p50": 0.410095,
+      "p95": 0.681396,
+      "p99": 0.713928,
+      "dynamic_range_stops": 3.467,
+      "scene_key": "normal"
+    },
+    "clipping": {
+      "highlight_pct": 0.0,
+      "shadow_pct": 0.012094
+    },
+    "saturation": {
+      "median": 0.333333,
+      "p90": 0.670886
+    },
+    "white_balance": {
+      "candidate_coverage_pct": 11.5898,
+      "candidate_median_saturation": 0.161765,
+      "candidate_rgb": [
+        0.623529,
+        0.572549,
+        0.52549
+      ],
+      "raw_gains": [
+        0.918239,
+        1.0,
+        1.089552
+      ],
+      "bounded_gains": [
+        0.92,
+        1.0,
+        1.08
+      ],
+      "confidence": 0.121569,
+      "recommended": false
+    },
+    "skin_candidate_pct": 89.784
+  },
+  "input": "../../input/warm-dark.png",
+  "input_sha256": "1da26f231b72eebd9039fe929360f15196e0d321f20c208f51ba7348c4c5bda8",
+  "output": "warm-dark_corrected.png",
+  "output_sha256": "08b80bafa4e894d5218bd63bb74d5ff778ecd21fcad67dc4fb1dad33cf511b00",
+  "dimensions_preserved": true,
+  "icc_profile_preserved": true
+}

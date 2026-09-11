@@ -1,0 +1,46 @@
+{
+  "input": "../../input/source.png",
+  "input_sha256": "7cd1639926e380d69ede2ad1c4164243bcdde24c3326dc4f71f9bf8071631a37",
+  "output": "source_graded-natural-clean.png",
+  "engine": "deterministic-numpy-opencv",
+  "recipe": {
+    "mode": "look",
+    "technical": {
+      "exposure_stops": 0.0,
+      "white_balance_applied": false,
+      "white_balance_confidence": 0.434234,
+      "white_balance_gains": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "shadow_lift": 0.0,
+      "highlight_rolloff": 0.0,
+      "contrast": 0.0,
+      "strength": 1.0
+    },
+    "creative": {
+      "name": "natural-clean",
+      "strength": 0.7,
+      "description": "自然、准确、低痕迹，适合日常、人像和产品基础成片",
+      "contrast": 0.04,
+      "saturation": 1.02,
+      "temperature": 0.0,
+      "tint": 0.0,
+      "shadow_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "highlight_color": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "black_lift": 0.0,
+      "green_saturation": 0.98,
+      "blue_saturation": 1.0
+    },
+    "reference": null
+  }
+}

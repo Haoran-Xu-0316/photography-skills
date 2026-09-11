@@ -1,0 +1,100 @@
+{
+  "status": "pass",
+  "blocking": [],
+  "warnings": [],
+  "metrics": {
+    "highlight_clip_increase_pct_points": -0.114497,
+    "shadow_clip_increase_pct_points": -0.01978,
+    "median_saturation_change": -0.002958,
+    "median_luminance_change": -0.003051,
+    "skin_candidate_mean_lab_delta": 1.2572
+  },
+  "source": {
+    "luminance": {
+      "p01": 0.070068,
+      "p05": 0.184875,
+      "p50": 0.547363,
+      "p95": 0.889038,
+      "p99": 0.942627,
+      "dynamic_range_stops": 3.75,
+      "scene_key": "normal"
+    },
+    "clipping": {
+      "highlight_pct": 0.114497,
+      "shadow_pct": 0.01978
+    },
+    "saturation": {
+      "median": 0.198413,
+      "p90": 0.416185
+    },
+    "white_balance": {
+      "candidate_coverage_pct": 18.4187,
+      "candidate_median_saturation": 0.055172,
+      "candidate_rgb": [
+        0.521569,
+        0.513726,
+        0.529412
+      ],
+      "raw_gains": [
+        0.984962,
+        1.0,
+        0.97037
+      ],
+      "bounded_gains": [
+        0.984962,
+        1.0,
+        0.97037
+      ],
+      "confidence": 0.832184,
+      "recommended": true
+    },
+    "skin_candidate_pct": 40.2614
+  },
+  "result": {
+    "luminance": {
+      "p01": 0.067139,
+      "p05": 0.170105,
+      "p50": 0.544312,
+      "p95": 0.885498,
+      "p99": 0.936401,
+      "dynamic_range_stops": 3.802,
+      "scene_key": "normal"
+    },
+    "clipping": {
+      "highlight_pct": 0.0,
+      "shadow_pct": 0.0
+    },
+    "saturation": {
+      "median": 0.195455,
+      "p90": 0.409449
+    },
+    "white_balance": {
+      "candidate_coverage_pct": 18.2722,
+      "candidate_median_saturation": 0.051429,
+      "candidate_rgb": [
+        0.513726,
+        0.513726,
+        0.521569
+      ],
+      "raw_gains": [
+        1.0,
+        1.0,
+        0.984962
+      ],
+      "bounded_gains": [
+        1.0,
+        1.0,
+        0.984962
+      ],
+      "confidence": 0.857143,
+      "recommended": true
+    },
+    "skin_candidate_pct": 39.2881
+  },
+  "input": "../../input/source.png",
+  "input_sha256": "46ee2f2a65fb061ab5adeeee0431e483f1303352fa5766d99670c93bbe9fbea9",
+  "output": "source_graded-cool-urban.png",
+  "output_sha256": "8f7016cf7ceb8a2b258ade0fa6b4bebbf70f93989d48e73e44954bf4f065b4ec",
+  "dimensions_preserved": true,
+  "icc_profile_preserved": true
+}

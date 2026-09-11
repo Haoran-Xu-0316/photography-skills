@@ -1,0 +1,18 @@
+{
+  "case": "animal",
+  "source_kind": "generated controlled fixture",
+  "input_sha256": "45720d68e96b8b35144b4570769c193a3f9a8d59e4b16f38cbb9f68c522b0f07",
+  "source_unchanged": true,
+  "mse_to_known_reference": 4.828666797714908e-06,
+  "psnr_db": 53.16172762068373,
+  "result": {
+    "status": "review_required",
+    "output": "output/input_calibrated.png",
+    "preview": "output/input_calibration_preview.jpg",
+    "recipe": "output/input_calibrated.recipe.json",
+    "validation": "output/input_calibrated.validation.json",
+    "warnings": [],
+    "blocking": []
+  },
+  "visual_status": "reviewed against known synthetic reference"
+}

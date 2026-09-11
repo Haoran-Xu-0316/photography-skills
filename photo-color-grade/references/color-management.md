@@ -25,4 +25,3 @@ Lightroom或Adobe Camera Raw的XMP、Capture One调整和DCP配置并不等价�
 - 后续精修：16bit TIFF，保留ICC。
 - 印刷：根据印厂ICC进行软打样和转换，不能仅改变文件扩展名。
 - 存档：保留原RAW、配方JSON和最终16bit母版。
-

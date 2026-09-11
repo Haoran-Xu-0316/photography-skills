@@ -30,4 +30,3 @@ def run_example(
         mode="correct",
     )
     return {"analysis": analysis, "preview": preview, "graded": graded}
-

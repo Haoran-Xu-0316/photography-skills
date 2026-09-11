@@ -1,0 +1,18 @@
+{
+  "case": "city",
+  "source_kind": "generated controlled fixture",
+  "input_sha256": "a1f4dff65b0dfa20f61b0f17094b11feeffeb36822ffeb3eca8d7a54f8e267e7",
+  "source_unchanged": true,
+  "mse_to_known_reference": 4.789081625107991e-06,
+  "psnr_db": 53.19747760779091,
+  "result": {
+    "status": "review_required",
+    "output": "output/input_calibrated.png",
+    "preview": "output/input_calibration_preview.jpg",
+    "recipe": "output/input_calibrated.recipe.json",
+    "validation": "output/input_calibrated.validation.json",
+    "warnings": [],
+    "blocking": []
+  },
+  "visual_status": "reviewed against known synthetic reference"
+}

@@ -1,0 +1,100 @@
+{
+  "status": "pass",
+  "blocking": [],
+  "warnings": [],
+  "metrics": {
+    "highlight_clip_increase_pct_points": 0.0,
+    "shadow_clip_increase_pct_points": -0.008703,
+    "median_saturation_change": 0.00367,
+    "median_luminance_change": -0.003235,
+    "skin_candidate_mean_lab_delta": 0.6596
+  },
+  "source": {
+    "luminance": {
+      "p01": 0.06366,
+      "p05": 0.132629,
+      "p50": 0.484741,
+      "p95": 0.747803,
+      "p99": 0.880676,
+      "dynamic_range_stops": 3.79,
+      "scene_key": "normal"
+    },
+    "clipping": {
+      "highlight_pct": 0.0,
+      "shadow_pct": 0.008703
+    },
+    "saturation": {
+      "median": 0.08642,
+      "p90": 0.409091
+    },
+    "white_balance": {
+      "candidate_coverage_pct": 23.8676,
+      "candidate_median_saturation": 0.020134,
+      "candidate_rgb": [
+        0.698039,
+        0.690196,
+        0.682353
+      ],
+      "raw_gains": [
+        0.988764,
+        1.0,
+        1.011494
+      ],
+      "bounded_gains": [
+        0.988764,
+        1.0,
+        1.011494
+      ],
+      "confidence": 1.0,
+      "recommended": true
+    },
+    "skin_candidate_pct": 39.0596
+  },
+  "result": {
+    "luminance": {
+      "p01": 0.063049,
+      "p05": 0.127197,
+      "p50": 0.481506,
+      "p95": 0.753113,
+      "p99": 0.888733,
+      "dynamic_range_stops": 3.817,
+      "scene_key": "normal"
+    },
+    "clipping": {
+      "highlight_pct": 0.0,
+      "shadow_pct": 0.0
+    },
+    "saturation": {
+      "median": 0.09009,
+      "p90": 0.405063
+    },
+    "white_balance": {
+      "candidate_coverage_pct": 23.7952,
+      "candidate_median_saturation": 0.022988,
+      "candidate_rgb": [
+        0.701961,
+        0.690196,
+        0.682353
+      ],
+      "raw_gains": [
+        0.98324,
+        1.0,
+        1.011494
+      ],
+      "bounded_gains": [
+        0.98324,
+        1.0,
+        1.011494
+      ],
+      "confidence": 1.0,
+      "recommended": true
+    },
+    "skin_candidate_pct": 40.3527
+  },
+  "input": "../../input/source.png",
+  "input_sha256": "cad62987f202999ccb91a6e00cdba7b92b6c61db73252d28e5663dcd65d4057f",
+  "output": "source_graded-warm-documentary.png",
+  "output_sha256": "acf33d0a650004b52e308c5f1b99ba39e9a88b21b5bfdda25af2e0561b047380",
+  "dimensions_preserved": true,
+  "icc_profile_preserved": true
+}

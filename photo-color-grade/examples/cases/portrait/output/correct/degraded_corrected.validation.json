@@ -1,0 +1,100 @@
+{
+  "status": "pass",
+  "blocking": [],
+  "warnings": [],
+  "metrics": {
+    "highlight_clip_increase_pct_points": 0.0,
+    "shadow_clip_increase_pct_points": 0.0,
+    "median_saturation_change": 0.0,
+    "median_luminance_change": 0.0,
+    "skin_candidate_mean_lab_delta": 0.0
+  },
+  "source": {
+    "luminance": {
+      "p01": 0.046875,
+      "p05": 0.099792,
+      "p50": 0.395386,
+      "p95": 0.616394,
+      "p99": 0.726379,
+      "dynamic_range_stops": 3.954,
+      "scene_key": "normal"
+    },
+    "clipping": {
+      "highlight_pct": 0.0,
+      "shadow_pct": 0.020797
+    },
+    "saturation": {
+      "median": 0.208054,
+      "p90": 0.5
+    },
+    "white_balance": {
+      "candidate_coverage_pct": 23.1168,
+      "candidate_median_saturation": 0.125828,
+      "candidate_rgb": [
+        0.4,
+        0.376471,
+        0.360784
+      ],
+      "raw_gains": [
+        0.941176,
+        1.0,
+        1.043478
+      ],
+      "bounded_gains": [
+        0.941176,
+        1.0,
+        1.043478
+      ],
+      "confidence": 0.361148,
+      "recommended": false
+    },
+    "skin_candidate_pct": 83.9406
+  },
+  "result": {
+    "luminance": {
+      "p01": 0.046875,
+      "p05": 0.099792,
+      "p50": 0.395386,
+      "p95": 0.616394,
+      "p99": 0.726379,
+      "dynamic_range_stops": 3.954,
+      "scene_key": "normal"
+    },
+    "clipping": {
+      "highlight_pct": 0.0,
+      "shadow_pct": 0.020797
+    },
+    "saturation": {
+      "median": 0.208054,
+      "p90": 0.5
+    },
+    "white_balance": {
+      "candidate_coverage_pct": 23.1168,
+      "candidate_median_saturation": 0.125828,
+      "candidate_rgb": [
+        0.4,
+        0.376471,
+        0.360784
+      ],
+      "raw_gains": [
+        0.941176,
+        1.0,
+        1.043478
+      ],
+      "bounded_gains": [
+        0.941176,
+        1.0,
+        1.043478
+      ],
+      "confidence": 0.361148,
+      "recommended": false
+    },
+    "skin_candidate_pct": 83.9406
+  },
+  "input": "../../input/degraded.png",
+  "input_sha256": "fb8fa61e71139b664c9cde00bc7663c68b2895b3480b9dc2f62840b2e693e553",
+  "output": "degraded_corrected.png",
+  "output_sha256": "6b566998ef9d6ec1c07d05ab45b116eda17bb2ef8d5dfc2844e5449d32db1ffa",
+  "dimensions_preserved": true,
+  "icc_profile_preserved": true
+}

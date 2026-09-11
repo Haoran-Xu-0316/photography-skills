@@ -1,0 +1,100 @@
+{
+  "status": "pass",
+  "blocking": [],
+  "warnings": [],
+  "metrics": {
+    "highlight_clip_increase_pct_points": 0.0,
+    "shadow_clip_increase_pct_points": 0.004069,
+    "median_saturation_change": 0.008063,
+    "median_luminance_change": -0.00409,
+    "skin_candidate_mean_lab_delta": 0.6464
+  },
+  "source": {
+    "luminance": {
+      "p01": 0.046692,
+      "p05": 0.145691,
+      "p50": 0.445862,
+      "p95": 0.671753,
+      "p99": 0.75647,
+      "dynamic_range_stops": 4.018,
+      "scene_key": "normal"
+    },
+    "clipping": {
+      "highlight_pct": 0.0,
+      "shadow_pct": 0.015372
+    },
+    "saturation": {
+      "median": 0.364486,
+      "p90": 0.629032
+    },
+    "white_balance": {
+      "candidate_coverage_pct": 11.4081,
+      "candidate_median_saturation": 0.114865,
+      "candidate_rgb": [
+        0.533333,
+        0.52549,
+        0.490196
+      ],
+      "raw_gains": [
+        0.985294,
+        1.0,
+        1.072
+      ],
+      "bounded_gains": [
+        0.985294,
+        1.0,
+        1.072
+      ],
+      "confidence": 0.434234,
+      "recommended": false
+    },
+    "skin_candidate_pct": 52.2122
+  },
+  "result": {
+    "luminance": {
+      "p01": 0.045349,
+      "p05": 0.139465,
+      "p50": 0.441772,
+      "p95": 0.674438,
+      "p99": 0.75885,
+      "dynamic_range_stops": 4.065,
+      "scene_key": "normal"
+    },
+    "clipping": {
+      "highlight_pct": 0.0,
+      "shadow_pct": 0.019441
+    },
+    "saturation": {
+      "median": 0.372549,
+      "p90": 0.646616
+    },
+    "white_balance": {
+      "candidate_coverage_pct": 10.8628,
+      "candidate_median_saturation": 0.115044,
+      "candidate_rgb": [
+        0.537255,
+        0.529412,
+        0.498039
+      ],
+      "raw_gains": [
+        0.985401,
+        1.0,
+        1.062992
+      ],
+      "bounded_gains": [
+        0.985401,
+        1.0,
+        1.062992
+      ],
+      "confidence": 0.433039,
+      "recommended": false
+    },
+    "skin_candidate_pct": 51.9753
+  },
+  "input": "../../input/source.png",
+  "input_sha256": "7cd1639926e380d69ede2ad1c4164243bcdde24c3326dc4f71f9bf8071631a37",
+  "output": "source_graded-natural-clean.png",
+  "output_sha256": "56f5c62e6486b54c7d525576f48a852a09f775c3704e1fca19b8da2468530ae4",
+  "dimensions_preserved": true,
+  "icc_profile_preserved": true
+}

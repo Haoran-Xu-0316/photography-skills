@@ -1,0 +1,46 @@
+{
+  "input": "../../input/source.png",
+  "input_sha256": "46ee2f2a65fb061ab5adeeee0431e483f1303352fa5766d99670c93bbe9fbea9",
+  "output": "source_graded-cool-urban.png",
+  "engine": "deterministic-numpy-opencv",
+  "recipe": {
+    "mode": "look",
+    "technical": {
+      "exposure_stops": 0.0,
+      "white_balance_applied": true,
+      "white_balance_confidence": 0.832184,
+      "white_balance_gains": [
+        0.984962,
+        1.0,
+        0.97037
+      ],
+      "shadow_lift": 0.0,
+      "highlight_rolloff": 0.012572,
+      "contrast": 0.0,
+      "strength": 1.0
+    },
+    "creative": {
+      "name": "cool-urban",
+      "strength": 0.7,
+      "description": "中性偏冷、结构清晰，保留暖色主体作为视觉强调",
+      "contrast": 0.09,
+      "saturation": 0.94,
+      "temperature": -0.3,
+      "tint": 0.03,
+      "shadow_color": [
+        -0.006,
+        0.006,
+        0.02
+      ],
+      "highlight_color": [
+        0.008,
+        0.002,
+        -0.004
+      ],
+      "black_lift": 0.0,
+      "green_saturation": 0.88,
+      "blue_saturation": 1.04
+    },
+    "reference": null
+  }
+}

@@ -300,6 +300,72 @@ def grade_photo(
     }
 
 
+def calibrate_photo(
+    input_path: str | Path,
+    output_dir: str | Path,
+    *,
+    exposure_stops: float = 0.0,
+    white_balance_gains: tuple[float, float, float] | None = None,
+    neutral_rectangle: tuple[float, float, float, float] | None = None,
+) -> dict[str, Any]:
+    """按显式曝光与中性色证据校准；不替用户猜测灰卡或现场光线。
+
+    通道增益作用于线性sRGB。neutral_rectangle为方向规范化后图像中的
+    归一化left、top、right、bottom，与显式通道增益不能同时指定。
+    """
+    if not np.isfinite(exposure_stops) or not -3.0 <= exposure_stops <= 3.0:
+        raise ValueError("exposure_stops必须是正负3档以内的有限数值")
+    if white_balance_gains is not None and neutral_rectangle is not None:
+        raise ValueError("通道增益与中性区域只能选择一种校准依据")
+    image = load_image(input_path)
+    source_hash = _sha256(image.path)
+    gains = np.ones(3, dtype=np.float32)
+    sampled_pixels = 0
+    if neutral_rectangle is not None:
+        bounds = np.asarray(neutral_rectangle, dtype=float)
+        if bounds.shape != (4,) or not np.all(np.isfinite(bounds)):
+            raise ValueError("中性区域必须提供四个有限坐标")
+        left, top, right, bottom = bounds
+        if not (0 <= left < right <= 1 and 0 <= top < bottom <= 1):
+            raise ValueError("中性区域须为图内有效归一化矩形")
+        height, width = image.rgb.shape[:2]
+        sample = image.rgb[round(top*height):round(bottom*height), round(left*width):round(right*width)]
+        pixels = sample[np.all((sample > .02) & (sample < .98), axis=-1)]
+        sampled_pixels = len(pixels)
+        if sampled_pixels < 16:
+            raise ValueError("中性区域缺少至少16个未剪切的有效像素")
+        linear = np.where(pixels <= .04045, pixels/12.92, ((pixels+.055)/1.055)**2.4)
+        median = np.median(linear, axis=0)
+        gains = np.exp(np.mean(np.log(median))) / median
+    elif white_balance_gains is not None:
+        gains = np.asarray(white_balance_gains, dtype=np.float32)
+    if gains.shape != (3,) or not np.all(np.isfinite(gains)) or np.any((gains < .25) | (gains > 4)):
+        raise ValueError("线性RGB通道增益须为三个0.25至4之间的有限数值")
+    plan = {
+        "exposure_stops": float(exposure_stops),
+        "white_balance_gains": gains.tolist(),
+        "white_balance_applied": bool(np.any(np.abs(gains-1) > 1e-6)),
+        "calibration_source": "user-neutral-region" if neutral_rectangle is not None else "explicit-linear-gains",
+        "neutral_rectangle": list(neutral_rectangle) if neutral_rectangle is not None else None,
+        "sampled_pixels": sampled_pixels,
+        "automatic_scene_neutralization": False,
+    }
+    corrected = apply_technical(image.rgb, plan)
+    paths = _result_paths(image, output_dir, "calibrated")
+    paths["preview"] = Path(output_dir) / f"{image.path.stem}_calibration_preview.jpg"
+    _preflight_outputs(paths.values())
+    save_image(image, corrected, paths["image"])
+    rendered = load_image(paths["image"])
+    validation = validate_arrays(image.rgb, rendered.rgb)
+    validation.update({"input_sha256": source_hash, "output_sha256": _sha256(paths["image"]), "dimensions_preserved": image.rgb.shape == rendered.rgb.shape})
+    make_contact_sheet({"ORIGINAL": image.rgb, "EXPLICIT CALIBRATION": rendered.rgb}, paths["preview"], columns=2)
+    _write_json(paths["recipe"], {"input": str(image.path), "input_sha256": source_hash, "recipe": {"mode": "calibrate", "technical": plan}})
+    _write_json(paths["validation"], validation)
+    if _sha256(image.path) != source_hash:
+        raise RuntimeError("源图哈希发生变化，不能交付校准结果")
+    return {"status": "review_required" if validation["status"] == "pass" else "blocked", "output": str(paths["image"]), "preview": str(paths["preview"]), "recipe": str(paths["recipe"]), "validation": str(paths["validation"]), "warnings": validation["warnings"], "blocking": validation["blocking"]}
+
+
 def grade_series(
     input_paths: Iterable[str | Path],
     output_dir: str | Path,

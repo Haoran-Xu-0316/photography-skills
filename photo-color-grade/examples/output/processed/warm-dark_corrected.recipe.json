@@ -1,0 +1,25 @@
+{
+  "input": "../../input/warm-dark.png",
+  "input_sha256": "1da26f231b72eebd9039fe929360f15196e0d321f20c208f51ba7348c4c5bda8",
+  "output": "warm-dark_corrected.png",
+  "engine": "deterministic-numpy-opencv",
+  "recipe": {
+    "mode": "correct",
+    "technical": {
+      "exposure_stops": 0.087861,
+      "white_balance_applied": false,
+      "white_balance_confidence": 0.118919,
+      "white_balance_gains": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "shadow_lift": 0.0,
+      "highlight_rolloff": 0.0,
+      "contrast": 0.0,
+      "strength": 1.0
+    },
+    "creative": null,
+    "reference": null
+  }
+}

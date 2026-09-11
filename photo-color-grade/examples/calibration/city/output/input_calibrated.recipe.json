@@ -1,0 +1,20 @@
+{
+  "input": "../input.png",
+  "input_sha256": "a1f4dff65b0dfa20f61b0f17094b11feeffeb36822ffeb3eca8d7a54f8e267e7",
+  "recipe": {
+    "mode": "calibrate",
+    "technical": {
+      "exposure_stops": 1.0,
+      "white_balance_gains": [
+        0.8695651888847351,
+        1.0,
+        1.1764706373214722
+      ],
+      "white_balance_applied": true,
+      "calibration_source": "explicit-linear-gains",
+      "neutral_rectangle": null,
+      "sampled_pixels": 0,
+      "automatic_scene_neutralization": false
+    }
+  }
+}

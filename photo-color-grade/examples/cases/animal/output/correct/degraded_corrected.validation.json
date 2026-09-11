@@ -1,0 +1,100 @@
+{
+  "status": "pass",
+  "blocking": [],
+  "warnings": [],
+  "metrics": {
+    "highlight_clip_increase_pct_points": 0.0,
+    "shadow_clip_increase_pct_points": 0.0,
+    "median_saturation_change": -0.001945,
+    "median_luminance_change": 0.021057,
+    "skin_candidate_mean_lab_delta": 2.3772
+  },
+  "source": {
+    "luminance": {
+      "p01": 0.035583,
+      "p05": 0.110596,
+      "p50": 0.362793,
+      "p95": 0.552979,
+      "p99": 0.623962,
+      "dynamic_range_stops": 4.132,
+      "scene_key": "normal"
+    },
+    "clipping": {
+      "highlight_pct": 0.0,
+      "shadow_pct": 0.036847
+    },
+    "saturation": {
+      "median": 0.442623,
+      "p90": 0.685714
+    },
+    "white_balance": {
+      "candidate_coverage_pct": 2.8164,
+      "candidate_median_saturation": 0.148809,
+      "candidate_rgb": [
+        0.478431,
+        0.45098,
+        0.415686
+      ],
+      "raw_gains": [
+        0.942623,
+        1.0,
+        1.084906
+      ],
+      "bounded_gains": [
+        0.942623,
+        1.0,
+        1.08
+      ],
+      "confidence": 0.073205,
+      "recommended": false
+    },
+    "skin_candidate_pct": 76.3559
+  },
+  "result": {
+    "luminance": {
+      "p01": 0.039429,
+      "p05": 0.1203,
+      "p50": 0.38385,
+      "p95": 0.58075,
+      "p99": 0.654785,
+      "dynamic_range_stops": 4.054,
+      "scene_key": "normal"
+    },
+    "clipping": {
+      "highlight_pct": 0.0,
+      "shadow_pct": 0.036847
+    },
+    "saturation": {
+      "median": 0.440678,
+      "p90": 0.681818
+    },
+    "white_balance": {
+      "candidate_coverage_pct": 2.9164,
+      "candidate_median_saturation": 0.149254,
+      "candidate_rgb": [
+        0.505882,
+        0.482353,
+        0.439216
+      ],
+      "raw_gains": [
+        0.953488,
+        1.0,
+        1.098214
+      ],
+      "bounded_gains": [
+        0.953488,
+        1.0,
+        1.08
+      ],
+      "confidence": 0.074722,
+      "recommended": false
+    },
+    "skin_candidate_pct": 78.0692
+  },
+  "input": "../../input/degraded.png",
+  "input_sha256": "ff7201ad9dceabfea03d0e391c0950b5425f41f4f023a29bac68915424bb9036",
+  "output": "degraded_corrected.png",
+  "output_sha256": "3e13dc933cbab4cfac79189b744962711efbf6e7030c511451c22fa6404189f1",
+  "dimensions_preserved": true,
+  "icc_profile_preserved": true
+}

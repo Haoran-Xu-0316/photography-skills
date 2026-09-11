@@ -1,0 +1,46 @@
+{
+  "input": "../../input/source.png",
+  "input_sha256": "cad62987f202999ccb91a6e00cdba7b92b6c61db73252d28e5663dcd65d4057f",
+  "output": "source_graded-warm-documentary.png",
+  "engine": "deterministic-numpy-opencv",
+  "recipe": {
+    "mode": "look",
+    "technical": {
+      "exposure_stops": 0.0,
+      "white_balance_applied": true,
+      "white_balance_confidence": 1.0,
+      "white_balance_gains": [
+        0.988764,
+        1.0,
+        1.011494
+      ],
+      "shadow_lift": 0.0,
+      "highlight_rolloff": 0.0,
+      "contrast": 0.0,
+      "strength": 1.0
+    },
+    "creative": {
+      "name": "warm-documentary",
+      "strength": 0.7,
+      "description": "温暖但不泛黄，肤色稳定，阴影略冷以保持层次",
+      "contrast": 0.06,
+      "saturation": 0.98,
+      "temperature": 0.35,
+      "tint": 0.02,
+      "shadow_color": [
+        -0.004,
+        0.002,
+        0.012
+      ],
+      "highlight_color": [
+        0.018,
+        0.007,
+        -0.006
+      ],
+      "black_lift": 0.004,
+      "green_saturation": 0.9,
+      "blue_saturation": 0.92
+    },
+    "reference": null
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "status": "pass",
+  "blocking": [],
+  "warnings": [],
+  "metrics": {
+    "highlight_clip_increase_pct_points": 0.0,
+    "shadow_clip_increase_pct_points": 0.009269,
+    "median_saturation_change": -0.009905,
+    "median_luminance_change": -0.001465,
+    "skin_candidate_mean_lab_delta": 1.066
+  },
+  "source": {
+    "luminance": {
+      "p01": 0.050415,
+      "p05": 0.1427,
+      "p50": 0.445557,
+      "p95": 0.734497,
+      "p99": 0.781494,
+      "dynamic_range_stops": 3.954,
+      "scene_key": "normal"
+    },
+    "clipping": {
+      "highlight_pct": 0.0,
+      "shadow_pct": 0.069399
+    },
+    "saturation": {
+      "median": 0.248,
+      "p90": 0.485714
+    },
+    "white_balance": {
+      "candidate_coverage_pct": 20.8501,
+      "candidate_median_saturation": 0.078431,
+      "candidate_rgb": [
+        0.529412,
+        0.513726,
+        0.501961
+      ],
+      "raw_gains": [
+        0.97037,
+        1.0,
+        1.023438
+      ],
+      "bounded_gains": [
+        0.97037,
+        1.0,
+        1.023438
+      ],
+      "confidence": 0.677125,
+      "recommended": true
+    },
+    "skin_candidate_pct": 58.4812
+  },
+  "result": {
+    "luminance": {
+      "p01": 0.050314,
+      "p05": 0.142029,
+      "p50": 0.444092,
+      "p95": 0.732422,
+      "p99": 0.779114,
+      "dynamic_range_stops": 3.953,
+      "scene_key": "normal"
+    },
+    "clipping": {
+      "highlight_pct": 0.0,
+      "shadow_pct": 0.078668
+    },
+    "saturation": {
+      "median": 0.238095,
+      "p90": 0.475904
+    },
+    "white_balance": {
+      "candidate_coverage_pct": 20.9181,
+      "candidate_median_saturation": 0.076503,
+      "candidate_rgb": [
+        0.490196,
+        0.470588,
+        0.458824
+      ],
+      "raw_gains": [
+        0.96,
+        1.0,
+        1.025641
+      ],
+      "bounded_gains": [
+        0.96,
+        1.0,
+        1.025641
+      ],
+      "confidence": 0.689982,
+      "recommended": true
+    },
+    "skin_candidate_pct": 54.5037
+  },
+  "input": "../../input/degraded.png",
+  "input_sha256": "6c4c5895baae3f52ba6e88df0e4100e410f031201b6b7a84f8d4b738a1cf1f21",
+  "output": "degraded_corrected.png",
+  "output_sha256": "656b7386e8b0627669ff629e2ed932116237a58a2c5373739879bf947e748895",
+  "dimensions_preserved": true,
+  "icc_profile_preserved": true
+}

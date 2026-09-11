@@ -1,0 +1,25 @@
+{
+  "input": "../../input/degraded.png",
+  "input_sha256": "6c4c5895baae3f52ba6e88df0e4100e410f031201b6b7a84f8d4b738a1cf1f21",
+  "output": "degraded_corrected.png",
+  "engine": "deterministic-numpy-opencv",
+  "recipe": {
+    "mode": "correct",
+    "technical": {
+      "exposure_stops": 0.0,
+      "white_balance_applied": true,
+      "white_balance_confidence": 0.677125,
+      "white_balance_gains": [
+        0.97037,
+        1.0,
+        1.023438
+      ],
+      "shadow_lift": 0.0,
+      "highlight_rolloff": 0.0,
+      "contrast": 0.0,
+      "strength": 1.0
+    },
+    "creative": null,
+    "reference": null
+  }
+}

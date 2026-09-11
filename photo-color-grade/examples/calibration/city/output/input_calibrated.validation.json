@@ -1,0 +1,97 @@
+{
+  "status": "pass",
+  "blocking": [],
+  "warnings": [],
+  "metrics": {
+    "highlight_clip_increase_pct_points": 0.035265,
+    "shadow_clip_increase_pct_points": 0.0,
+    "median_saturation_change": -0.046419,
+    "median_luminance_change": 0.142089,
+    "skin_candidate_mean_lab_delta": 15.3476
+  },
+  "source": {
+    "luminance": {
+      "p01": 0.038147,
+      "p05": 0.118408,
+      "p50": 0.403809,
+      "p95": 0.678284,
+      "p99": 0.720337,
+      "dynamic_range_stops": 4.239,
+      "scene_key": "normal"
+    },
+    "clipping": {
+      "highlight_pct": 0.0,
+      "shadow_pct": 0.023058
+    },
+    "saturation": {
+      "median": 0.245283,
+      "p90": 0.5
+    },
+    "white_balance": {
+      "candidate_coverage_pct": 20.4593,
+      "candidate_median_saturation": 0.078947,
+      "candidate_rgb": [
+        0.454902,
+        0.435294,
+        0.427451
+      ],
+      "raw_gains": [
+        0.956897,
+        1.0,
+        1.018349
+      ],
+      "bounded_gains": [
+        0.956897,
+        1.0,
+        1.018349
+      ],
+      "confidence": 0.673684,
+      "recommended": true
+    },
+    "skin_candidate_pct": 54.4777
+  },
+  "result": {
+    "luminance": {
+      "p01": 0.07251,
+      "p05": 0.185791,
+      "p50": 0.545898,
+      "p95": 0.887695,
+      "p99": 0.939575,
+      "dynamic_range_stops": 3.696,
+      "scene_key": "normal"
+    },
+    "clipping": {
+      "highlight_pct": 0.035265,
+      "shadow_pct": 0.023058
+    },
+    "saturation": {
+      "median": 0.198864,
+      "p90": 0.414634
+    },
+    "white_balance": {
+      "candidate_coverage_pct": 18.5842,
+      "candidate_median_saturation": 0.055901,
+      "candidate_rgb": [
+        0.517647,
+        0.513726,
+        0.52549
+      ],
+      "raw_gains": [
+        0.992424,
+        1.0,
+        0.977612
+      ],
+      "bounded_gains": [
+        0.992424,
+        1.0,
+        0.977612
+      ],
+      "confidence": 0.827329,
+      "recommended": true
+    },
+    "skin_candidate_pct": 40.3601
+  },
+  "input_sha256": "a1f4dff65b0dfa20f61b0f17094b11feeffeb36822ffeb3eca8d7a54f8e267e7",
+  "output_sha256": "689f3699178acec4b30e44fbe70d977e771cc0ed08cb3b9ebe9c76e9dd95851c",
+  "dimensions_preserved": true
+}

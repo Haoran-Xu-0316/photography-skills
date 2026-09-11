@@ -1,0 +1,18 @@
+{
+  "case": "portrait",
+  "source_kind": "generated controlled fixture",
+  "input_sha256": "ebd0e8dcff617b9aefb456b8a7a7b5822c374284b97a8436a704a6c9b021fa17",
+  "source_unchanged": true,
+  "mse_to_known_reference": 4.977945542891273e-06,
+  "psnr_db": 53.02949858742127,
+  "result": {
+    "status": "review_required",
+    "output": "output/input_calibrated.png",
+    "preview": "output/input_calibration_preview.jpg",
+    "recipe": "output/input_calibrated.recipe.json",
+    "validation": "output/input_calibrated.validation.json",
+    "warnings": [],
+    "blocking": []
+  },
+  "visual_status": "reviewed against known synthetic reference"
+}

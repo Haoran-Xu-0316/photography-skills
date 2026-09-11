@@ -22,6 +22,7 @@ metadata:
 ## 模式选择
 
 - `correct`：技术校色。修正无意的曝光偏差、白平衡偏差、综合色偏和不合理的动态范围，不主动建立风格。
+- `calibrate_photo`：人工校准。已知曝光偏差、通道增益或经确认的中性采样区时，使用显式参数校准；不依赖自动中性色猜测。
 - `look`：创意调色。在技术底片之上建立明确的明暗、色温、饱和度和高光阴影关系。
 - `match`：参考图匹配。迁移参考图的影调和色彩关系，不复制参考图的主体、局部亮度或逐像素RGB分布。
 - `series`：系列统一。以用户确认的锚片为基准，在同一光线组内统一照片，同时保留时间和现场光线变化。
@@ -43,11 +44,12 @@ metadata:
 将本Skill的`scripts`目录加入当前Python进程的模块搜索路径后导入接口。本Skill不提供面向用户的命令行工具：
 
 ```python
-from photo_color_grade import analyze_photo, build_preview, grade_photo, grade_series
+from photo_color_grade import analyze_photo, build_preview, grade_photo, grade_series, calibrate_photo
 
 analysis = analyze_photo(input_path)
 preview = build_preview(input_path, output_dir, mode="look", look="natural-clean")
 result = grade_photo(input_path, output_dir, mode="correct")
+calibrated = calibrate_photo(input_path, calibration_dir, exposure_stops=0.5)
 series = grade_series(input_paths, output_dir, anchor_path, look="warm-documentary")
 ```
 
@@ -67,7 +69,7 @@ series = grade_series(input_paths, output_dir, anchor_path, look="warm-documenta
 
 ## 按需读取
 
-- 执行`correct`时读取[references/correction.md](references/correction.md)。
+- 执行`correct`或人工校准时读取[references/correction.md](references/correction.md)。
 - 执行`look`时读取[references/creative-grading.md](references/creative-grading.md)。
 - 执行`match`或`series`时读取[references/reference-matching.md](references/reference-matching.md)。
 - 涉及RAW、16bit TIFF、ICC、网页或印刷输出时读取[references/color-management.md](references/color-management.md)。

@@ -1,0 +1,97 @@
+{
+  "status": "pass",
+  "blocking": [],
+  "warnings": [],
+  "metrics": {
+    "highlight_clip_increase_pct_points": 0.0,
+    "shadow_clip_increase_pct_points": 0.0,
+    "median_saturation_change": -0.112791,
+    "median_luminance_change": 0.127686,
+    "skin_candidate_mean_lab_delta": 14.6803
+  },
+  "source": {
+    "luminance": {
+      "p01": 0.032898,
+      "p05": 0.075623,
+      "p50": 0.356079,
+      "p95": 0.565674,
+      "p99": 0.672241,
+      "dynamic_range_stops": 4.353,
+      "scene_key": "normal"
+    },
+    "clipping": {
+      "highlight_pct": 0.0,
+      "shadow_pct": 0.00859
+    },
+    "saturation": {
+      "median": 0.2,
+      "p90": 0.53125
+    },
+    "white_balance": {
+      "candidate_coverage_pct": 22.2093,
+      "candidate_median_saturation": 0.112994,
+      "candidate_rgb": [
+        0.388235,
+        0.364706,
+        0.352941
+      ],
+      "raw_gains": [
+        0.939394,
+        1.0,
+        1.033333
+      ],
+      "bounded_gains": [
+        0.939394,
+        1.0,
+        1.033333
+      ],
+      "confidence": 0.446705,
+      "recommended": false
+    },
+    "skin_candidate_pct": 78.8181
+  },
+  "result": {
+    "luminance": {
+      "p01": 0.062073,
+      "p05": 0.130493,
+      "p50": 0.483765,
+      "p95": 0.745178,
+      "p99": 0.880432,
+      "dynamic_range_stops": 3.826,
+      "scene_key": "normal"
+    },
+    "clipping": {
+      "highlight_pct": 0.0,
+      "shadow_pct": 0.00859
+    },
+    "saturation": {
+      "median": 0.087209,
+      "p90": 0.412281
+    },
+    "white_balance": {
+      "candidate_coverage_pct": 24.2052,
+      "candidate_median_saturation": 0.02139,
+      "candidate_rgb": [
+        0.694118,
+        0.686275,
+        0.682353
+      ],
+      "raw_gains": [
+        0.988701,
+        1.0,
+        1.005747
+      ],
+      "bounded_gains": [
+        0.988701,
+        1.0,
+        1.005747
+      ],
+      "confidence": 1.0,
+      "recommended": true
+    },
+    "skin_candidate_pct": 38.7499
+  },
+  "input_sha256": "ebd0e8dcff617b9aefb456b8a7a7b5822c374284b97a8436a704a6c9b021fa17",
+  "output_sha256": "e096899367b718813e6455171adea25c3d2ff24e1bf2e60cedb0d3e060590e83",
+  "dimensions_preserved": true
+}

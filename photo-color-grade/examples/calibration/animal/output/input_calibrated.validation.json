@@ -1,0 +1,97 @@
+{
+  "status": "pass",
+  "blocking": [],
+  "warnings": [],
+  "metrics": {
+    "highlight_clip_increase_pct_points": 0.0,
+    "shadow_clip_increase_pct_points": 0.0,
+    "median_saturation_change": -0.089328,
+    "median_luminance_change": 0.119385,
+    "skin_candidate_mean_lab_delta": 12.7641
+  },
+  "source": {
+    "luminance": {
+      "p01": 0.025879,
+      "p05": 0.087708,
+      "p50": 0.325439,
+      "p95": 0.503906,
+      "p99": 0.572144,
+      "dynamic_range_stops": 4.467,
+      "scene_key": "normal"
+    },
+    "clipping": {
+      "highlight_pct": 0.0,
+      "shadow_pct": 0.017632
+    },
+    "saturation": {
+      "median": 0.454545,
+      "p90": 0.725
+    },
+    "white_balance": {
+      "candidate_coverage_pct": 3.3044,
+      "candidate_median_saturation": 0.14433,
+      "candidate_rgb": [
+        0.443137,
+        0.419608,
+        0.388235
+      ],
+      "raw_gains": [
+        0.946903,
+        1.0,
+        1.080808
+      ],
+      "bounded_gains": [
+        0.946903,
+        1.0,
+        1.08
+      ],
+      "confidence": 0.098223,
+      "recommended": false
+    },
+    "skin_candidate_pct": 68.1621
+  },
+  "result": {
+    "luminance": {
+      "p01": 0.050598,
+      "p05": 0.146545,
+      "p50": 0.444824,
+      "p95": 0.669434,
+      "p99": 0.753235,
+      "dynamic_range_stops": 3.896,
+      "scene_key": "normal"
+    },
+    "clipping": {
+      "highlight_pct": 0.0,
+      "shadow_pct": 0.017632
+    },
+    "saturation": {
+      "median": 0.365217,
+      "p90": 0.628931
+    },
+    "white_balance": {
+      "candidate_coverage_pct": 11.4273,
+      "candidate_median_saturation": 0.115385,
+      "candidate_rgb": [
+        0.529412,
+        0.52549,
+        0.490196
+      ],
+      "raw_gains": [
+        0.992593,
+        1.0,
+        1.072
+      ],
+      "bounded_gains": [
+        0.992593,
+        1.0,
+        1.072
+      ],
+      "confidence": 0.43077,
+      "recommended": false
+    },
+    "skin_candidate_pct": 52.5545
+  },
+  "input_sha256": "45720d68e96b8b35144b4570769c193a3f9a8d59e4b16f38cbb9f68c522b0f07",
+  "output_sha256": "744e49456bc3557ffa21482d21cf8b5c3d2045d4a6b7c1511da3e059936d3f69",
+  "dimensions_preserved": true
+}
