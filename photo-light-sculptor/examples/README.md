@@ -26,6 +26,6 @@ result = example["reproduce_example"]("example-review")
 
 ![输入与实际结果](comparison.jpg)
 
-[蒙版与光影预览](output/workbench_focus_preview.jpg)；[完整输出](output/)；[验证数据与输入哈希](verification.json)。
+[蒙版与光影预览](output/workbench_focus_preview.jpg)；[完整输出](output/)。
 
 处理输出在2026-09-12实际生成。验证数据覆盖本例，不是所有模式的质量认证；程序中的待人工复核状态不被擅自升级。随附JSON和CSV中的文件路径按报告所在目录相对化，原始数值及警告保留。

@@ -1,9 +1,0 @@
-{
-  "execution_passed": true,
-  "sources_unchanged": true,
-  "input_sha256": {
-    "vase-mask.png": "e74920a4bd6e881ee23f59cfa65fd6ed46ae2bd71b15d92cd57fe029c8e31ecf",
-    "workbench.jpg": "5f512b76d0dd58054f86d3b0f9144d8223b5891ec81d0882405c367766f4b325"
-  },
-  "scope": "controlled example only; not full capability acceptance"
-}

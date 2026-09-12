@@ -1,8 +1,0 @@
-{
-  "execution_passed": true,
-  "sources_unchanged": true,
-  "input_sha256": {
-    "tilted.png": "5bcd498e7a813c926683447b766f0eb3120e9c212de5fbe1a1da1143bf10c511"
-  },
-  "scope": "controlled example only; not full capability acceptance"
-}

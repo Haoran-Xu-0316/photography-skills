@@ -12,6 +12,35 @@ photo-repair/scripts/make_test_image.py
 agents/
 **/agents/
 
+# Internal verification records are not part of the public examples.
+**/examples/**/verification.json
+**/examples/**/run-result.json
+
+# Publish independent skill folders; shared working material stays local.
+/example-assets/
+/AUDIT.md
+/GALLERY.md
+/PORTABILITY.md
+/README.md
+
+# Local runtime configuration, secrets, and test runner artifacts.
+.codex/
+.openai/
+.claude/
+.agents/
+.cursor/
+.env
+.env.*
+!.env.example
+.cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+*.log
+*.tmp
+*.swp
+
 # High-bit intermediates are used for local gallery checks; PNG previews are published.
 **/examples/output/*.tif
 **/examples/output/*.tiff

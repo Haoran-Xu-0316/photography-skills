@@ -1,9 +1,0 @@
-{
-  "execution_passed": true,
-  "sources_unchanged": true,
-  "input_sha256": {
-    "left.png": "e1f671503d00ec06e052c58bd1b88079c10c3470cbfd26f1d8e3ea0027663605",
-    "right.png": "b1da5c2fc551de4954e1ed052bb00e5cf665311823f1193f0c00e663090c6e20"
-  },
-  "scope": "controlled example only; not full capability acceptance"
-}
