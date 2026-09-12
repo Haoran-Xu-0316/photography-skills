@@ -1,13 +1,6 @@
-# photo-panorama-stitcher
+# 全景照片拼接
 
-## 功能定位
-
-将两张及以上具有真实重叠、共同扩展视场的照片拼接为全景图。它不进行生成式扩图，也不处理完全相同视场的曝光包围。
-
-## 两种投影
-
-- `planar`：普通窄幅、平面主体和以相机旋转为主的场景
-- `cylindrical`：宽视角旋转拍摄，可使用已知像素焦距
+将两张及以上具有真实重叠、共同扩展视场的照片拼接为全景图。
 
 ## 输入与输出
 
@@ -15,23 +8,16 @@
 
 ## 使用示例
 
-平面投影和阻断检查示例见[`examples/basic_usage.py`](examples/basic_usage.py)：
+> 按左右顺序拼接这组有重叠的照片，保留有效画面，并标出接缝风险。
 
-```python
-result = run_example(ordered_paths, "panorama-review")
-```
+提供照片与需求后，按[执行说明](SKILL.md)处理。Python调用方式见[函数示例](examples/basic_usage.py)。
 
 ## 图片示例
 
-[输入、参数、实际输出及验证边界](examples/README.md)。随附[可复现调用](examples/reproduce.py)，不是只有调用占位符。
+![全景照片拼接示例](examples/comparison.jpg)
 
-![输入与实际处理结果](examples/comparison.jpg)
+查看[输入、参数与处理结果](examples/README.md)，或使用[复现代码](examples/reproduce.py)运行随附案例。
 
-## 验收重点
+## 使用说明
 
-- 相邻照片必须同时存在可靠重叠和新增视场
-- 明显视差、移动主体和近距离多平面场景需要人工复核
-- 禁止生成填充、镜像边缘和无来源像素外推
-- 必须查看重影、弯曲直线和接缝亮度跳变
-
-完整拼接契约和失败阈值见[`SKILL.md`](SKILL.md)。
+相邻照片需要可靠重叠和新增视场；不会生成未拍摄的区域，明显视差或运动需要人工复核。

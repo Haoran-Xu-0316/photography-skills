@@ -1,14 +1,6 @@
-# photo-geometry-corrector
+# 照片几何校正
 
-## 功能定位
-
-校正可定义、可复现的几何关系，包括水平倾斜、四点透视和基于真实标定参数的镜头几何畸变。它不负责审美裁切和内容补边。
-
-## 三种模式
-
-- `horizon`：旋转并裁掉无效边
-- `perspective`：把确认的四点平面映射为矩形
-- `calibrated-distortion`：使用相机矩阵和畸变系数校正镜头
+校正可定义、可复现的几何关系，包括水平倾斜、四点透视和基于真实标定参数的镜头几何畸变。
 
 ## 输入与输出
 
@@ -16,23 +8,16 @@
 
 ## 使用示例
 
-显式角度校正示例见[`examples/basic_usage.py`](examples/basic_usage.py)：
+> 按确认的倾斜角度扶正照片，裁掉无效边，另存校正结果。
 
-```python
-result = run_example("tilted.jpg", "geometry-review", confirmed_angle_degrees=2.4)
-```
+提供照片与需求后，按[执行说明](SKILL.md)处理。Python调用方式见[函数示例](examples/basic_usage.py)。
 
 ## 图片示例
 
-[输入、参数、实际输出及验证边界](examples/README.md)。随附[可复现调用](examples/reproduce.py)，不是只有调用占位符。
+![照片几何校正示例](examples/comparison.jpg)
 
-![输入与实际处理结果](examples/comparison.jpg)
+查看[输入、参数与处理结果](examples/README.md)，或使用[复现代码](examples/reproduce.py)运行随附案例。
 
-## 验收重点
+## 使用说明
 
-- 自动水平线只能作为建议，不能静默执行
-- 四点顺序必须为左上、右上、右下、左下
-- 镜头校正必须使用真实标定参数
-- `status="pass"`不等于视觉验收完成
-
-完整坐标和有效边规则见[`SKILL.md`](SKILL.md)。
+透视校正需确认四点顺序；镜头畸变校正需要真实标定参数。

@@ -1,13 +1,6 @@
-# photo-privacy-redactor
+# 照片隐私遮挡
 
-## 功能定位
-
-对用户确认的画面敏感区域进行不可逆实心遮挡。自动能力只提出正面人脸候选，不自动确认，也不承诺发现车牌、屏幕、票据或全部隐私内容。
-
-## 两阶段流程
-
-1. 检测候选、加入用户矩形或用户蒙版
-2. 逐项确认候选后生成无损PNG，并人工检查漏检
+对用户确认的画面敏感区域进行不可逆实心遮挡。
 
 ## 输入与输出
 
@@ -15,23 +8,16 @@
 
 ## 使用示例
 
-用户矩形遮挡示例见[`examples/basic_usage.py`](examples/basic_usage.py)：
+> 把我标出的敏感区域做实心遮挡，输出无损图片，并保留复核预览。
 
-```python
-result = run_example("source.jpg", "redaction-review")
-```
+提供照片与需求后，按[执行说明](SKILL.md)处理。Python调用方式见[函数示例](examples/basic_usage.py)。
 
 ## 图片示例
 
-[输入、参数、实际输出及验证边界](examples/README.md)。随附[可复现调用](examples/reproduce.py)，不是只有调用占位符。
+![照片隐私遮挡示例](examples/comparison.jpg)
 
-![输入与实际处理结果](examples/comparison.jpg)
+查看[输入、参数与处理结果](examples/README.md)，或使用[复现代码](examples/reproduce.py)运行随附案例。
 
-## 验收重点
+## 使用说明
 
-- 模糊、马赛克和半透明块均不符合不可逆要求
-- 未处理候选时状态必须保持`needs-candidate-review`
-- 未完成人工漏检检查时不得标记完成
-- 透明输入会先合成到不透明白底
-
-完整候选决策和状态定义见[`SKILL.md`](SKILL.md)。
+自动人脸检测仅提供候选，可能漏检或误报。需人工确认区域并检查遗漏；本流程不处理EXIF元数据。

@@ -1,14 +1,6 @@
-# photo-light-sculptor
+# 局部光影调整
 
-## 功能定位
-
-利用主体蒙版和同通道EV调整重新分配局部亮度，引导视线并强化照片已有光影。它不会生成新光源，也不改变全局综合色彩。
-
-## 三种模式
-
-- `focus`：主体轻微提亮，背景适度压暗
-- `depth`：强化照片已有的局部明暗纹理
-- `balance`：缓和局部过亮、过暗和左右失衡
+利用主体蒙版和同通道EV调整重新分配局部亮度，引导视线并强化照片已有光影。
 
 ## 输入与输出
 
@@ -16,23 +8,16 @@
 
 ## 使用示例
 
-用户蒙版优先的示例见[`examples/basic_usage.py`](examples/basic_usage.py)：
+> 按我提供的主体蒙版轻微提亮人物、压暗背景，让明暗过渡自然。
 
-```python
-result = run_example("portrait.jpg", "light-review", "subject-mask.png")
-```
+提供照片与需求后，按[执行说明](SKILL.md)处理。Python调用方式见[函数示例](examples/basic_usage.py)。
 
 ## 图片示例
 
-[输入、参数、实际输出及验证边界](examples/README.md)。随附[可复现调用](examples/reproduce.py)，不是只有调用占位符。
+![局部光影调整示例](examples/comparison.jpg)
 
-![输入与实际处理结果](examples/comparison.jpg)
+查看[输入、参数与处理结果](examples/README.md)，或使用[复现代码](examples/reproduce.py)运行随附案例。
 
-## 验收重点
+## 使用说明
 
-- 自动蒙版置信度不足时必须停止
-- 查看主体蒙版是否漏选或误选
-- EV调整不得产生明显光晕和色相漂移
-- 视觉检查前结果只能标记为待复核
-
-完整执行规范和方法说明见[`SKILL.md`](SKILL.md)。
+调整基于照片已有的亮度信息；使用前需检查蒙版边缘，避免光晕和误选。

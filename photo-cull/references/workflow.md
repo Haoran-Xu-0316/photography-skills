@@ -46,13 +46,9 @@ Lightroom默认不自动监视XMP变化，重跑本工具后需要手动再读�
 
 两者都原生读XMP边车，无需额外设置。
 
-## 与photo-repair的衔接
+## 确认候选
 
-两个skill设计上是接续关系。筛片定候选，修复做技术处理。
-
-先调用`create_cull_sidecars`完成筛片，在Lightroom里按星级过滤并由用户确认候选，再调用`photo-repair`的`repair_photos`处理候选副本。
-
-不要反过来。先修复再筛片是浪费，废片不需要修。
+完成人工复核后，按需调用`create_cull_sidecars`写入XMP评级，再在Lightroom中按星级查看候选。保留原始文件，最终取舍由用户确认。
 
 ## 不要做的事
 

@@ -46,6 +46,6 @@ result = sculpt_photo(input_path, output_dir, mode="focus", strength=1.0)
 - 默认EV范围为负0.35至正0.25，硬上限为负0.60至正0.45。
 - 不创建轮廓光、投影、眼神光和照片中不存在的照明。
 - 不覆盖原图；输出已存在时失败。
-- 全局曝光、曲线和颜色交给`photo-color-grade`；镜头径向暗角及其他技术缺陷交给`photo-repair`；相对深度和视差交给`photo-to-3d`。
+- 处理范围为局部亮度分配，不执行全局调色、镜头技术修复、深度估计或视差生成。
 
 详细方法见[references/method.md](references/method.md)。

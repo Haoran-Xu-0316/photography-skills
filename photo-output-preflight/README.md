@@ -1,14 +1,6 @@
-# photo-output-preflight
+# 照片交付检查
 
-## 功能定位
-
-检查照片文件是否适合网页、印刷或归档，重点覆盖尺寸、格式、有效PPI、ICC、透明通道、GPS元数据和文件完整性。它不修改摄影内容。
-
-## 三种目标
-
-- `web`：网页尺寸、体积、sRGB兼容、透明度和GPS风险
-- `print`：成品尺寸、有效PPI、位深和ICC完整性
-- `archive`：哈希、格式、尺寸、元数据和文件名冲突
+检查照片文件是否适合网页、印刷或归档，重点覆盖尺寸、格式、有效PPI、ICC、透明通道、GPS元数据和文件完整性。
 
 ## 输入与输出
 
@@ -16,23 +8,16 @@
 
 ## 使用示例
 
-网页交付示例见[`examples/basic_usage.py`](examples/basic_usage.py)：
+> 检查这组照片是否符合网页交付要求，列出尺寸、色彩和元数据问题。
 
-```python
-result = run_example(input_paths, "web-delivery")
-```
+提供照片与需求后，按[执行说明](SKILL.md)处理。Python调用方式见[函数示例](examples/basic_usage.py)。
 
 ## 图片示例
 
-[输入、参数、实际输出及验证边界](examples/README.md)。随附[可复现调用](examples/reproduce.py)，不是只有调用占位符。
+![照片交付检查示例](examples/comparison.jpg)
 
-![输入与实际处理结果](examples/comparison.jpg)
+查看[输入、参数与处理结果](examples/README.md)，或使用[复现代码](examples/reproduce.py)运行随附案例。
 
-## 验收重点
+## 使用说明
 
-- 导出成功不代表视觉合格
-- 透明图片必须保留Alpha并使用PNG
-- 没有ICC时只报告缺失，不猜测源色彩空间
-- GPS删除只作用于副本
-
-完整渠道标准和执行规范见[`SKILL.md`](SKILL.md)。
+检查结论取决于目标规格。缺失ICC会如实报告，导出副本不等于视觉质量已验收。

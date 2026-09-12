@@ -1,15 +1,6 @@
-# photo-repair
+# 照片技术修复
 
-## 功能定位
-
-诊断并修复照片采集阶段的技术缺陷，包括高ISO噪点、径向暗角、横向色差、坏点和热噪点。它不负责创意调色、局部光影和构图。
-
-## 适用场景
-
-- 高感照片降噪与细节回补
-- 镜头暗角、横向色差和坏点修复
-- 使用平场照片建立可复用镜头配置
-- RAW、TIFF、PNG和JPEG的批量技术处理
+诊断并修复照片采集阶段的技术缺陷，包括高ISO噪点、径向暗角、横向色差、坏点和热噪点。
 
 ## 输入与输出
 
@@ -17,23 +8,16 @@
 
 ## 使用示例
 
-完整三阶段示例见[`examples/basic_usage.py`](examples/basic_usage.py)：
+> 给这张高感照片做降噪，先提供局部对照，尽量保留毛发和纹理。
 
-```python
-result = run_example(["frame-01.jpg"], "repair-review")
-```
+提供照片与需求后，按[执行说明](SKILL.md)处理。Python调用方式见[函数示例](examples/basic_usage.py)。
 
 ## 图片示例
 
-[输入、参数、实际输出及验证边界](examples/README.md)。随附[可复现调用](examples/reproduce.py)，不是只有调用占位符。
+![照片技术修复示例](examples/comparison.jpg)
 
-![输入与实际处理结果](examples/comparison.jpg)
+查看[输入、参数与处理结果](examples/README.md)，或使用[复现代码](examples/reproduce.py)运行随附案例。
 
-## 验收重点
+## 使用说明
 
-- 必须查看中心、边缘和边角的100%裁切对照
-- 避免亮度降噪过强造成塑料感
-- JPEG的EXIF保留状态以报告为准
-- 高光溢出和紫边只报告，不虚构恢复
-
-完整执行规范和参数解释见[`SKILL.md`](SKILL.md)。
+降噪强度需要结合细节预览确认；已经剪切的高光信息无法凭空恢复。

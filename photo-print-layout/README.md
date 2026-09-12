@@ -1,14 +1,6 @@
-# photo-print-layout
+# 照片印刷拼版
 
-## 功能定位
-
-把已经定稿的照片按毫米纸张、网格、边距、出血和装订安全区放入物理页面。它不重新裁图、调色或制作报告文档。
-
-## 适用场景
-
-- 摄影集内页和照片墙排版
-- 联系印样与多图印刷拼版
-- 需要明确有效PPI、出血和裁切标记的PDF交付
+把已经定稿的照片按毫米纸张、网格、边距、出血和装订安全区放入物理页面。
 
 ## 输入与输出
 
@@ -16,23 +8,16 @@
 
 ## 使用示例
 
-A4双栏拼版示例见[`examples/basic_usage.py`](examples/basic_usage.py)：
+> 把这些定稿照片排成A4双栏页面，保留完整画面，给出PDF和页面预览。
 
-```python
-result = run_example(input_paths, "print-layout")
-```
+提供照片与需求后，按[执行说明](SKILL.md)处理。Python调用方式见[函数示例](examples/basic_usage.py)。
 
 ## 图片示例
 
-[输入、参数、实际输出及验证边界](examples/README.md)。随附[可复现调用](examples/reproduce.py)，不是只有调用占位符。
+![照片印刷拼版示例](examples/comparison.jpg)
 
-![输入与实际处理结果](examples/comparison.jpg)
+查看[输入、参数与处理结果](examples/README.md)，或使用[复现代码](examples/reproduce.py)运行随附案例。
 
-## 验收重点
+## 使用说明
 
-- `contain`不裁图，`cover-*`才允许裁切
-- 有效PPI低于最低阈值时默认停止
-- PDF生成后必须实际渲染检查
-- 当前输出是RGB，不包含印厂ICC和CMYK转换
-
-完整物理坐标和出血规则见[`SKILL.md`](SKILL.md)。
+页面按物理尺寸与有效PPI检查；当前输出为RGB，送印前仍需确认印厂的色彩要求。

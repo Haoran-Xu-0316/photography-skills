@@ -1,15 +1,6 @@
-# photo-to-3d
+# 单张照片立体化
 
-## 功能定位
-
-把单张照片转换为相对深度图、2.5D视差作品、循环动画和正面浅浮雕网格。它不声称恢复真实尺寸、隐藏表面或完整360度几何。
-
-## 四种输出
-
-- `depth`：16bit相对深度图和检查图
-- `parallax`：交互HTML与循环GIF
-- `relief`：带纹理OBJ、MTL和纹理图
-- `bundle`：同时生成全部结果
+把单张照片转换为相对深度图、2.5D视差作品、循环动画和正面浅浮雕网格。
 
 ## 输入与输出
 
@@ -17,23 +8,16 @@
 
 ## 使用示例
 
-使用用户深度图的离线示例见[`examples/basic_usage.py`](examples/basic_usage.py)：
+> 用这张照片和对应的深度图制作轻微视差动画，保持人物边缘自然。
 
-```python
-result = run_example("photo.jpg", "parallax-output", "depth.png")
-```
+提供照片与需求后，按[执行说明](SKILL.md)处理。Python调用方式见[函数示例](examples/basic_usage.py)。
 
 ## 图片示例
 
-[输入、参数、实际输出及验证边界](examples/README.md)。随附[可复现调用](examples/reproduce.py)，不是只有调用占位符。
+![单张照片立体化示例](examples/comparison.jpg)
 
-![输入与实际处理结果](examples/comparison.jpg)
+查看[输入、参数与处理结果](examples/README.md)，或使用[复现代码](examples/reproduce.py)运行随附案例。
 
-## 验收重点
+## 使用说明
 
-- 深度图必须与照片保持逐像素对应和同一宽高比
-- 白色默认表示近，黑色表示远
-- 人脸、文字、栏杆、树叶和透明体需要重点检查
-- OBJ只是正面高度场，不能描述为完整3D扫描
-
-完整模式说明和单图限制见[`SKILL.md`](SKILL.md)。
+输出基于相对深度和正面高度场，不是完整360度模型。自动估深需要本地模型权重，下载前需确认。
