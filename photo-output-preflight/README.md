@@ -1,42 +1,77 @@
 # 照片交付检查
 
-检查照片文件是否适合网页、印刷或归档，重点覆盖尺寸、格式、有效PPI、ICC、透明通道、GPS元数据和文件完整性。
+在上传、送印或归档前检查文件规格，包括尺寸、格式、有效PPI、ICC、透明通道、GPS和文件可读性。网页模式还可生成缩放与元数据处理副本。
 
-## 输入与输出
+![网页交付副本](examples/comparison.jpg)
 
-输入为照片列表和目标渠道。输出结构化质检报告；网页模式还可以生成机械性缩放和元数据处理副本。
+图示为随附案例的实际处理输出。素材、参数和验证范围见文末。
 
-## 使用示例
+## 1. 输入要求
 
-> 检查这组照片是否符合网页交付要求，列出尺寸、色彩和元数据问题。
+输入为照片列表与web、print或archive交付目标。印刷检查需明确成品宽高；已知的印厂色彩规范应一并提供。执行规范见[SKILL.md](SKILL.md)。
 
-提供照片与需求后，按[执行说明](SKILL.md)处理。Python调用方式见[函数示例](examples/basic_usage.py)。
+> 检查这些照片能否用于20×30厘米印刷，报告有效PPI、ICC和格式问题。不要只修改DPI标签，也不要在缺少印厂目标ICC时自行转换CMYK。
 
-## 图片示例
+## 2. 处理流程与依赖
 
-![照片交付检查示例](examples/comparison.jpg)
+[photo_output_preflight.py](scripts/photo_output_preflight.py)先做规格检查，再按明确目标生成副本，不改变照片的创作内容。
 
-查看[输入、参数与处理结果](examples/README.md)，或使用[复现代码](examples/reproduce.py)运行随附案例。
+1. 检查文件可读性，记录尺寸、格式、位深、透明度、ICC、GPS和SHA-256。
+2. web检查网页兼容性；print根据成品厘米尺寸计算有效PPI；archive记录完整性及重复情况。
+3. 汇总阻断项和警告。缺失ICC单独报告，不猜测未知文件的真实色彩空间。
+4. 网页导出根据可用ICC做色彩处理，按长边等比缩小，并按设置移除GPS。
+5. 记录导出动作和源文件哈希，确认原文件没有被覆盖。
 
-## 使用说明
+仅依赖Pillow：Image完成读写与缩放，ExifTags处理元数据，ImageCms处理ICC转换。JSON、CSV和哈希使用Python标准库。运行要求为Python3.10+，版本见[requirements.txt](requirements.txt)。
 
-检查结论取决于目标规格。缺失ICC会如实报告，导出副本不等于视觉质量已验收。
+## 3. 核心接口与参数
 
+`inspect_delivery`生成目标规则检查报告；`prepare_web_copies`另存缩放与GPS处理副本。检查与导出是两个独立接口。
 
-## 适合什么任务
+下表列出关键参数。默认值与当前接口定义一致，完整参数以源码为准。
 
-适合照片上传网站、交印厂或归档前的文件检查。将尺寸、格式、色彩配置、透明度、元数据及完整性问题转成明确报告。
+| 参数 | 默认值或要求 | 说明 |
+| --- | --- | --- |
+| `target` | `web` | 检查目标，可选`web`、`print`或`archive`。 |
+| `print_width_cm`、`print_height_cm` | `None` | 印刷成品宽高，单位为厘米，用于有效PPI计算。 |
+| `long_edge` | `2400` | 网页副本最长边，单位为像素。 |
+| `remove_gps` | `True` | 网页导出时移除GPS，不表示清理了所有元数据。 |
 
-## 如何准备素材和选择设置
+## 4. 调用示例
 
-提供照片列表及web、print或archive目标。印刷需给成品宽高厘米；网页应说明目标尺寸与体积要求。若有印厂ICC或渠道规范，应一并提供，缺失资料会限制结论。
+以下代码在本skill根目录的Python会话中运行，直接调用处理接口：
 
-## 完整请求示例
+```python
+from pathlib import Path
+import sys
 
-> 检查这些照片能否用于20×30厘米印刷，报告有效PPI和ICC情况。不要仅修改DPI标签，也不要在缺少目标ICC时自行转换CMYK。
+sys.path.insert(0, str(Path("scripts").resolve()))
+from photo_output_preflight import inspect_delivery, prepare_web_copies
 
-这段请求可连同素材交给能读取本目录[执行说明](SKILL.md)的模型。图片处理需要相应Python依赖；生成式图片需要运行环境提供生图能力。文字对话本身不等于已经执行处理。
+photos = ["photo-01.jpg", "photo-02.jpg"]
+report = inspect_delivery(photos, "delivery-inspection", target="web")
+if report["status"] != "blocked":
+    exports = prepare_web_copies(
+        photos, "delivery-copies", long_edge=2400, remove_gps=True
+    )
+```
 
-## 如何阅读和验收结果
+该例先做web检查，无阻断项时再生成长边2400像素、移除GPS的副本。印刷检查需通过`inspect_delivery`另传物理尺寸，见[调用示例](examples/basic_usage.py)。随附图片的实际参数见[reproduce.py](examples/reproduce.py)。
 
-有效PPI由实际像素和成品尺寸计算，修改标签不会增加细节。网页副本可进行缩放和GPS处理；归档以记录和检查为主。报告通过表示满足本次文件规则，不替代成片视觉复核。
+## 5. 交付文件与质量控制
+
+### 5.1 文件与结果解释
+
+检查报告按目标生成`delivery_目标_report.json`，记录逐文件问题与总状态。网页副本附`web_export_report.json`，记录尺寸、色彩动作与GPS处理。
+
+报告通过仅表示满足本次规则。缺少ICC、印厂条件不明确或要求超出规则范围时，应依据警告继续确认，不能将pass解释为视觉、印刷或隐私全部通过。
+
+### 5.2 参数选择与失败条件
+
+print必须给出正数成品宽高；网页`long_edge`至少320像素。现有导出只在输入长边超过目标时缩小，不通过放大增加清晰度。目标尺寸应与页面或渠道实际需求一致。
+
+输入重复、网页输出同名或既有文件冲突时停止。GPS移除不清理全部EXIF；没有印厂目标ICC时不声称完成CMYK转换。
+
+## 6. 示例与验证
+
+基础示例生成长边960像素副本并移除测试GPS，原文件哈希不变。它不覆盖印刷ICC、CMYK或全部元数据隐私风险。查看[交付记录](examples/README.md)及[其他题材案例](examples/cases/README.md)。
