@@ -1,42 +1,74 @@
-# 照片校色与调色
+# 照片校色与风格调色
 
-完成非生成式全局校色和调色，包括曝光、白平衡、曲线、综合色偏、饱和度、参考色彩关系和系列统一。
+调整照片的白平衡、曝光和色彩关系，可用于技术校色、风格配方、参考图匹配及组照统一。处理现有像素，不调用生图模型重绘内容。
 
-## 输入与输出
+![自动校色边界案例](examples/comparison.jpg)
 
-输入为照片，`match`还需要参考图，`series`还需要锚片。输出包括预览对照板、成片、配方JSON和验证JSON，原图不覆盖。
+图示为随附案例的实际处理输出。素材、参数和验证范围见文末。
 
-## 使用示例
+## 1. 输入要求
 
-> 调整这张照片的曝光和白平衡，保留现场暖光，并提供自然风格的预览。
+输入为照片及校色目标。准确校色需有可信中性区域或校准参照；参考匹配需额外提供参考照片；组照处理需指定锚定照片。执行规范见[SKILL.md](SKILL.md)。
 
-提供照片与需求后，按[执行说明](SKILL.md)处理。Python调用方式见[函数示例](examples/basic_usage.py)。
+> 先检查这张照片的白平衡和曝光，生成技术校色预览。保留夕阳本身的暖色，不把自然光色全部消除。若自动判断置信度不足，请保留原色并说明原因。
 
-## 图片示例
+## 2. 处理流程与依赖
 
-![照片校色与调色示例](examples/comparison.jpg)
+入口为[photo_color_grade.py](scripts/photo_color_grade.py)，像素运算集中在[color_engine.py](scripts/color_engine.py)。技术校色、人工校准、创意调色和参考匹配分别记录处理依据。
 
-查看[输入、参数与处理结果](examples/README.md)，或使用[复现代码](examples/reproduce.py)运行随附案例。
+1. 读取图片、方向、位深、EXIF和ICC信息，分析亮度、剪切、综合色偏与饱和度。
+2. `correct`从可靠的低饱和中间调估计白平衡，并限制通道增益与曝光变化。低置信度时保留现场光色，不强行中和夕阳、舞台灯或暖灯。
+3. 已知曝光或通道偏差时使用`calibrate_photo`。用户给定增益或中性区域是校准依据，不与自动场景猜测混为一谈。
+4. `look`在技术底片上应用风格配方；`match`按参考图的Lab统计关系进行有限强度匹配，不复制其内容或逐像素颜色。
+5. 预览提供不同强度对照，确认后输出成片；组照通过`grade_series`以锚定照片建立统一关系，保留不同现场光线的合理差异。
 
-## 使用说明
+NumPy处理数组与颜色数值，OpenCV进行颜色空间转换和图像运算，Pillow处理常见格式与元数据，tifffile支持TIFF读写。RAW另需rawpy。运行要求为Python3.10+，版本见[requirements.txt](requirements.txt)，方法分别见[技术校色](references/correction.md)、[创意调色](references/creative-grading.md)、[参考匹配](references/reference-matching.md)及[色彩管理](references/color-management.md)。
 
-支持技术校色、创意调色、参考匹配和系列统一，也可通过明确参数进行人工校准。原图另存保留。
+## 3. 核心接口与参数
 
+`analyze_photo`分析输入；`build_preview`生成预览；`grade_photo`另存成片。`calibrate_photo`处理已确认的校准参数，`grade_series`处理以锚定图为基准的组照。
 
-## 适合什么任务
+下表列出关键参数。默认值与当前接口定义一致，完整参数以源码为准。
 
-适合整体偏色修正、自然影调整理、创意色彩表达和一组照片的视觉统一。处理作用于全局曝光、白平衡、曲线与色彩关系，保留原有物体与构图。
+| 参数 | 默认值或要求 | 说明 |
+| --- | --- | --- |
+| `mode` | 因接口而异 | `build_preview`默认`look`，`grade_photo`默认`correct`；调用时显式指定。 |
+| `look` | `natural-clean` | 风格配方名称。 |
+| `strength` | `1.0` | 成片接口的处理强度；预览接口不接受此参数。 |
+| `reference_path` | `None` | 参考图路径，供匹配流程使用。 |
+| `anchor_path` | 组照必填 | `grade_series`的锚定照片。 |
 
-## 如何准备素材和选择设置
+## 4. 调用示例
 
-提供原图和目标观感。参考匹配需要参考图，系列统一需要指定锚片。最好明确要保留的现场光色、肤色要求和可接受的对比强度；不同照明条件下不应机械追求完全相同的颜色。
+以下代码在本skill根目录的Python会话中运行，直接调用处理接口：
 
-## 完整请求示例
+```python
+from pathlib import Path
+import sys
 
-> 以这张照片为锚片统一其余旅行照片，保留黄昏暖光，控制高光不过分发黄，阴影不要压黑。先提供预览对照和每张照片的处理配方。
+sys.path.insert(0, str(Path("scripts").resolve()))
+from photo_color_grade import analyze_photo, build_preview
 
-这段请求可连同素材交给能读取本目录[执行说明](SKILL.md)的模型。图片处理需要相应Python依赖；生成式图片需要运行环境提供生图能力。文字对话本身不等于已经执行处理。
+analysis = analyze_photo("photo.jpg")
+preview = build_preview(
+    "photo.jpg", "grade-preview", mode="correct"
+)
+```
 
-## 如何阅读和验收结果
+预览确认后调用`grade_photo`另存成片。`calibrate_photo`和`grade_series`分别用于校准与组照；调用方式见[调用示例](examples/basic_usage.py)，展示图片的实际调用见[reproduce.py](examples/reproduce.py)。
 
-通过对照板检查中性色、肤色、明暗细节和饱和度，再查看配方与验证报告。参考匹配表达的是色彩关系，不保证复刻参考图的灯光和局部颜色分布。输出另存，原图保留。
+## 5. 交付文件与质量控制
+
+### 5.1 文件与结果解释
+
+预览对照板用于确认方向和强度；成片另存，并附`recipe.json`与`validation.json`记录处理方案及检查结果。技术校色和创意调整的目的应在记录中分开，不能把风格偏色描述为恢复真实色彩。
+
+### 5.2 参数选择与失败条件
+
+单张成片接口的`mode`只接受correct、look和match；系列统一通过`grade_series`调用，series不是该参数的合法值。`available_looks`可查询当前配方，不能使用未经定义的名称。match缺少参考图时拒绝处理。
+
+准确校色优先采用已确认的校准信息。中性采样区域被剪切、受彩色光污染或不是中性物体时，不能继续作为可靠参照。检查肤色、中性色、高光渐变及色阶断层；输出成功不等于色彩准确。
+
+## 6. 示例与验证
+
+基础示例人为加入暖偏色和欠亮。自动白平衡置信度不足，程序未强行纠偏，仅小幅提亮；结果没有完整恢复基准颜色。这是保守校色的边界案例，不是成功复原示范。查看[参数与结果](examples/README.md)、[校准示例](examples/calibration/README.md)及[其他题材案例](examples/cases/README.md)。
