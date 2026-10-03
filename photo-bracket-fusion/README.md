@@ -1,42 +1,80 @@
 # 包围曝光融合
 
-融合同一机位、同一视场的真实包围曝光序列，并报告配准和运动鬼影风险。
+将同一视角的多张真实曝光照片融合为一张显示用图片。利用不同曝光中已有的细节，兼顾亮部和暗部，不从单张照片生成虚构曝光。
 
-## 输入与输出
+![模拟曝光序列融合](examples/comparison.jpg)
 
-输入至少两张不同曝光照片，可显式提供秒为单位的曝光时间。输出16bit TIFF、JPEG预览、风险蒙版、配准联系表和JSON报告。
+图示为随附案例的实际处理输出。素材、参数和验证范围见文末。
 
-## 使用示例
+## 1. 输入要求
 
-> 融合这组同机位包围曝光照片，同时展示配准结果和运动鬼影风险。
+输入至少两张同一视角的真实曝光照片。各帧需包含有效曝光差异，曝光时间按照片顺序提供；相机移动与主体运动会增加配准风险。执行规范见[SKILL.md](SKILL.md)。
 
-提供照片与需求后，按[执行说明](SKILL.md)处理。Python调用方式见[函数示例](examples/basic_usage.py)。
+> 融合这组真实包围曝光照片。先检查配准和局部运动，保留自然对比，不做过强HDR效果。运动区域优先参考帧，输出风险图供我复核。
 
-## 图片示例
+## 2. 处理流程与依赖
 
-![包围曝光融合示例](examples/comparison.jpg)
+[photo_bracket_fusion.py](scripts/photo_bracket_fusion.py)执行显示空间曝光融合。它使用多帧已有信息，不从单张图预测新的亮暗细节。
 
-查看[输入、参数与处理结果](examples/README.md)，或使用[复现代码](examples/reproduce.py)运行随附案例。
+1. 检查帧数、路径、尺寸、曝光关系与输入重复情况，确认各帧包含有效互补信息。
+2. 根据曝光和画面信息选取参考帧，通过AlignMTB与相位相关候选估计平移，评估共同有效区域与配准质量。
+3. 对帧间亮度差异做光度补偿后估计运动风险，避免直接把正常曝光变化视为物体移动。
+4. 使用MergeMertens按对比度、饱和度和曝光适宜度融合。
+5. 按运动策略处理高风险区域并输出风险图，供用户核对运动人物、树叶和水面。
 
-## 使用说明
+NumPy处理多帧数组与风险计算，OpenCV执行配准与Mertens融合，Pillow负责读写和联系表。运行要求为Python3.10+，版本见[requirements.txt](requirements.txt)。
 
-实际处理需要真实的多曝光输入。输出是显示参考型曝光融合图，不是物理辐射亮度图；示例中的模拟输入已单独注明。
+## 3. 核心接口与参数
 
+`analyze_bracket`检查曝光关系、配准与风险，返回`blockers`；无阻断项后使用`fuse_bracket`生成融合结果。
 
-## 适合什么任务
+下表列出关键参数。默认值与当前接口定义一致，完整参数以源码为准。
 
-适合窗内外亮度差大的室内、逆光建筑和静态风景的多曝光合成。利用不同曝光帧中实际记录的信息，兼顾亮部与暗部的可见层次。
+| 参数 | 默认值或要求 | 说明 |
+| --- | --- | --- |
+| `exposure_times` | `None` | 与输入一一对应的曝光秒数；有可靠数据时显式提供。 |
+| `motion_handling` | `reference-frame` | 融合接口的运动处理策略，风险区域使用参考帧约束。 |
 
-## 如何准备素材和选择设置
+## 4. 调用示例
 
-至少提供两张同机位、同视场、不同曝光的原始照片，尺寸应一致。曝光时间以秒提供；缺失时尝试读取EXIF，仍缺失则标明未经验证。主体移动和明显换位会增加失败风险。
+以下代码在本skill根目录的Python会话中运行，直接调用处理接口：
 
-## 完整请求示例
+```python
+from pathlib import Path
+import sys
 
-> 融合这三张室内包围曝光，曝光时间分别为0.25秒、0.5秒和1秒。检查窗边和走动人物的鬼影，风险区域优先使用参考帧，并输出风险图。
+sys.path.insert(0, str(Path("scripts").resolve()))
+from photo_bracket_fusion import analyze_bracket, fuse_bracket
 
-这段请求可连同素材交给能读取本目录[执行说明](SKILL.md)的模型。图片处理需要相应Python依赖；生成式图片需要运行环境提供生图能力。文字对话本身不等于已经执行处理。
+photos = ["dark.jpg", "middle.jpg", "bright.jpg"]
+exposure_times = [0.005, 0.01, 0.02]
 
-## 如何阅读和验收结果
+analysis = analyze_bracket(photos, exposure_times=exposure_times)
+if not analysis["blockers"]:
+    result = fuse_bracket(
+        photos, "fusion-review",
+        exposure_times=exposure_times,
+        motion_handling="reference-frame",
+    )
+```
 
-成片之外还提供配准联系表、风险蒙版与报告。蒙版提示需要重点查看的位置，不表示这些区域已完美修复。所有帧均过曝或全黑的部分无法恢复；16bit文件也不等于物理辐射亮度HDR。
+曝光时间单位为秒，应替换为真实值。示例先调用`analyze_bracket`，遇到阻断项不融合；通过后调用`fuse_bracket`并采用参考帧运动处理。见[调用示例](examples/basic_usage.py)与[图片复现函数](examples/reproduce.py)。
+
+## 5. 交付文件与质量控制
+
+### 5.1 文件与结果解释
+
+- `exposure_fused_16bit.tif`：融合结果，16位保存不表示源图新增了真实动态范围。
+- `exposure_fused_preview.jpg`：显示预览。
+- `ghost_risk_mask.png`与`alignment_contact_sheet.jpg`：运动风险及对齐情况。
+- `bracket_fusion_report.json`：曝光来源、配准和处理记录。
+
+### 5.2 参数选择与失败条件
+
+`motion_handling`可选reference-frame或report-only。前者在风险区域采用参考帧约束，后者仅报告风险，不能视为已经去除重影。曝光秒数需为正值，并与输入一一对应。
+
+出现阻断项时不融合。曝光剪切覆盖所有帧、明显视差或非平移运动时，已有处理未必能恢复细节。该结果不是经标定的场景辐射HDR，文件位深和真实记录范围应分开解释。
+
+## 6. 示例与验证
+
+基础示例从同一生成底图模拟3档曝光，再执行实际配准与融合。它用于验证受控处理路径，不能证明真实高动态范围恢复。查看[曝光构造与风险记录](examples/README.md)及[其他题材案例](examples/cases/README.md)。
