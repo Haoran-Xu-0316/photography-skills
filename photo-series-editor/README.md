@@ -1,42 +1,72 @@
 # 组照编排
 
-为已经完成筛选的多张照片建立顺序、节奏、开场、转场和收束。
+为已经选好的照片建立顺序与视觉节奏，输出编号联系表和非破坏性清单。适合轮播、作品集和旅行组照的初稿编排。
 
-## 输入与输出
+![三图视觉节奏草案](examples/comparison.jpg)
 
-输入为已选照片列表。输出包括编号联系表、序列JSON、CSV和非破坏性文件清单。
+图示为随附案例的实际处理输出。素材、参数和验证范围见文末。
 
-## 使用示例
+## 1. 输入要求
 
-> 把这组已经选好的照片编排成一个有开场、转场和收束的序列，先给我看联系表。
+输入为已经选定的照片和编排要求。固定开场、结尾及事件时序由用户说明，再结合联系表人工调整。执行规范见[SKILL.md](SKILL.md)。
 
-提供照片与需求后，按[执行说明](SKILL.md)处理。Python调用方式见[函数示例](examples/basic_usage.py)。
+> 编排这组旅行照片，以到达场景开场、夜景收束，中间交替远景与细节。先给编号联系表供我调整，确认后输出最终顺序，不移动或重命名原文件。
 
-## 图片示例
+## 2. 处理流程与依赖
 
-![组照编排示例](examples/comparison.jpg)
+[photo_series_editor.py](scripts/photo_series_editor.py)建立非破坏性顺序草案，不修改单张照片。
 
-查看[输入、参数与处理结果](examples/README.md)，或使用[复现代码](examples/reproduce.py)运行随附案例。
+1. 读取方向、EXIF时间和文件哈希，保留原始路径。
+2. 计算画幅、亮度、饱和度、Lab颜色、边缘密度及基于DCT的感知哈希。
+3. chronology按可用时间排序，visual-rhythm依据特征变化组织节奏，manual保留用户给定顺序。
+4. 标记相似照片及相邻重复风险，生成编号联系表。
+5. 人工查看整体节奏并调整顺序后，使用manual记录终稿状态。
 
-## 使用说明
+NumPy承担特征与距离计算，OpenCV承担颜色空间、边缘和DCT运算，Pillow负责EXIF读取与联系表。运行要求为Python3.10+，版本见[requirements.txt](requirements.txt)。
 
-自动顺序只是草稿；最终顺序由人工确认，原文件不移动、不重命名。
+## 3. 核心接口与参数
 
+`build_series`统一生成序列与联系表。人工确认后的终稿使用已排好顺序的路径列表，选择`manual`并记录复核状态，不让自动草稿直接成为终稿。
 
-## 适合什么任务
+下表列出关键参数。默认值与当前接口定义一致，完整参数以源码为准。
 
-适合已选照片的旅行故事、活动回顾、作品集或社交轮播编排。重点是开场、画面之间的节奏、转场和结尾，而非单张处理。
+| 参数 | 默认值或要求 | 说明 |
+| --- | --- | --- |
+| `strategy` | `visual-rhythm` | 可选`chronology`、`visual-rhythm`或`manual`。 |
+| `visual_review_confirmed` | `False` | 记录人工复核；只有`manual`策略允许设置为`True`。 |
 
-## 如何准备素材和选择设置
+## 4. 调用示例
 
-提供已选照片及叙事目标。chronology保留时间顺序，visual-rhythm形成视觉节奏草稿，manual遵循指定顺序。若某张必须开场或事件必须按时间展开，应明确说明。
+以下代码在本skill根目录的Python会话中运行，直接调用处理接口：
 
-## 完整请求示例
+```python
+from pathlib import Path
+import sys
 
-> 把这组已选旅行照片编为轮播，以到达场景开场、夜景收束，中间交替远景和细节。先给编号联系表，再确定最终顺序。
+sys.path.insert(0, str(Path("scripts").resolve()))
+from photo_series_editor import build_series
 
-这段请求可连同素材交给能读取本目录[执行说明](SKILL.md)的模型。图片处理需要相应Python依赖；生成式图片需要运行环境提供生图能力。文字对话本身不等于已经执行处理。
+draft = build_series(
+    ["arrival.jpg", "detail.jpg", "night.jpg"],
+    "series-draft", strategy="visual-rhythm",
+    visual_review_confirmed=False,
+)
+```
 
-## 如何阅读和验收结果
+查看联系表并调整路径顺序后，使用`manual`策略生成终稿。完整草稿与确认流程见见[调用示例](examples/basic_usage.py)及[图片复现函数](examples/reproduce.py)。
 
-输出联系表、序列JSON与CSV清单。自动颜色和明暗排序不能判断事件意义，需要实际查看整组照片。最终清单保留原路径，原文件不移动、不重命名。
+## 5. 交付文件与质量控制
+
+### 5.1 文件与结果解释
+
+`series_contact_sheet.jpg`提供顺序预览；`series_sequence.json`与CSV记录原路径、编号及画面特征。初稿保持`draft-review-required`，人工确认后的manual结果才可记录为`series-reviewed`。
+
+### 5.2 参数选择与失败条件
+
+事件顺序重要时采用chronology并核对EXIF；需要比较画幅、颜色及密度变化时采用visual-rhythm；已有编辑方案时采用manual。用户要求的开场和结尾需要通过实际顺序落实，不能假定程序自动理解文件名。
+
+检查连续相似画面、远近景交替及转场是否合理。缺少时间、重复路径或不存在文件需先解决；自动视觉距离不能判断照片的事件意义，原文件不移动、不改名。
+
+## 6. 示例与验证
+
+基础示例来自同一底图的全景、近景和细节取景，结果仍保持待复核草稿状态。它不是独立实拍故事，也不证明程序理解了事件叙事。查看[序列记录](examples/README.md)及[其他题材案例](examples/cases/README.md)。
