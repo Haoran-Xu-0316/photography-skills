@@ -69,6 +69,52 @@ preview = build_preview(
 
 准确校色优先采用已确认的校准信息。中性采样区域被剪切、受彩色光污染或不是中性物体时，不能继续作为可靠参照。检查肤色、中性色、高光渐变及色阶断层；输出成功不等于色彩准确。
 
-## 6. 示例与验证
+## 6. 示例与应用
+
+### 6.1 基础案例
 
 基础示例人为加入暖偏色和欠亮。自动白平衡置信度不足，程序未强行纠偏，仅小幅提亮；结果没有完整恢复基准颜色。这是保守校色的边界案例，不是成功复原示范。查看[参数与结果](examples/README.md)、[校准示例](examples/calibration/README.md)及[其他题材案例](examples/cases/README.md)。
+
+### 6.2 多题材实际对照
+
+下列图片来自仓库已有处理记录。输入为独立生成的合成摄影素材，对照板仅缩放排版；示例不等同于实拍验收。
+
+| 动物 | 城市 | 人物 |
+| --- | --- | --- |
+| ![动物处理对照](examples/cases/animal/comparison.jpg) | ![城市处理对照](examples/cases/city/comparison.jpg) | ![人物处理对照](examples/cases/portrait/comparison.jpg) |
+
+实际设置：每组分别运行保守自动校色与风格配方。动物为natural-clean，城市为cool-urban，人物为warm-documentary，风格强度均为0.7。
+
+对照板仅展示所选处理结果，不应解释为两种模式的共同结果。各案例目录分别保存技术校色与风格调色输出，可查看以下原尺寸文件：
+
+| 题材 | 技术校色 | 风格调色 |
+| --- | --- | --- |
+| 动物 | [校色结果](examples/cases/animal/output/correct/degraded_corrected.png) | [natural-clean](examples/cases/animal/output/look/source_graded-natural-clean.png) |
+| 城市 | [校色结果](examples/cases/city/output/correct/degraded_corrected.png) | [cool-urban](examples/cases/city/output/look/source_graded-cool-urban.png) |
+| 人物 | [校色结果](examples/cases/portrait/output/correct/degraded_corrected.png) | [warm-documentary](examples/cases/portrait/output/look/source_graded-warm-documentary.png) |
+
+| 题材 | 看图重点 |
+| --- | --- |
+| 动物 | 观察动物颜色与植被层次，区分曝光调整和风格性颜色变化。 |
+| 城市 | 观察冷色建筑、天空与暖色灯光，避免用全局冷色覆盖全部色彩关系。 |
+| 人物 | 观察肤色与环境暖光，判断暖色配方是否改变人物颜色判断。 |
+
+验证范围：自动校色不保证逆转已知偏色。需要精确恢复时，应提供可信校准参数；已有[校准案例](examples/calibration/README.md)记录了已知曝光与通道增益的处理。
+
+输入、输出与复现方式见[案例记录](examples/cases/README.md)及[实际调用](examples/cases/reproduce.py)。报告中的待复核、阻断与警告状态均应保留，不能以程序执行成功代替质量验收。
+
+### 6.3 应用请求示例
+
+以下请求用于新任务，不是上面案例的实际调用记录。应按自有素材、处理目标与确认状态调整。
+
+#### 6.3.1 有中性参照的校色
+
+> 校正这张含灰卡参照的照片，先确认参照区域可信，再调整白平衡和曝光。提供技术校色结果，不叠加创意风格；置信度不足时说明原因，保留原图。
+
+复核重点：先看中性区域是否中性，再看主体颜色和高光是否合理，不能以主观好看替代校色依据。
+
+#### 6.3.2 城市冷色调色
+
+> 为这张城市照片生成cool-urban预览，先用0.7强度。保留暖窗灯与冷天空的区分，不把整幅统一染蓝，输出对照并记录实际配方。
+
+复核重点：比较原图与调色图的色彩分工、暗部层次和建筑细节；这属于风格处理，不是颜色复原。
