@@ -1,42 +1,81 @@
 # 照片隐私遮挡
 
-对用户确认的画面敏感区域进行不可逆实心遮挡。
+对已确认的敏感区域使用不透明实心块，输出无损PNG。适合遮挡人脸、姓名、二维码和屏幕内容，但需要用户确认区域。
 
-## 输入与输出
+![显式区域实心遮挡](examples/comparison.jpg)
 
-输入为照片、矩形、蒙版和候选决策。输出遮挡PNG、二值蒙版、标记预览和复核JSON。GPS和EXIF风险不属于本Skill。
+图示为随附案例的实际处理输出。素材、参数和验证范围见文末。
 
-## 使用示例
+## 1. 输入要求
 
-> 把我标出的敏感区域做实心遮挡，输出无损图片，并保留复核预览。
+输入为照片，以及用户确认的矩形、蒙版或人脸候选决定。候选检测只覆盖正面人脸，其他敏感内容由用户指定。执行规范见[SKILL.md](SKILL.md)。
 
-提供照片与需求后，按[执行说明](SKILL.md)处理。Python调用方式见[函数示例](examples/basic_usage.py)。
+> 遮挡我标出的姓名和二维码，使用不透明实心块，不用模糊或马赛克。列出人脸候选供我确认，输出遮挡PNG、蒙版和复核预览。未确认的候选保留待复核状态。
 
-## 图片示例
+## 2. 处理流程与依赖
 
-![照片隐私遮挡示例](examples/comparison.jpg)
+[photo_privacy_redactor.py](scripts/photo_privacy_redactor.py)区分候选检测、区域确认和像素覆盖，未确认的人脸候选不会自动进入遮挡区域。
 
-查看[输入、参数与处理结果](examples/README.md)，或使用[复现代码](examples/reproduce.py)运行随附案例。
+1. 读取照片与元数据，透明图先合成到不透明白底，避免透明通道保留的内容意外显现。
+2. 使用Haar级联提供正面人脸候选，并记录检测器是否可用。不可用与检测结果为零是不同状态。
+3. 对候选明确记录redact或reject；未决定者保持pending。用户指定矩形与蒙版直接进入合并区域。
+4. 将区域内像素替换为实心RGB值，保存为无损PNG，不用模糊、马赛克或可逆图层。
+5. 生成二值蒙版、候选标记预览及复核记录，按整张原图检查遗漏。
 
-## 使用说明
+NumPy承担区域并集与像素替换，OpenCV承担Haar候选与蒙版处理，Pillow负责方向、透明度和PNG输出。运行要求为Python3.10+，版本见[requirements.txt](requirements.txt)，决策规则见[复核规范](references/review-policy.md)。
 
-自动人脸检测仅提供候选，可能漏检或误报。需人工确认区域并检查遗漏；本流程不处理EXIF元数据。
+## 3. 核心接口与参数
 
+`detect_face_candidates`提供候选，不完成隐私审批；`redact_photo`按确认区域替换像素并输出复核记录。
 
-## 适合什么任务
+下表列出关键参数。默认值与当前接口定义一致，完整参数以源码为准。
 
-适合对已确认的脸部、票据文字、屏幕或其他敏感区域进行实心覆盖。最终PNG将对应像素替换为不透明色块，原图单独保留。
+| 参数 | 默认值或要求 | 说明 |
+| --- | --- | --- |
+| `rectangles` | 空集合 | 显式区域；通过`unit`注明像素或归一化坐标。 |
+| `mask_paths` | 空集合 | 用户提供的遮挡蒙版。 |
+| `candidate_decisions` | `None` | 仅接受`redact`或`reject`，未决定的候选保持pending。 |
+| `manual_review_confirmed` | `False` | 记录整张图是否完成敏感信息复核。 |
+| `fill_rgb` | `(0, 0, 0)` | 实心覆盖颜色，默认黑色。 |
 
-## 如何准备素材和选择设置
+## 4. 调用示例
 
-提供照片及矩形或蒙版，明确需要遮挡的区域。自动检测仅提供正面人脸候选，每个候选需确认遮挡或排除；车牌、二维码、文字等不能依赖自动识别。
+以下代码在本skill根目录的Python会话中运行，直接调用处理接口：
 
-## 完整请求示例
+```python
+from pathlib import Path
+import sys
 
-> 遮挡我标出的姓名和二维码区域，使用不透明实心块。列出人脸候选供确认，并生成最终PNG、遮挡蒙版和标记预览。
+sys.path.insert(0, str(Path("scripts").resolve()))
+from photo_privacy_redactor import detect_face_candidates, redact_photo
 
-这段请求可连同素材交给能读取本目录[执行说明](SKILL.md)的模型。图片处理需要相应Python依赖；生成式图片需要运行环境提供生图能力。文字对话本身不等于已经执行处理。
+candidates = detect_face_candidates("photo.jpg")
+result = redact_photo(
+    "photo.jpg", "redaction-review",
+    rectangles=[{
+        "left": 0.10, "top": 0.20, "right": 0.35, "bottom": 0.55,
+        "unit": "normalized",
+    }],
+    manual_review_confirmed=False,
+)
+```
 
-## 如何阅读和验收结果
+示例中的归一化矩形仅供演示，需替换为实际区域；调用设置`manual_review_confirmed=False`。必须按实际敏感区域修改坐标、检查整张图并完成复核，不能直接把示例输出当作可公开文件。参数见[调用示例](examples/basic_usage.py)与[图片复现函数](examples/reproduce.py)。
 
-逐一检查小脸、侧脸、边缘和遗漏区域，确认遮挡覆盖完整。结果保留源EXIF和ICC，画面遮挡不代表GPS等元数据已清理。不要将带敏感信息的源图或复核材料当作公开成片。
+## 5. 交付文件与质量控制
+
+### 5.1 文件与状态解释
+
+输出遮挡PNG、`_redaction_mask.png`、`_redaction_preview.jpg`和复核JSON。原图单独保留，输出中的实心覆盖不删除其他副本。
+
+尚有候选未决定时为`needs-candidate-review`；候选已处理但漏检复核未确认时为`needs-manual-review`；本次画面复核确认后才可记录`content-redaction-reviewed`。这些状态不代表所有隐私风险已经消除。
+
+### 5.2 参数选择与失败条件
+
+`candidate_decisions`只接受redact或reject，pending通过不传决定表示。未知候选编号和无效区域应先纠正。矩形应留足边缘余量，并检查小脸、侧脸、反射、边缘文字和二维码。
+
+输出规范化方向后保留源EXIF和ICC，不移除GPS。含敏感内容的源图、蒙版和复核材料不应作为公开示例；画面遮挡与元数据清理是不同操作。
+
+## 6. 示例与验证
+
+基础示例遮挡人工加入的虚构联系标签。区域内像素被替换为黑色，区域外不变；人工复核状态仍未确认，不能视为发布批准。查看[像素验证记录](examples/README.md)、[候选确认流程](examples/candidate-review/README.md)及[其他题材案例](examples/cases/README.md)。
